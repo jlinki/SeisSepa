@@ -9,7 +9,7 @@
     "scripts/evaluate.py": "1cb3e4dd285757c4a44b7fef76e920520411909098668809bcaa420b829fe5c7",
     "scripts/verify_benchmark.py": "ad573448ec508154d6f13fb203942783194d563cf53d900c478103b9e2ecc37d",
     "scripts/leaderboard.py": "9f99378293ad4f0a30609cc206e4576d747c9441dbcb6909b5e2d6d5f12105f3",
-    "AGENTS.md": "2f38b9fc7313827005f08d57eb2b4f8f1a0ee337b0b8767f834b369e184c06af",
+    "AGENTS.md": "1c5be7b1c5ed57c08ade6dc9b741dd0b2e8ce85986a6708f3448b77bc93b2fbe",
     "tests/test_benchmark.py": "c874ffcecbc19adeb3840ce2f7a730b81238b1b043eeebe8b4f4973200a24eb0",
     "benchmark/manifest.json": "abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26",
     "data/frozen/waveforms.npy": "5035970e5a6172bb0a848c863ae3260a37dc17cb83bcdabf22e68e18dc2f2c1d"
