@@ -1,0 +1,13 @@
+.venv/
+**/.venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+data/*.hdf5
+data/frozen/
+data/.prepare-*/
+outputs/
+wandb/
+legacy/

@@ -1,0 +1,3 @@
+_target_: seissepa.models.NotebookAE
+channels: [32, 64, 128]
+latent_dim: 128
