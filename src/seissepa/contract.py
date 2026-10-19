@@ -6,7 +6,7 @@ from seissepa.data import ROOT, MANIFEST, LOCK
 
 PROTECTED = ["src/seissepa/data.py", "src/seissepa/metrics.py", "src/seissepa/evaluate.py",
              "src/seissepa/contract.py", "scripts/prepare_data.py", "scripts/evaluate.py",
-             "scripts/verify_benchmark.py", "scripts/leaderboard.py", "scripts/rectangle_search.cpp",
+             "scripts/verify_benchmark.py", "scripts/leaderboard.py",
              "AGENTS.md", "tests/test_benchmark.py"]
 
 
@@ -31,6 +31,8 @@ def read_verified():
 
 
 def validate_manifest(manifest):
+    if len(manifest["stations"]) != len(manifest["events"]):
+        raise ValueError("Frozen benchmark must be square: equal station and event counts")
     records = manifest["records"]
     pairs = {(r["station"], r["event"]) for r in records}
     expected = {(s, e) for s in manifest["stations"] for e in manifest["events"]}
@@ -38,7 +40,7 @@ def validate_manifest(manifest):
         raise ValueError("Manifest must contain exactly one distinct trace per station/event cell")
     train, val = manifest["split"]["train"], manifest["split"]["validation"]
     if not train or not val or sorted(train + val) != list(range(len(records))):
-        raise ValueError("Train/validation must be disjoint and partition the rectangle")
+        raise ValueError("Train/validation must be disjoint and partition the square")
     for key, values in (("event", manifest["events"]), ("station", manifest["stations"])):
         if {records[i][key] for i in train} != set(values):
             raise ValueError("Every validation class needs a training reference")

@@ -1,0 +1,8761 @@
+{
+  "version": 1,
+  "source": {
+    "path": "data/Instance_events_maggt3.hdf5",
+    "bytes": 18776063948,
+    "sha256": "88a49ed9028749f6b894ce5bb17a93883d04e8b44eb8ec18aa170c03afbebfee",
+    "trace_count": 130037,
+    "metadata_sha256": "b9fd9ba7530e48192191bd461d0e28c4499179341f9278536195627312864053"
+  },
+  "selection": {
+    "status": "HEURISTIC_LARGEST_SQUARE_FOUND",
+    "geometry": "square",
+    "side": 35,
+    "area": 1225,
+    "stations": [
+      14,
+      22,
+      28,
+      29,
+      38,
+      73,
+      92,
+      165,
+      166,
+      169,
+      173,
+      180,
+      193,
+      201,
+      239,
+      264,
+      271,
+      323,
+      336,
+      368,
+      380,
+      407,
+      444,
+      461,
+      521,
+      523,
+      528,
+      529,
+      530,
+      538,
+      539,
+      541,
+      542,
+      544,
+      553
+    ],
+    "events": [
+      1,
+      10,
+      24,
+      33,
+      36,
+      37,
+      38,
+      46,
+      48,
+      54,
+      63,
+      69,
+      84,
+      85,
+      93,
+      97,
+      2446,
+      2513,
+      2550,
+      2555,
+      2559,
+      2567,
+      2573,
+      2576,
+      2596,
+      2599,
+      2619,
+      2620,
+      2621,
+      2635,
+      2637,
+      2642,
+      2643,
+      2645,
+      2651
+    ],
+    "method": "deterministic greedy square search in both orientations; crop larger side",
+    "station_starts": 512,
+    "event_starts": 512,
+    "min_stations": 5,
+    "min_events": 5,
+    "max_aspect_ratio": 1.0,
+    "duplicates": "lexicographically first trace per station/event cell"
+  },
+  "stations": [
+    "AOI",
+    "ARVD",
+    "ATCC",
+    "ATFO",
+    "ATVO",
+    "CAMP",
+    "CESX",
+    "FDMO",
+    "FEMA",
+    "FIAM",
+    "FIU1",
+    "FRON",
+    "GIGS",
+    "GUMA",
+    "LNSS",
+    "MDAR",
+    "MGAB",
+    "MURB",
+    "OFFI",
+    "PIEI",
+    "PP3",
+    "RM33",
+    "SEF1",
+    "SNTG",
+    "T1201",
+    "T1204",
+    "T1215",
+    "T1216",
+    "T1217",
+    "T1243",
+    "T1244",
+    "T1246",
+    "T1247",
+    "T1299",
+    "TERO"
+  ],
+  "events": [
+    "10028411",
+    "10188281",
+    "10423461",
+    "10657771",
+    "10674861",
+    "10697291",
+    "10701061",
+    "10856611",
+    "10868531",
+    "11041921",
+    "11257671",
+    "11283841",
+    "11725751",
+    "11756351",
+    "11977941",
+    "12081661",
+    "7731641",
+    "8420351",
+    "8671781",
+    "8682271",
+    "8704891",
+    "8746881",
+    "8793301",
+    "8819601",
+    "8866521",
+    "8868891",
+    "8893921",
+    "8897151",
+    "8901641",
+    "8978771",
+    "9008551",
+    "9070811",
+    "9077791",
+    "9109821",
+    "9150631"
+  ],
+  "records": [
+    {
+      "trace": "10028411.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.AOI..HH",
+      "station": "AOI",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.AOI..HH",
+      "station": "AOI",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.AOI..HH",
+      "station": "AOI",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.AOI..HH",
+      "station": "AOI",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.AOI..HH",
+      "station": "AOI",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.AOI..HH",
+      "station": "AOI",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.AOI..HH",
+      "station": "AOI",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.AOI..HH",
+      "station": "AOI",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.AOI..HH",
+      "station": "AOI",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.AOI..HH",
+      "station": "AOI",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.AOI..HH",
+      "station": "AOI",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.AOI..HH",
+      "station": "AOI",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.AOI..HH",
+      "station": "AOI",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.AOI..HH",
+      "station": "AOI",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.AOI..HH",
+      "station": "AOI",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.ARVD..HH",
+      "station": "ARVD",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.ATCC..HN",
+      "station": "ATCC",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.ATCC..HN",
+      "station": "ATCC",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.ATCC..HN",
+      "station": "ATCC",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.ATCC..EH",
+      "station": "ATCC",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.ATFO..HN",
+      "station": "ATFO",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.ATFO..HH",
+      "station": "ATFO",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.ATVO..HN",
+      "station": "ATVO",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.ATVO..HH",
+      "station": "ATVO",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.CAMP..HH",
+      "station": "CAMP",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.CESX..HH",
+      "station": "CESX",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.CESX..HH",
+      "station": "CESX",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.CESX..HH",
+      "station": "CESX",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.CESX..HH",
+      "station": "CESX",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.CESX..HH",
+      "station": "CESX",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.CESX..HH",
+      "station": "CESX",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.CESX..HH",
+      "station": "CESX",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.CESX..HH",
+      "station": "CESX",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.CESX..HH",
+      "station": "CESX",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.CESX..HH",
+      "station": "CESX",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.CESX..HH",
+      "station": "CESX",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.CESX..HH",
+      "station": "CESX",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.CESX..HH",
+      "station": "CESX",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.CESX..HH",
+      "station": "CESX",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.CESX..HH",
+      "station": "CESX",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.FDMO..HH",
+      "station": "FDMO",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.FEMA..HN",
+      "station": "FEMA",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.FIAM..HH",
+      "station": "FIAM",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.FIU1..HN",
+      "station": "FIU1",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.FRON..EH",
+      "station": "FRON",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.FRON..EH",
+      "station": "FRON",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.FRON..EH",
+      "station": "FRON",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.FRON..EH",
+      "station": "FRON",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.FRON..EH",
+      "station": "FRON",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.FRON..EH",
+      "station": "FRON",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.FRON..EH",
+      "station": "FRON",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.FRON..EH",
+      "station": "FRON",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.FRON..EH",
+      "station": "FRON",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.FRON..EH",
+      "station": "FRON",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.FRON..EH",
+      "station": "FRON",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.FRON..EH",
+      "station": "FRON",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.FRON..EH",
+      "station": "FRON",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.FRON..EH",
+      "station": "FRON",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.FRON..EH",
+      "station": "FRON",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.GIGS..HH",
+      "station": "GIGS",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.GUMA..HH",
+      "station": "GUMA",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.LNSS..HH",
+      "station": "LNSS",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.MDAR..HN",
+      "station": "MDAR",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.MGAB..HN",
+      "station": "MGAB",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.MGAB..HN",
+      "station": "MGAB",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.MGAB..HN",
+      "station": "MGAB",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.MGAB..HN",
+      "station": "MGAB",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.MGAB..HN",
+      "station": "MGAB",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.MGAB..HN",
+      "station": "MGAB",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.MGAB..HH",
+      "station": "MGAB",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.MURB..HH",
+      "station": "MURB",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.MURB..HH",
+      "station": "MURB",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.MURB..HH",
+      "station": "MURB",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.MURB..HH",
+      "station": "MURB",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.MURB..HH",
+      "station": "MURB",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.MURB..HH",
+      "station": "MURB",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.MURB..HH",
+      "station": "MURB",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.MURB..HH",
+      "station": "MURB",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.MURB..HH",
+      "station": "MURB",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.MURB..HH",
+      "station": "MURB",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.MURB..HH",
+      "station": "MURB",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.MURB..HH",
+      "station": "MURB",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.MURB..HH",
+      "station": "MURB",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.MURB..HH",
+      "station": "MURB",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.MURB..HH",
+      "station": "MURB",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.OFFI..HH",
+      "station": "OFFI",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.PIEI..HH",
+      "station": "PIEI",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.PP3..EH",
+      "station": "PP3",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.PP3..EH",
+      "station": "PP3",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.PP3..EH",
+      "station": "PP3",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.PP3..EH",
+      "station": "PP3",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.PP3..EH",
+      "station": "PP3",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.PP3..EH",
+      "station": "PP3",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.PP3..EH",
+      "station": "PP3",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.PP3..EH",
+      "station": "PP3",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.PP3..EH",
+      "station": "PP3",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.PP3..EH",
+      "station": "PP3",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.PP3..EH",
+      "station": "PP3",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.PP3..EH",
+      "station": "PP3",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.PP3..EH",
+      "station": "PP3",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.PP3..EH",
+      "station": "PP3",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.PP3..EH",
+      "station": "PP3",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.RM33..EH",
+      "station": "RM33",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.RM33..HN",
+      "station": "RM33",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.RM33..EH",
+      "station": "RM33",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.RM33..EH",
+      "station": "RM33",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.RM33..EH",
+      "station": "RM33",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.RM33..EH",
+      "station": "RM33",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.RM33..EH",
+      "station": "RM33",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.RM33..EH",
+      "station": "RM33",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.RM33..EH",
+      "station": "RM33",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.RM33..HN",
+      "station": "RM33",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.RM33..EH",
+      "station": "RM33",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.RM33..EH",
+      "station": "RM33",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.RM33..EH",
+      "station": "RM33",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.RM33..EH",
+      "station": "RM33",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.RM33..EH",
+      "station": "RM33",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.RM33..EH",
+      "station": "RM33",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.SEF1..HN",
+      "station": "SEF1",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.SNTG..HN",
+      "station": "SNTG",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.SNTG..HH",
+      "station": "SNTG",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1201..HN",
+      "station": "T1201",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1201..HN",
+      "station": "T1201",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1201..HN",
+      "station": "T1201",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1201..HN",
+      "station": "T1201",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1201..HN",
+      "station": "T1201",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1201..HN",
+      "station": "T1201",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1201..HN",
+      "station": "T1201",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1201..HN",
+      "station": "T1201",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1201..HN",
+      "station": "T1201",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1201..HN",
+      "station": "T1201",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1201..HN",
+      "station": "T1201",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1201..HN",
+      "station": "T1201",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1201..HN",
+      "station": "T1201",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1201..HN",
+      "station": "T1201",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1201..HN",
+      "station": "T1201",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1204..EH",
+      "station": "T1204",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1204..EH",
+      "station": "T1204",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1204..EH",
+      "station": "T1204",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1204..EH",
+      "station": "T1204",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1204..EH",
+      "station": "T1204",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1204..EH",
+      "station": "T1204",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1204..EH",
+      "station": "T1204",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1204..EH",
+      "station": "T1204",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1204..EH",
+      "station": "T1204",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1204..EH",
+      "station": "T1204",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1204..EH",
+      "station": "T1204",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1204..EH",
+      "station": "T1204",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1204..EH",
+      "station": "T1204",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1204..EH",
+      "station": "T1204",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1204..EH",
+      "station": "T1204",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1215..EH",
+      "station": "T1215",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1215..EH",
+      "station": "T1215",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1215..EH",
+      "station": "T1215",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1215..EH",
+      "station": "T1215",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1215..EH",
+      "station": "T1215",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1215..EH",
+      "station": "T1215",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1215..EH",
+      "station": "T1215",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1215..EH",
+      "station": "T1215",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1215..EH",
+      "station": "T1215",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1215..EH",
+      "station": "T1215",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1215..EH",
+      "station": "T1215",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1215..EH",
+      "station": "T1215",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1215..EH",
+      "station": "T1215",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1215..EH",
+      "station": "T1215",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1215..EH",
+      "station": "T1215",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1216..EH",
+      "station": "T1216",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1216..EH",
+      "station": "T1216",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1216..EH",
+      "station": "T1216",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1216..EH",
+      "station": "T1216",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1216..EH",
+      "station": "T1216",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1216..EH",
+      "station": "T1216",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1216..EH",
+      "station": "T1216",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1216..EH",
+      "station": "T1216",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1216..EH",
+      "station": "T1216",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1216..EH",
+      "station": "T1216",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1216..EH",
+      "station": "T1216",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1216..EH",
+      "station": "T1216",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1216..EH",
+      "station": "T1216",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1216..EH",
+      "station": "T1216",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1216..EH",
+      "station": "T1216",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1217..EH",
+      "station": "T1217",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1217..EH",
+      "station": "T1217",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1217..EH",
+      "station": "T1217",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1217..EH",
+      "station": "T1217",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1217..EH",
+      "station": "T1217",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1217..EH",
+      "station": "T1217",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1217..EH",
+      "station": "T1217",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1217..EH",
+      "station": "T1217",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1217..EH",
+      "station": "T1217",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1217..EH",
+      "station": "T1217",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1217..EH",
+      "station": "T1217",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1217..EH",
+      "station": "T1217",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1217..EH",
+      "station": "T1217",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1217..EH",
+      "station": "T1217",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1217..EH",
+      "station": "T1217",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1243..HH",
+      "station": "T1243",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1243..HH",
+      "station": "T1243",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1243..HH",
+      "station": "T1243",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1243..HH",
+      "station": "T1243",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1243..HH",
+      "station": "T1243",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1243..HH",
+      "station": "T1243",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1243..HH",
+      "station": "T1243",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1243..HH",
+      "station": "T1243",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1243..HH",
+      "station": "T1243",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1243..HH",
+      "station": "T1243",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1243..HH",
+      "station": "T1243",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1243..HH",
+      "station": "T1243",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1243..HH",
+      "station": "T1243",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1243..HH",
+      "station": "T1243",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1243..HH",
+      "station": "T1243",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1244..EH",
+      "station": "T1244",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1244..EH",
+      "station": "T1244",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1244..EH",
+      "station": "T1244",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1244..EH",
+      "station": "T1244",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1244..EH",
+      "station": "T1244",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1244..EH",
+      "station": "T1244",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1244..EH",
+      "station": "T1244",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1244..EH",
+      "station": "T1244",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1244..EH",
+      "station": "T1244",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1244..EH",
+      "station": "T1244",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1244..EH",
+      "station": "T1244",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1244..EH",
+      "station": "T1244",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1244..EH",
+      "station": "T1244",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1244..EH",
+      "station": "T1244",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1244..EH",
+      "station": "T1244",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1246..HH",
+      "station": "T1246",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1246..HH",
+      "station": "T1246",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1246..HH",
+      "station": "T1246",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1246..HH",
+      "station": "T1246",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1246..HH",
+      "station": "T1246",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1246..HH",
+      "station": "T1246",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1246..HH",
+      "station": "T1246",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1246..HH",
+      "station": "T1246",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1246..HH",
+      "station": "T1246",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1246..HH",
+      "station": "T1246",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1246..HH",
+      "station": "T1246",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1246..HH",
+      "station": "T1246",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1246..HH",
+      "station": "T1246",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1246..HH",
+      "station": "T1246",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1246..HH",
+      "station": "T1246",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1247..HH",
+      "station": "T1247",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1247..HH",
+      "station": "T1247",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1247..HH",
+      "station": "T1247",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1247..HH",
+      "station": "T1247",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1247..HH",
+      "station": "T1247",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1247..HH",
+      "station": "T1247",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1247..HH",
+      "station": "T1247",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1247..HH",
+      "station": "T1247",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1247..HH",
+      "station": "T1247",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1247..HH",
+      "station": "T1247",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1247..HH",
+      "station": "T1247",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1247..HH",
+      "station": "T1247",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1247..HH",
+      "station": "T1247",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1247..HH",
+      "station": "T1247",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1247..HH",
+      "station": "T1247",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.T1299..EH",
+      "station": "T1299",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.T1299..EH",
+      "station": "T1299",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.T1299..EH",
+      "station": "T1299",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.T1299..EH",
+      "station": "T1299",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.T1299..EH",
+      "station": "T1299",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.T1299..EH",
+      "station": "T1299",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.T1299..EH",
+      "station": "T1299",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.T1299..EH",
+      "station": "T1299",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.T1299..EH",
+      "station": "T1299",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.T1299..HN",
+      "station": "T1299",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.T1299..EH",
+      "station": "T1299",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.T1299..EH",
+      "station": "T1299",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.T1299..EH",
+      "station": "T1299",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.T1299..EH",
+      "station": "T1299",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.T1299..EH",
+      "station": "T1299",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.T1299..EH",
+      "station": "T1299",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10028411.IV.TERO..HH",
+      "station": "TERO",
+      "event": "10028411",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10188281.IV.TERO..HH",
+      "station": "TERO",
+      "event": "10188281",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10423461.IV.TERO..HH",
+      "station": "TERO",
+      "event": "10423461",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10657771.IV.TERO..HH",
+      "station": "TERO",
+      "event": "10657771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10674861.IV.TERO..HH",
+      "station": "TERO",
+      "event": "10674861",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10697291.IV.TERO..HN",
+      "station": "TERO",
+      "event": "10697291",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10701061.IV.TERO..HH",
+      "station": "TERO",
+      "event": "10701061",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10856611.IV.TERO..HH",
+      "station": "TERO",
+      "event": "10856611",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "10868531.IV.TERO..HH",
+      "station": "TERO",
+      "event": "10868531",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11041921.IV.TERO..HH",
+      "station": "TERO",
+      "event": "11041921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11257671.IV.TERO..HH",
+      "station": "TERO",
+      "event": "11257671",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11283841.IV.TERO..HH",
+      "station": "TERO",
+      "event": "11283841",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11725751.IV.TERO..HH",
+      "station": "TERO",
+      "event": "11725751",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11756351.IV.TERO..HH",
+      "station": "TERO",
+      "event": "11756351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "11977941.IV.TERO..HH",
+      "station": "TERO",
+      "event": "11977941",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "12081661.IV.TERO..HH",
+      "station": "TERO",
+      "event": "12081661",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "7731641.IV.TERO..HH",
+      "station": "TERO",
+      "event": "7731641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8420351.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8420351",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8671781.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8671781",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8682271.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8682271",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8704891.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8704891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8746881.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8746881",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8793301.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8793301",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8819601.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8819601",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8866521.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8866521",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8868891.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8868891",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8893921.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8893921",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8897151.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8897151",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8901641.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8901641",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "8978771.IV.TERO..HH",
+      "station": "TERO",
+      "event": "8978771",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9008551.IV.TERO..HH",
+      "station": "TERO",
+      "event": "9008551",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9070811.IV.TERO..HH",
+      "station": "TERO",
+      "event": "9070811",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9077791.IV.TERO..HH",
+      "station": "TERO",
+      "event": "9077791",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9109821.IV.TERO..HH",
+      "station": "TERO",
+      "event": "9109821",
+      "sampling_rate": 100.0
+    },
+    {
+      "trace": "9150631.IV.TERO..HH",
+      "station": "TERO",
+      "event": "9150631",
+      "sampling_rate": 100.0
+    }
+  ],
+  "waveform_shape": [
+    3,
+    12000
+  ],
+  "reconstruction_length": 8192,
+  "split": {
+    "seed": 42,
+    "train_fraction": 0.9,
+    "train": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      35,
+      36,
+      37,
+      38,
+      40,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      64,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      103,
+      104,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      178,
+      179,
+      180,
+      181,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      276,
+      278,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      288,
+      289,
+      291,
+      292,
+      293,
+      294,
+      295,
+      297,
+      298,
+      299,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      312,
+      315,
+      316,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      330,
+      331,
+      332,
+      334,
+      335,
+      336,
+      337,
+      338,
+      340,
+      341,
+      342,
+      343,
+      344,
+      345,
+      346,
+      347,
+      348,
+      350,
+      351,
+      352,
+      353,
+      354,
+      355,
+      356,
+      357,
+      358,
+      359,
+      360,
+      361,
+      362,
+      363,
+      365,
+      366,
+      367,
+      368,
+      369,
+      370,
+      371,
+      373,
+      374,
+      375,
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      384,
+      385,
+      386,
+      387,
+      388,
+      389,
+      390,
+      391,
+      392,
+      393,
+      394,
+      395,
+      396,
+      397,
+      398,
+      399,
+      400,
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      411,
+      412,
+      413,
+      414,
+      415,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      431,
+      433,
+      434,
+      435,
+      436,
+      438,
+      439,
+      441,
+      443,
+      444,
+      445,
+      446,
+      447,
+      448,
+      449,
+      453,
+      454,
+      455,
+      456,
+      457,
+      458,
+      459,
+      460,
+      461,
+      462,
+      463,
+      464,
+      465,
+      466,
+      467,
+      468,
+      469,
+      470,
+      471,
+      472,
+      473,
+      474,
+      475,
+      476,
+      477,
+      478,
+      479,
+      480,
+      481,
+      482,
+      483,
+      484,
+      485,
+      486,
+      487,
+      488,
+      489,
+      492,
+      493,
+      494,
+      495,
+      496,
+      497,
+      498,
+      499,
+      500,
+      501,
+      502,
+      503,
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      518,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524,
+      526,
+      527,
+      529,
+      530,
+      531,
+      532,
+      536,
+      537,
+      538,
+      539,
+      540,
+      541,
+      542,
+      544,
+      545,
+      546,
+      547,
+      548,
+      549,
+      550,
+      551,
+      552,
+      553,
+      554,
+      556,
+      557,
+      558,
+      559,
+      560,
+      561,
+      562,
+      563,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      577,
+      578,
+      579,
+      580,
+      581,
+      582,
+      583,
+      584,
+      585,
+      586,
+      587,
+      588,
+      589,
+      590,
+      591,
+      592,
+      593,
+      594,
+      595,
+      596,
+      597,
+      598,
+      599,
+      600,
+      601,
+      602,
+      603,
+      604,
+      605,
+      606,
+      607,
+      608,
+      609,
+      610,
+      611,
+      612,
+      613,
+      614,
+      615,
+      616,
+      618,
+      619,
+      620,
+      623,
+      624,
+      625,
+      626,
+      627,
+      629,
+      630,
+      631,
+      632,
+      634,
+      635,
+      636,
+      637,
+      638,
+      639,
+      640,
+      643,
+      644,
+      645,
+      646,
+      647,
+      648,
+      649,
+      650,
+      651,
+      652,
+      653,
+      655,
+      656,
+      657,
+      658,
+      659,
+      660,
+      661,
+      662,
+      663,
+      664,
+      665,
+      666,
+      668,
+      670,
+      671,
+      673,
+      674,
+      676,
+      677,
+      678,
+      679,
+      680,
+      681,
+      682,
+      683,
+      684,
+      685,
+      686,
+      688,
+      690,
+      691,
+      692,
+      693,
+      694,
+      695,
+      696,
+      697,
+      698,
+      699,
+      700,
+      701,
+      702,
+      703,
+      704,
+      705,
+      707,
+      708,
+      709,
+      710,
+      711,
+      712,
+      713,
+      714,
+      715,
+      716,
+      717,
+      719,
+      720,
+      722,
+      723,
+      724,
+      725,
+      726,
+      727,
+      728,
+      729,
+      731,
+      733,
+      734,
+      736,
+      737,
+      738,
+      739,
+      740,
+      741,
+      742,
+      743,
+      744,
+      745,
+      746,
+      747,
+      748,
+      750,
+      751,
+      753,
+      754,
+      755,
+      756,
+      757,
+      758,
+      759,
+      760,
+      761,
+      762,
+      764,
+      765,
+      766,
+      767,
+      768,
+      769,
+      770,
+      771,
+      772,
+      773,
+      774,
+      775,
+      776,
+      777,
+      778,
+      780,
+      781,
+      782,
+      783,
+      784,
+      785,
+      786,
+      787,
+      788,
+      789,
+      790,
+      791,
+      792,
+      793,
+      794,
+      795,
+      796,
+      797,
+      798,
+      799,
+      800,
+      801,
+      802,
+      803,
+      804,
+      805,
+      806,
+      807,
+      808,
+      810,
+      811,
+      812,
+      813,
+      814,
+      815,
+      816,
+      817,
+      818,
+      819,
+      822,
+      823,
+      824,
+      825,
+      826,
+      827,
+      829,
+      830,
+      831,
+      832,
+      833,
+      834,
+      835,
+      836,
+      837,
+      838,
+      839,
+      840,
+      841,
+      842,
+      843,
+      844,
+      845,
+      846,
+      847,
+      848,
+      849,
+      850,
+      852,
+      853,
+      854,
+      855,
+      856,
+      857,
+      858,
+      859,
+      860,
+      862,
+      863,
+      864,
+      865,
+      866,
+      867,
+      868,
+      869,
+      870,
+      871,
+      872,
+      874,
+      875,
+      876,
+      877,
+      879,
+      880,
+      881,
+      882,
+      883,
+      884,
+      885,
+      886,
+      887,
+      889,
+      890,
+      891,
+      892,
+      893,
+      894,
+      895,
+      896,
+      897,
+      898,
+      899,
+      900,
+      901,
+      902,
+      903,
+      904,
+      905,
+      906,
+      907,
+      909,
+      911,
+      912,
+      913,
+      914,
+      915,
+      916,
+      917,
+      918,
+      920,
+      921,
+      922,
+      923,
+      924,
+      925,
+      926,
+      927,
+      928,
+      929,
+      930,
+      931,
+      932,
+      933,
+      934,
+      935,
+      936,
+      937,
+      938,
+      939,
+      940,
+      941,
+      942,
+      943,
+      944,
+      945,
+      946,
+      947,
+      948,
+      949,
+      950,
+      952,
+      953,
+      954,
+      955,
+      956,
+      957,
+      958,
+      959,
+      960,
+      962,
+      963,
+      964,
+      965,
+      966,
+      967,
+      968,
+      969,
+      970,
+      971,
+      972,
+      974,
+      975,
+      976,
+      977,
+      980,
+      981,
+      982,
+      983,
+      984,
+      985,
+      986,
+      987,
+      988,
+      989,
+      990,
+      991,
+      992,
+      993,
+      994,
+      996,
+      997,
+      999,
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019,
+      1020,
+      1021,
+      1022,
+      1023,
+      1024,
+      1026,
+      1027,
+      1028,
+      1029,
+      1030,
+      1031,
+      1032,
+      1033,
+      1035,
+      1036,
+      1037,
+      1038,
+      1040,
+      1041,
+      1042,
+      1043,
+      1044,
+      1045,
+      1046,
+      1047,
+      1048,
+      1049,
+      1050,
+      1051,
+      1052,
+      1053,
+      1054,
+      1055,
+      1056,
+      1057,
+      1059,
+      1060,
+      1061,
+      1062,
+      1063,
+      1064,
+      1065,
+      1066,
+      1067,
+      1068,
+      1069,
+      1070,
+      1071,
+      1072,
+      1073,
+      1074,
+      1075,
+      1077,
+      1078,
+      1079,
+      1080,
+      1082,
+      1083,
+      1084,
+      1085,
+      1086,
+      1087,
+      1088,
+      1089,
+      1090,
+      1091,
+      1092,
+      1094,
+      1095,
+      1096,
+      1097,
+      1098,
+      1099,
+      1101,
+      1102,
+      1103,
+      1104,
+      1105,
+      1106,
+      1107,
+      1108,
+      1109,
+      1110,
+      1112,
+      1113,
+      1114,
+      1116,
+      1117,
+      1118,
+      1119,
+      1120,
+      1121,
+      1122,
+      1123,
+      1124,
+      1125,
+      1126,
+      1127,
+      1128,
+      1129,
+      1131,
+      1132,
+      1133,
+      1134,
+      1136,
+      1139,
+      1140,
+      1142,
+      1143,
+      1144,
+      1145,
+      1146,
+      1147,
+      1148,
+      1149,
+      1150,
+      1151,
+      1152,
+      1153,
+      1154,
+      1155,
+      1156,
+      1157,
+      1158,
+      1159,
+      1160,
+      1162,
+      1163,
+      1164,
+      1165,
+      1166,
+      1167,
+      1169,
+      1170,
+      1171,
+      1172,
+      1173,
+      1174,
+      1175,
+      1176,
+      1177,
+      1178,
+      1179,
+      1180,
+      1181,
+      1182,
+      1183,
+      1184,
+      1185,
+      1186,
+      1187,
+      1188,
+      1189,
+      1190,
+      1191,
+      1192,
+      1193,
+      1195,
+      1197,
+      1198,
+      1199,
+      1200,
+      1201,
+      1202,
+      1203,
+      1204,
+      1205,
+      1206,
+      1207,
+      1208,
+      1209,
+      1210,
+      1212,
+      1213,
+      1214,
+      1215,
+      1216,
+      1217,
+      1218,
+      1219,
+      1220,
+      1221,
+      1222,
+      1223,
+      1224
+    ],
+    "validation": [
+      5,
+      32,
+      34,
+      39,
+      41,
+      42,
+      49,
+      63,
+      65,
+      81,
+      102,
+      105,
+      106,
+      117,
+      141,
+      167,
+      177,
+      182,
+      189,
+      212,
+      266,
+      275,
+      277,
+      279,
+      286,
+      287,
+      290,
+      296,
+      300,
+      301,
+      311,
+      313,
+      314,
+      317,
+      329,
+      333,
+      339,
+      349,
+      364,
+      372,
+      410,
+      416,
+      432,
+      437,
+      440,
+      442,
+      450,
+      451,
+      452,
+      490,
+      491,
+      525,
+      528,
+      533,
+      534,
+      535,
+      543,
+      555,
+      564,
+      617,
+      621,
+      622,
+      628,
+      633,
+      641,
+      642,
+      654,
+      667,
+      669,
+      672,
+      675,
+      687,
+      689,
+      706,
+      718,
+      721,
+      730,
+      732,
+      735,
+      749,
+      752,
+      763,
+      779,
+      809,
+      820,
+      821,
+      828,
+      851,
+      861,
+      873,
+      878,
+      888,
+      908,
+      910,
+      919,
+      951,
+      961,
+      973,
+      978,
+      979,
+      995,
+      998,
+      1013,
+      1025,
+      1034,
+      1039,
+      1058,
+      1076,
+      1081,
+      1093,
+      1100,
+      1111,
+      1115,
+      1130,
+      1135,
+      1137,
+      1138,
+      1141,
+      1161,
+      1168,
+      1194,
+      1196,
+      1211
+    ]
+  }
+}

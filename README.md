@@ -20,11 +20,13 @@ uv run --frozen pytest -q
 uv run --frozen python scripts/train.py
 ```
 
-Preparation selects the **largest-found complete rectangle** using a fixed deterministic greedy search in both orientations (32 station starts, eight event starts). Like the notebook's search, it does **not prove global optimality**. It retains the notebook's minimum five stations and five events and removes its square-only constraint. It works on the entire metadata graph, chooses one lexicographically first trace per cell, and freezes a 90/10 split with seed 42. Before freezing, the owner can instead request `scripts/prepare_data.py --exact --search-seconds 3600`; that optional exact mode needs a C++17 compiler and fails without freezing if its proof does not finish in the budget. Preparation refuses to overwrite an existing benchmark. It hashes the full original HDF5 once, then stores all selected raw waveform samples in `data/frozen/waveforms.npy`. Normal training verifies the smaller frozen cache and protected source hashes, without rereading the full HDF5.
+Preparation selects the **largest-found complete square: N stations × N events**, using a fixed deterministic greedy search in both orientations (up to 512 starts per side). Every pair must exist, with one lexicographically first trace per cell. It scores the smaller side at every prefix and crops the larger side to make a square; the minimum side is five. Like the notebook's search, it **does not prove global optimality**. It works on the entire metadata graph and freezes a 90/10 split with seed 42. Preparation refuses to overwrite an existing benchmark. It hashes the full original HDF5 once, then stores all selected raw waveform samples in `data/frozen/waveforms.npy`. Normal training verifies the smaller frozen cache and protected source hashes, without rereading the full HDF5. No compiler or solver is needed.
 
-This workspace is prepared: **7 stations × 335 events = 2,345 traces**, split into **2,110 training / 235 validation** traces. All classes occur in training; validation contains 178 event classes and all seven station classes. The manifest labels the selection `HEURISTIC_LARGEST_FOUND`. Its benchmark ID is `013bbc7d8eb9ea5f6c96f831748ed5a9d5d7db3b5e0e7e2358e75023967963cf`.
+The saved reference notebook reports 34×34. The current full-data greedy search finds 35×35; additional bounded seeded checks did not verify 37×37. The manifest records the actual found square and labels it `HEURISTIC_LARGEST_SQUARE_FOUND`; do not assume a remembered side length or silently substitute an incomplete block.
 
-`benchmark/manifest.json` and `benchmark/lock.json` must travel with the frozen waveform cache. Keep the small manifest and lock in version control; keep the large source HDF5, cache, environments and run outputs outside Git. This directory originally had no `.git` repository; no Git history is assumed by the scripts.
+The frozen benchmark contains **1,225 traces: 1,102 training and 123 validation**, covering 35 stations and 35 events. Its SHA-256 benchmark ID is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26`.
+
+`benchmark/manifest.json` and `benchmark/lock.json` must travel with the frozen waveform cache. Keep the small manifest and lock in version control; keep the large source HDF5, cache, environments and run outputs outside Git. Commit and push all code/configuration changes before training; the runner requires a clean tree and a HEAD matching its upstream tracking commit. Each run records that commit locally. Commit and push the experiment journal after each batch.
 
 ## Experiments
 
@@ -47,7 +49,7 @@ Each epoch evaluates the actual current model against the full fixed training ga
 
 Every run saves resolved Hydra configuration, source archive and SHA-256 digests, package/device provenance, per-epoch JSONL, best checkpoint, JSON metrics and a Markdown table. Standalone evaluation verifies the benchmark ID and source hashes; to evaluate an older model after editing source, restore its `source.tar.gz` into a separate copy with the same benchmark files and cache. Run outputs live in `outputs/`; the journal schema and workflow are in [experiments/README.md](experiments/README.md).
 
-The included `outputs/smoke/` runs use one epoch and validate the pipeline; they are not the full-budget research baseline. Their commands and results are recorded in `experiments/journal.jsonl`, with verification evidence in [experiments/smoke_validation.json](experiments/smoke_validation.json). Start the default seed-42 baseline before tuning.
+The included `outputs/smoke/` runs use one epoch and validate the pipeline; they are not the full-budget research baseline. Their commands and results are recorded in `experiments/journal.jsonl`, with verification evidence in [experiments/smoke_validation.json](experiments/smoke_validation.json). The superseded rectangular setup is preserved under `legacy/rectangle_benchmark/` and is excluded from the active leaderboard. Start the default seed-42 baseline before tuning.
 
 ## Metrics
 

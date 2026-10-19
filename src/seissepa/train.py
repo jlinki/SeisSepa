@@ -3,6 +3,7 @@ import importlib.metadata
 import json
 import platform
 import random
+import subprocess
 import tarfile
 import time
 from pathlib import Path
@@ -41,10 +42,29 @@ def loaders(manifest, batch_size, seed):
 
 
 def experiment_files():
-    files = [p for folder in ("src", "configs", "scripts") for p in (ROOT / folder).rglob("*")
-             if p.suffix in {".py", ".yaml", ".cpp"}]
-    files.extend(ROOT / name for name in ("pyproject.toml", "uv.lock", "AGENTS.md"))
+    files = [p for folder in ("src", "configs", "scripts", "tests") for p in (ROOT / folder).rglob("*")
+             if p.suffix in {".py", ".yaml"}]
+    files.extend(ROOT / name for name in ("pyproject.toml", "uv.lock", "AGENTS.md",
+                                          "benchmark/manifest.json", "benchmark/lock.json"))
     return {str(p.relative_to(ROOT)): sha256(p) for p in sorted(files) if p.is_file()}
+
+
+def git_provenance():
+    def query(*args):
+        return subprocess.run(["git", *args], cwd=ROOT, check=True, capture_output=True,
+                              text=True, timeout=20).stdout.strip()
+    try:
+        commit = query("rev-parse", "HEAD")
+        if query("status", "--porcelain"):
+            raise RuntimeError("Commit and push all changes before training; Git must be clean.")
+        upstream = query("rev-parse", "--abbrev-ref", "@{upstream}")
+        upstream_commit = query("rev-parse", "@{upstream}")
+    except subprocess.CalledProcessError as exc:
+        raise RuntimeError("Training requires a Git commit and a pushed upstream branch.") from exc
+    if commit != upstream_commit:
+        raise RuntimeError("Push the current Git commit to its upstream before training.")
+    return {"commit": commit, "branch": query("branch", "--show-current"),
+            "upstream": upstream, "dirty": False}
 
 
 def scalar_metrics(value, prefix="final"):
@@ -61,6 +81,7 @@ def run(config, output_dir):
     if config.train.epochs < 1 or config.train.batch_size < 1 or config.train.patience < 1:
         raise ValueError("epochs, batch_size and patience must be positive")
     manifest, lock = read_verified()
+    git = git_provenance()
     seed_everything(config.seed, config.threads)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") if config.device == "auto" else torch.device(config.device)
     output_dir = Path(output_dir)
@@ -75,7 +96,7 @@ def run(config, output_dir):
             archive.add(ROOT / name, arcname=name)
     versions = {name: importlib.metadata.version(name) for name in
                 ("torch", "numpy", "h5py", "scikit-learn", "hydra-core", "wandb")}
-    provenance = {"benchmark_id": lock["benchmark_id"], "source": files, "versions": versions,
+    provenance = {"benchmark_id": lock["benchmark_id"], "git": git, "source": files, "versions": versions,
                   "python": platform.python_version(), "platform": platform.platform(),
                   "device": str(device), "cuda": torch.version.cuda,
                   "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None,
@@ -125,6 +146,7 @@ def run(config, output_dir):
             if improved:
                 best, best_mse, stale = score, mse, 0
                 torch.save({"state_dict": model.state_dict(), "config": resolved,
+                            "git_commit": git["commit"],
                             "benchmark_id": lock["benchmark_id"], "epoch": epoch,
                             "score": best, "source": files}, output_dir / "best.pt")
             else:
@@ -138,6 +160,7 @@ def run(config, output_dir):
         report = full_metrics(train_embeddings, validation,
                               {"event": len(manifest["events"]), "station": len(manifest["stations"])})
         report.update(benchmark_id=lock["benchmark_id"], best_epoch=checkpoint["epoch"], seed=config.seed,
+                      git_commit=git["commit"],
                       elapsed_seconds=time.monotonic() - start)
         (output_dir / "metrics.json").write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
         (output_dir / "report.md").write_text(markdown_report(report))

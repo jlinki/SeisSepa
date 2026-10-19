@@ -1,9 +1,7 @@
 import copy
-import itertools
 import json
-import shutil
-import subprocess
 import importlib.util
+import subprocess
 from pathlib import Path
 
 import numpy as np
@@ -28,9 +26,13 @@ def manifest(n=5):
             "records": rows, "split": {"train": [i for i in range(n*n) if i not in val], "validation": val}}
 
 
-def test_rectangle_and_split_reject_leakage():
+def test_square_and_split_reject_leakage():
     original = manifest()
     validate_manifest(original)
+    bad = copy.deepcopy(original)
+    bad["events"].pop()
+    with pytest.raises(ValueError, match="must be square"):
+        validate_manifest(bad)
     bad = copy.deepcopy(original)
     bad["split"]["train"].append(bad["split"]["validation"][0])
     with pytest.raises(ValueError, match="disjoint"):
@@ -58,6 +60,34 @@ def test_lock_rejects_changed_frozen_files(tmp_path, monkeypatch):
     path.write_text(path.read_text() + " ")
     with pytest.raises(RuntimeError, match="Frozen benchmark changed"):
         contract.read_verified()
+
+
+def test_training_requires_clean_committed_and_pushed_source(tmp_path, monkeypatch):
+    from seissepa import train
+    remote, checkout = tmp_path / "remote.git", tmp_path / "checkout"
+    def git(*args, cwd=tmp_path):
+        return subprocess.run(["git", *args], cwd=cwd, check=True, capture_output=True, text=True).stdout.strip()
+    git("init", "--bare", str(remote))
+    git("clone", str(remote), str(checkout))
+    git("config", "user.name", "Benchmark Test", cwd=checkout)
+    git("config", "user.email", "benchmark-test@example.invalid", cwd=checkout)
+    source = checkout / "model.py"
+    source.write_text("version = 1\n")
+    git("add", ".", cwd=checkout)
+    git("commit", "-m", "Initial test model", cwd=checkout)
+    monkeypatch.setattr(train, "ROOT", checkout)
+    with pytest.raises(RuntimeError, match="pushed upstream"):
+        train.git_provenance()
+    git("remote", "set-url", "origin", str(remote), cwd=checkout)
+    git("push", "-u", "origin", "HEAD", cwd=checkout)
+    assert train.git_provenance()["commit"] == git("rev-parse", "HEAD", cwd=checkout)
+    source.write_text("version = 2\n")
+    with pytest.raises(RuntimeError, match="must be clean"):
+        train.git_provenance()
+    git("add", ".", cwd=checkout)
+    git("commit", "-m", "Changed test model", cwd=checkout)
+    with pytest.raises(RuntimeError, match="Push the current"):
+        train.git_provenance()
 
 
 def test_training_query_is_excluded_and_vote_ties_are_fixed():
@@ -99,19 +129,24 @@ def test_canonical_transform_matches_notebook():
     assert torch.isfinite(canonical_waveform(torch.ones(3, 100))).all()
 
 
-def test_fast_rectangle_is_rectangular_and_independent_of_metadata_order():
+def load_preparation():
     scripts = Path(__file__).resolve().parents[1] / "scripts"
     import sys
     sys.path.insert(0, str(scripts))
     spec = importlib.util.spec_from_file_location("prepare_data", scripts / "prepare_data.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    return module
+
+
+def test_fast_square_crops_larger_side_and_ignores_metadata_order():
+    module = load_preparation()
     rows = [[f"{s}-{e}", str(s), str(e), "100"] for s in range(6) for e in range(11)]
-    a = module.greedy_rectangle(rows)
-    b = module.greedy_rectangle(rows[::-1])
+    a = module.greedy_square(rows)
+    b = module.greedy_square(rows[::-1])
     assert a == b
-    assert len(a[0]) == 6 and len(a[1]) == 11 and a[2]["area"] == 66
-    assert a[2]["status"] == "HEURISTIC_LARGEST_FOUND"
+    assert len(a[0]) == len(a[1]) == 6 and a[2]["area"] == 36
+    assert a[2]["status"] == "HEURISTIC_LARGEST_SQUARE_FOUND"
 
 
 def test_inference_interface_does_not_receive_identity(tmp_path, monkeypatch):
@@ -144,32 +179,20 @@ def test_models_and_latent_loss_have_finite_gradients(model):
     assert output["reconstruction"].shape == (4, 3, 8192)
 
 
-@pytest.fixture(scope="module")
-def selector(tmp_path_factory):
-    compiler = shutil.which("c++") or shutil.which("g++")
-    if compiler is None:
-        pytest.skip("Exact selector tests require the preparation C++17 compiler")
-    path = tmp_path_factory.mktemp("native") / "selector"
-    source = Path(__file__).resolve().parents[1] / "scripts/rectangle_search.cpp"
-    subprocess.run([compiler, "-O3", "-std=c++17", str(source), "-o", str(path)], check=True)
-    return path
-
-
 @pytest.mark.parametrize("seed", range(12))
-def test_exact_selector_matches_exhaustive_search(selector, seed):
+def test_square_selector_preserves_every_cell_in_planted_square(seed):
     rng = np.random.default_rng(seed)
-    graph = rng.random((9, 11)) < 0.78
-    graph[:5, :5] = True
-    best = 0
-    for size in range(5, 10):
-        for stations in itertools.combinations(range(9), size):
-            events = graph[list(stations)].all(0).sum()
-            if events >= 5:
-                best = max(best, size * int(events))
+    graph = np.zeros((9, 12), dtype=bool)
+    planted_s, planted_e = rng.choice(9, 6, replace=False), rng.choice(12, 6, replace=False)
+    graph[np.ix_(planted_s, planted_e)] = True
+    for s in set(range(9)) - set(planted_s):
+        graph[s, rng.choice(planted_e)] = True
+    for e in set(range(12)) - set(planted_e):
+        graph[rng.choice(planted_s), e] = True
     s, e = np.nonzero(graph)
-    text = f"9 11 {len(s)}\n" + "".join(f"{i} {j}\n" for i, j in zip(s, e))
-    process = subprocess.run([str(selector), "10"], input=text, capture_output=True, text=True, check=True)
-    result = json.loads(process.stdout)
-    assert result["status"] == "OPTIMAL"
-    assert result["area"] == best
-    assert graph[np.ix_(result["stations"], result["events"])].all()
+    rows = [[f"{i}-{j}", str(i), str(j), "100"] for i, j in zip(s, e)]
+    selected_s, selected_e, result = load_preparation().greedy_square(rows)
+    assert result["area"] == 36
+    assert set(map(int, selected_s)) == set(planted_s)
+    assert set(map(int, selected_e)) == set(planted_e)
+    assert graph[np.ix_(list(map(int, selected_s)), list(map(int, selected_e)))].all()

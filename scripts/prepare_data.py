@@ -4,8 +4,6 @@ import argparse
 import hashlib
 import json
 import os
-import shutil
-import subprocess
 import tempfile
 from collections import defaultdict
 from pathlib import Path
@@ -17,8 +15,8 @@ from seissepa.contract import PROTECTED, sha256, validate_manifest
 from seissepa.data import ROOT, FROZEN, MANIFEST, LOCK
 
 
-def greedy_rectangle(rows):
-    """Fixed deterministic full-graph search, in both orientations; no optimality claim."""
+def greedy_square(rows):
+    """Largest square found by a fixed full-graph greedy search in both orientations."""
     stations = sorted({r[1] for r in rows})
     events = sorted({r[2] for r in rows})
     si, ei = {s: i for i, s in enumerate(stations)}, {e: i for i, e in enumerate(events)}
@@ -26,12 +24,14 @@ def greedy_rectangle(rows):
     for _, s, e, _ in rows:
         graph[si[s], ei[e]] = True
     best = None
-    for orientation, matrix, starts in (("station", graph, 32), ("event", graph.T, 8)):
+    for orientation, matrix in (("station", graph), ("event", graph.T)):
         padded = np.pad(matrix, ((0, 0), (0, (-matrix.shape[1]) % 64)))
         bits = np.ascontiguousarray(np.packbits(padded, axis=1, bitorder="little")).view(np.uint64)
         degrees = matrix.sum(1).astype(np.int64)
         ranked = np.lexsort((np.arange(len(matrix)), -degrees))
-        for seed in ranked[:starts]:
+        for seed in ranked[:512]:
+            if best is not None and degrees[seed] <= best["side"]:
+                continue
             chosen = [int(seed)]
             used = np.zeros(len(matrix), dtype=bool)
             used[seed] = True
@@ -41,61 +41,33 @@ def greedy_rectangle(rows):
                 overlaps[used] = -1
                 next_index = int(ranked[np.argmax(overlaps[ranked])])
                 n_right = int(overlaps[next_index])
-                if n_right < 5:
+                if n_right < 5 or (best is not None and n_right <= best["side"]):
                     break
                 chosen.append(next_index)
                 used[next_index] = True
                 common &= bits[next_index]
-                area = len(chosen) * n_right
-                if len(chosen) >= 5 and (best is None or area > best["area"]):
-                    opposite = np.flatnonzero(np.unpackbits(common.view(np.uint8), bitorder="little")[:matrix.shape[1]]).tolist()
-                    left, right = sorted(chosen), opposite
+                side = min(len(chosen), n_right)
+                if side >= 5 and (best is None or side > best["side"]):
+                    opposite = np.flatnonzero(np.unpackbits(common.view(np.uint8), bitorder="little")[:matrix.shape[1]]).tolist()[:side]
+                    left, right = sorted(chosen)[:side], opposite
                     if orientation == "event":
                         left, right = right, left
-                    best = {"status": "HEURISTIC_LARGEST_FOUND", "area": area,
+                    best = {"status": "HEURISTIC_LARGEST_SQUARE_FOUND", "geometry": "square",
+                            "side": side, "area": side * side,
                             "stations": left, "events": right,
-                            "method": "deterministic greedy full-graph search in both orientations",
-                            "station_starts": 32, "event_starts": 8}
+                            "method": "deterministic greedy square search in both orientations; crop larger side",
+                            "station_starts": 512, "event_starts": 512}
+                if n_right <= len(chosen):
+                    break
     if best is None:
-        raise RuntimeError("No rectangle found with at least five stations and five events")
+        raise RuntimeError("No complete square found with at least five stations and five events")
     return [stations[i] for i in best["stations"]], [events[i] for i in best["events"]], best
-
-
-def exact_rectangle(rows, directory, seconds):
-    stations = sorted({r[1] for r in rows})
-    events = sorted({r[2] for r in rows})
-    station_index = {s: i for i, s in enumerate(stations)}
-    event_index = {e: i for i, e in enumerate(events)}
-    pairs = sorted({(station_index[s], event_index[e]) for _, s, e, _ in rows})
-    graph = directory / "graph.txt"
-    with graph.open("w") as stream:
-        stream.write(f"{len(stations)} {len(events)} {len(pairs)}\n")
-        stream.writelines(f"{s} {e}\n" for s, e in pairs)
-    compiler = shutil.which("c++") or shutil.which("g++")
-    if compiler is None:
-        raise RuntimeError("Data preparation needs a C++17 compiler (c++ or g++); training does not.")
-    executable = directory / "rectangle-search"
-    subprocess.run([compiler, "-O3", "-std=c++17", str(ROOT / "scripts/rectangle_search.cpp"),
-                    "-o", str(executable)], check=True)
-    with graph.open() as stream:
-        result = subprocess.run([str(executable), str(seconds)], stdin=stream, stdout=subprocess.PIPE,
-                                text=True, check=True, timeout=seconds)
-    selection = json.loads(result.stdout)
-    if selection["status"] != "OPTIMAL":
-        raise RuntimeError("A heuristic result cannot be frozen as the largest rectangle")
-    selection.pop("seconds", None)  # Runtime must not make the benchmark fingerprint vary.
-    selection["method"] = "exact canonical closure enumeration with safe area upper bounds"
-    return sorted(stations[i] for i in selection["stations"]), sorted(events[i] for i in selection["events"]), selection
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=ROOT / "data/Instance_events_maggt3.hdf5")
-    parser.add_argument("--search-seconds", type=float, default=3600)
-    parser.add_argument("--exact", action="store_true", help="Require a proven global maximum; potentially slow")
     args = parser.parse_args()
-    if args.search_seconds <= 0:
-        raise ValueError("--search-seconds must be positive")
     if LOCK.exists() or MANIFEST.exists() or FROZEN.exists():
         raise RuntimeError("Frozen benchmark already exists. Preparation never overwrites or resplits it.")
     source = args.source.resolve()
@@ -109,9 +81,8 @@ def main():
                 raise ValueError("Metadata must describe every source trace exactly once")
             if {r[0] for r in rows} != set(h5["data"].keys()):
                 raise ValueError("Source waveform keys and metadata disagree")
-            print(f"Searching full graph: {len(rows)} traces; mode={'exact' if args.exact else 'deterministic largest-found'}.", flush=True)
-            stations, events, selection = (exact_rectangle(rows, temporary, args.search_seconds) if args.exact
-                                            else greedy_rectangle(rows))
+            print(f"Searching full graph: {len(rows)} traces; mode=deterministic largest-found square.", flush=True)
+            stations, events, selection = greedy_square(rows)
             print(f"Selected {len(stations)} × {len(events)} = {selection['area']}; {selection['status']}. Hashing source and freezing cache.", flush=True)
             pair_rows = defaultdict(list)
             for trace, station, event, sampling_rate in rows:
@@ -123,7 +94,7 @@ def main():
                     trace, sampling_rate = min(pair_rows[station, event])
                     records.append({"trace": trace, "station": station, "event": event, "sampling_rate": sampling_rate})
             if len(records) != selection["area"]:
-                raise ValueError("Selector returned an inconsistent rectangle")
+                raise ValueError("Selector returned an inconsistent square")
             shape = h5["data"][records[0]["trace"]].shape
             if len(shape) != 2 or shape[0] != 3:
                 raise ValueError("Expected three-channel [C, time] waveforms")
@@ -147,7 +118,7 @@ def main():
                        "bytes": source.stat().st_size, "sha256": sha256(source), "trace_count": len(rows),
                        "metadata_sha256": hashlib.sha256(json.dumps(rows, separators=(",", ":")).encode()).hexdigest()},
             "selection": {**selection,
-                          "min_stations": 5, "min_events": 5, "max_aspect_ratio": None,
+                          "min_stations": 5, "min_events": 5, "max_aspect_ratio": 1.0,
                           "duplicates": "lexicographically first trace per station/event cell"},
             "stations": stations, "events": events, "records": records,
             "waveform_shape": list(shape), "reconstruction_length": 8192,

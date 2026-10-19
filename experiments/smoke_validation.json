@@ -1,0 +1,40 @@
+{
+  "benchmark_id": "abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26",
+  "square": {
+    "stations": 35,
+    "events": 35,
+    "traces": 1225,
+    "training": 1102,
+    "validation": 123
+  },
+  "tests": {
+    "passed": 23,
+    "command": "uv run --frozen pytest -q"
+  },
+  "repeatability": {
+    "runs": [
+      "outputs/smoke/mlp_a",
+      "outputs/smoke/mlp_b"
+    ],
+    "exact_state_dict": true,
+    "exact_metrics": true,
+    "compared_metrics": [
+      "objective",
+      "scopes",
+      "reconstruction",
+      "counts"
+    ]
+  },
+  "independent_evaluation": {
+    "command": "uv run --frozen python scripts/evaluate.py outputs/smoke/mlp_a/best.pt --device cpu --batch-size 128",
+    "exact_metrics": true,
+    "report": "outputs/smoke/mlp_a/best.evaluation.json"
+  },
+  "notebook_gpu_smoke": {
+    "run": "outputs/smoke/notebook",
+    "device": "cuda:2",
+    "epochs": 1,
+    "status": "passed"
+  },
+  "scope": "One-epoch setup checks on the fixed square, before the Git/online W&B policy. Not full-budget research baselines."
+}

@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26",
+  "files": {
+    "src/seissepa/data.py": "e0f3ed34a6fefc672ad2a433d642fe27c9675015a2acccfd4e44adaf1f37a8bf",
+    "src/seissepa/metrics.py": "cd9acefe52450c4c2cd5759bd54a19c2f1f82dcd447cfa9642187255ef2a93a7",
+    "src/seissepa/evaluate.py": "e0ba1aa5725650a3246097ac1f199d7b09669ecca3fdd400a5b1fa2f84350a79",
+    "src/seissepa/contract.py": "58076cefc149c38f0ca439a2b18b583b1abda0e705082d24a388b03753c337f6",
+    "scripts/prepare_data.py": "4b51de648f3cdd4e0153fff81ddad4de87188cb01fbc516529cfbd5d6b22be47",
+    "scripts/evaluate.py": "1cb3e4dd285757c4a44b7fef76e920520411909098668809bcaa420b829fe5c7",
+    "scripts/verify_benchmark.py": "ad573448ec508154d6f13fb203942783194d563cf53d900c478103b9e2ecc37d",
+    "scripts/leaderboard.py": "9f99378293ad4f0a30609cc206e4576d747c9441dbcb6909b5e2d6d5f12105f3",
+    "AGENTS.md": "2f38b9fc7313827005f08d57eb2b4f8f1a0ee337b0b8767f834b369e184c06af",
+    "tests/test_benchmark.py": "c874ffcecbc19adeb3840ce2f7a730b81238b1b043eeebe8b4f4973200a24eb0",
+    "benchmark/manifest.json": "abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26",
+    "data/frozen/waveforms.npy": "5035970e5a6172bb0a848c863ae3260a37dc17cb83bcdabf22e68e18dc2f2c1d"
+  }
+}
