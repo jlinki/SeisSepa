@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "wandb_url": "https://wandb.ai/jlinki/seissepa-autoresearch/runs/773yaub2",
+  "state": "finished",
+  "benchmark_id": "abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26",
+  "git_commit": "e0f10b66cefeb2354abfef89712811bdb57f4a0d",
+  "matching_final_scalar_metrics": true,
+  "numeric_tolerance": {
+    "relative": 1e-12,
+    "absolute": 1e-12,
+    "reason": "W&B JSON round-trip may round the last floating-point digit."
+  },
+  "exact_epoch_objective": true,
+  "online_history_rows": 1,
+  "remote_files": [
+    "config.yaml",
+    "wandb-summary.json"
+  ],
+  "logged_artifacts": 0,
+  "scope": "One-epoch small-MLP integration check on the full frozen benchmark, not a full-budget research baseline."
+}

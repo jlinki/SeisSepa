@@ -51,6 +51,8 @@ Every run saves resolved Hydra configuration, source archive and SHA-256 digests
 
 The included `outputs/smoke/` runs use one epoch and validate the pipeline; they are not the full-budget research baseline. Their commands and results are recorded in `experiments/journal.jsonl`, with verification evidence in [experiments/smoke_validation.json](experiments/smoke_validation.json). The superseded rectangular setup is preserved under `legacy/rectangle_benchmark/` and is excluded from the active leaderboard. Start the default seed-42 baseline before tuning.
 
+The [online integration check](https://wandb.ai/jlinki/seissepa-autoresearch/runs/773yaub2) completed on the same full benchmark. Online history and final metrics match the local report; its approved configuration and Git/benchmark identifiers were verified through the W&B API. No source or artifact files were uploaded. See [experiments/wandb_validation.json](experiments/wandb_validation.json) for the verification record.
+
 ## Metrics
 
 | Scope | Metrics | Definition |
