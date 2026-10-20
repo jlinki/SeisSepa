@@ -32,7 +32,7 @@ The frozen benchmark contains **1,225 traces: 1,102 training and 123 validation*
 
 ```bash
 # One fast pipeline check on the same full frozen dataset and split
-uv run --frozen python scripts/train.py model=mlp train.epochs=1 wandb.mode=disabled
+uv run --frozen python scripts/train.py model=mlp train.epochs=1
 
 # Train / sweep; Hydra creates a separate directory for every run
 uv run --frozen python scripts/train.py model=notebook train.epochs=100 device=cuda:0
@@ -66,4 +66,4 @@ The included `outputs/smoke/` runs use one epoch and validate the pipeline; they
 
 The report prints actual train/validation trace and class counts. Some classes may be absent from the random validation subset; all must be in training and their counts are reported. Constant-target R² is 1 for an exact reconstruction and 0 otherwise; a zero-variance Pearson vector contributes 0. No aggregate Wilson interval is assigned to the two-task mean. The supplied example's 16×16 values are not substituted for measured results.
 
-Comparable research runs must log to W&B online, with their URL recorded in the journal. Offline/disabled runs are setup checks only. The configuration currently remains offline pending explicit approval of the external payload and destination; do not start research runs until online configuration is established. The requested destination is `jlinki/seissepa-autoresearch`. Automatic approval review requires explicit authorization for metrics, hyperparameters, benchmark fingerprint and Git commit ID to that project. Source, datasets, checkpoints and artifact files stay local. Authenticate using your usual W&B setup. The integration uses the documented [W&B run API](https://docs.wandb.ai/ref/python/experiments/run/) and [Hydra configuration targets](https://hydra.cc/docs/1.3/advanced/instantiate_objects/overview/).
+W&B defaults to **online** in the approved project `jlinki/seissepa-autoresearch`. Authenticate using your usual W&B setup. Training rejects offline/disabled modes and other destinations; authentication/logging failures do not trigger an offline fallback. Record the run URL from `wandb.json` in the journal. Online records contain numeric training hyperparameters, model/loss/optimizer class names, metrics, the benchmark fingerprint and Git commit ID. The complete configuration, source, datasets, checkpoints and artifact files stay local. W&B code/Git capture, console capture and system metadata/statistics are disabled. The earlier offline smoke checks predate this policy. The integration uses the documented [W&B run API](https://docs.wandb.ai/ref/python/experiments/run/) and [Hydra configuration targets](https://hydra.cc/docs/1.3/advanced/instantiate_objects/overview/).

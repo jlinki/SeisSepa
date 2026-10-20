@@ -77,11 +77,39 @@ def scalar_metrics(value, prefix="final"):
     return result
 
 
+def tracking_options(config, benchmark_id, git_commit):
+    if config.wandb.mode != "online":
+        raise ValueError("Training requires wandb.mode=online; do not fall back to offline logging.")
+    if (config.wandb.entity, config.wandb.project) != ("jlinki", "seissepa-autoresearch"):
+        raise ValueError("The approved W&B destination is jlinki/seissepa-autoresearch.")
+    resolved = OmegaConf.to_container(config, resolve=True)
+    # Send selected hyperparameters, never the full resolved configuration or local paths.
+    def parameters(value):
+        if isinstance(value, dict):
+            return {key: parameters(item) for key, item in value.items()
+                    if not key.startswith("_") and isinstance(item, (dict, list, int, float, bool, type(None)))}
+        if isinstance(value, list):
+            return [parameters(item) for item in value if isinstance(item, (dict, list, int, float, bool, type(None)))]
+        return value
+    payload = {"seed": resolved["seed"], "threads": resolved["threads"],
+               "benchmark_id": benchmark_id, "git_commit": git_commit}
+    for section in ("model", "loss", "optimizer", "train"):
+        payload[section] = parameters(resolved[section])
+        if "_target_" in resolved[section]:
+            payload[section]["class"] = resolved[section]["_target_"].rsplit(".", 1)[-1]
+    settings = wandb.Settings(base_url="https://api.wandb.ai", save_code=False,
+                              disable_code=True, disable_git=True, disable_job_creation=True,
+                              console="off", x_disable_stats=True, x_disable_meta=True,
+                              x_disable_machine_info=True, x_save_requirements=False)
+    return payload, settings
+
+
 def run(config, output_dir):
     if config.train.epochs < 1 or config.train.batch_size < 1 or config.train.patience < 1:
         raise ValueError("epochs, batch_size and patience must be positive")
     manifest, lock = read_verified()
     git = git_provenance()
+    online_config, online_settings = tracking_options(config, lock["benchmark_id"], git["commit"])
     seed_everything(config.seed, config.threads)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") if config.device == "auto" else torch.device(config.device)
     output_dir = Path(output_dir)
@@ -109,8 +137,13 @@ def run(config, output_dir):
     start = time.monotonic()
     best, best_mse, stale = -1.0, float("inf"), 0
     with wandb.init(project=config.wandb.project, entity=config.wandb.entity, mode=config.wandb.mode,
-                    name=config.wandb.name, config={**resolved, "benchmark_id": lock["benchmark_id"]},
-                    dir=str(output_dir)) as tracking:
+                    name=config.wandb.name, config=online_config, settings=online_settings,
+                    force=True, dir=str(output_dir)) as tracking:
+        tracking_info = {"id": tracking.id, "url": tracking.url, "mode": "online",
+                         "entity": config.wandb.entity, "project": config.wandb.project}
+        (output_dir / "wandb.json").write_text(json.dumps(tracking_info, indent=2) + "\n")
+        provenance["wandb"] = tracking_info
+        (output_dir / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
         tracking.define_metric("val/retrieval_accuracy", summary="max")
         for epoch in range(1, config.train.epochs + 1):
             model.train()
@@ -161,12 +194,12 @@ def run(config, output_dir):
                               {"event": len(manifest["events"]), "station": len(manifest["stations"])})
         report.update(benchmark_id=lock["benchmark_id"], best_epoch=checkpoint["epoch"], seed=config.seed,
                       git_commit=git["commit"],
+                      wandb_url=tracking.url,
                       elapsed_seconds=time.monotonic() - start)
         (output_dir / "metrics.json").write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
         (output_dir / "report.md").write_text(markdown_report(report))
         tracking.summary.update({**report["objective"], "best_epoch": checkpoint["epoch"],
                                  "benchmark_id": lock["benchmark_id"],
-                                 **scalar_metrics(report),
-                                 "report": wandb.Table(columns=["report"], data=[[markdown_report(report)]])})
+                                 "git_commit": git["commit"], **scalar_metrics(report)})
     print(f"Results: {output_dir}", flush=True)
     return report

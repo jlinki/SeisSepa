@@ -17,8 +17,8 @@ optimizer:
   weight_decay: 0.0001
 wandb:
   project: seissepa-autoresearch
-  entity: null
-  mode: offline
+  entity: jlinki
+  mode: online
   name: null
 
 hydra:

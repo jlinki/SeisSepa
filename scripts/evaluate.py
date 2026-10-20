@@ -37,6 +37,7 @@ def main():
                for dataset in datasets]
     report = full_metrics(*results, {"event": len(manifest["events"]), "station": len(manifest["stations"])})
     report.update(benchmark_id=lock["benchmark_id"], best_epoch=checkpoint["epoch"], seed=checkpoint["config"]["seed"])
+    report["git_commit"] = checkpoint.get("git_commit")
     path = args.checkpoint.with_suffix(".evaluation.json")
     path.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     path.with_suffix(".md").write_text(markdown_report(report))

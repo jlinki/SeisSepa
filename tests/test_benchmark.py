@@ -90,6 +90,30 @@ def test_training_requires_clean_committed_and_pushed_source(tmp_path, monkeypat
         train.git_provenance()
 
 
+def test_tracking_limits_payload_and_requires_approved_online_destination():
+    from omegaconf import OmegaConf
+    from seissepa.train import tracking_options
+    config = OmegaConf.create({"seed": 42, "threads": 4,
+        "wandb": {"entity": "jlinki", "project": "seissepa-autoresearch", "mode": "online"},
+        "model": {"_target_": "local.models.Example", "width": 8, "path": "/private/source"},
+        "loss": {"weight": 0.1}, "optimizer": {"lr": 0.001}, "train": {"epochs": 1},
+        "dataset": {"identity": "private-station-id"}})
+    payload, settings = tracking_options(config, "benchmark-fingerprint", "git-commit")
+    assert payload == {"seed": 42, "threads": 4, "benchmark_id": "benchmark-fingerprint",
+        "git_commit": "git-commit", "model": {"width": 8, "class": "Example"},
+        "loss": {"weight": 0.1}, "optimizer": {"lr": 0.001}, "train": {"epochs": 1}}
+    assert settings.disable_git and settings.disable_code and not settings.save_code
+    assert settings.x_disable_stats and settings.x_disable_meta and settings.console == "off"
+    assert not settings.x_save_requirements and settings.disable_job_creation
+    config.wandb.mode = "offline"
+    with pytest.raises(ValueError, match="requires wandb.mode=online"):
+        tracking_options(config, "benchmark", "commit")
+    config.wandb.mode = "online"
+    config.wandb.entity = "unapproved"
+    with pytest.raises(ValueError, match="approved W&B destination"):
+        tracking_options(config, "benchmark", "commit")
+
+
 def test_training_query_is_excluded_and_vote_ties_are_fixed():
     z = np.eye(6)
     labels = np.arange(6)

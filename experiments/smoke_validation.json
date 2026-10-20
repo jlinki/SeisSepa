@@ -8,7 +8,7 @@
     "validation": 123
   },
   "tests": {
-    "passed": 23,
+    "passed": 24,
     "command": "uv run --frozen pytest -q"
   },
   "repeatability": {
