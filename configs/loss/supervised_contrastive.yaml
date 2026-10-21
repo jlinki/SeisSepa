@@ -1,0 +1,5 @@
+_target_: seissepa.losses.SupervisedContrastiveLoss
+reconstruction_weight: 1.0
+event_weight: 0.05
+station_weight: 0.05
+temperature: 0.1
