@@ -77,9 +77,14 @@ The protected full evaluator still computes all diagnostics once for the selecte
 retrieval, centroid, k-NN, probe and silhouette values are also logged as named W&B
 scalars once at run completion and remain in the local Markdown/JSON report.
 
-The stopped baseline and a failed detached retry consume two of seven run slots. No
-valid baseline has completed. Resume with a uniquely named seed-42 baseline only after
-the speed fix is committed, pushed, tested and benchmark-verified.
+The stopped baseline and failed detached retry consume two of seven run slots. Run 3
+completed 13 epochs and wrote its full report; the launcher then hit a `NameError` in
+the final W&B logging step. After fixing and pushing that typo, the same online W&B run
+was resumed and its 53 final diagnostic scalars were synced. Its local report, online
+summary and protected standalone evaluation agree: combined retrieval 0.121951, event
+0.040650, station 0.203252, canonical validation MSE 0.985822, best epoch 1, elapsed
+127.3 seconds. This is the seed-42 baseline. Run 4 may test the single doubled-weight
+candidate; keep runs 5–7 for seeds 42, 43 and 44 if the best configuration is promising.
 
 The launcher stores CLI events, stderr, session identity, process status and final agent
 messages under `outputs/autoresearch/round1/`. This brief establishes the experiment

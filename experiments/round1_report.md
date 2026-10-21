@@ -2,7 +2,7 @@
 
 ## Status
 
-The seed-42 baseline trained and produced its local checkpoint, metrics, and report. The process then exited with a `NameError` before sending the final diagnostic scalars to online W&B. Per the online-logging rule, the round stops here: no candidate or seed-repeat run was started. The failure is preserved at `outputs/round1/03_baseline_after_perf_fix/failure.log`.
+Run 3 is the completed seed-42 baseline. Its first process exited with a `NameError` after writing the local checkpoint, metrics, and report; the typo was fixed and the same online W&B run was resumed. W&B now has all 53 final diagnostic scalars and is marked finished. The original exception remains preserved at `outputs/round1/03_baseline_after_perf_fix/failure.log`. The single allowed candidate in run 4 has not started yet.
 
 ## Frozen benchmark and baseline
 
@@ -17,9 +17,9 @@ The seed-42 baseline trained and produced its local checkpoint, metrics, and rep
 |---|---|---:|---:|---:|---:|---|---:|---|
 | 1 | Owner-stopped partial after 8 epochs; not a valid completed baseline | 0.040650 | 0.203252 | 0.121951 | 0.985821658 | 42 / 1 | 165.99 s at the last recorded epoch | `outputs/round1/01_baseline`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/dv8yv261) |
 | 2 | Failed detached retry; no valid metrics | — | — | — | — | 42 / — | — | `outputs/round1/02_baseline_retry`; failure and console logs preserved |
-| 3 | Training and local report completed through early stop at epoch 13; process failed during final W&B diagnostic logging | 0.040650 (95% Wilson 0.017–0.092) | 0.203252 (95% Wilson 0.142–0.283) | 0.121951 | 0.985821658387 | 42 / 1 | 127.32 s reported by the run | `outputs/round1/03_baseline_after_perf_fix`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/fwi5w1h5) |
-| 4 | Not started; candidate allocation stopped after the logging failure | — | — | — | — | — | — | — |
-| 5–7 | Not started; seed-42 repeat and seeds 43/44 were conditional on a promising candidate | — | — | — | — | — | — | — |
+| 3 | Completed; early stopped at epoch 13; final W&B diagnostics recovered on the same run ID | 0.040650 (95% Wilson 0.017–0.092) | 0.203252 (95% Wilson 0.142–0.283) | 0.121951 | 0.985821658387 | 42 / 1 | 127.32 s reported by the run | `outputs/round1/03_baseline_after_perf_fix`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/fwi5w1h5) |
+| 4 | Authorized single doubled-weight candidate; not started | — | — | — | — | — | — | — |
+| 5–7 | Reserved for the best configuration at seeds 42, 43 and 44 if promising and time allows | — | — | — | — | — | — | — |
 
 The round-3 exact command was:
 
@@ -27,7 +27,7 @@ The round-3 exact command was:
 CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/train.py model=notebook loss=separation seed=42 device=cuda:0 train.epochs=50 train.patience=12 wandb.name=round1_seed42_baseline_perf_fix hydra.run.dir=outputs/round1/03_baseline_after_perf_fix
 ```
 
-Run 3 wrote `best.pt`, `metrics.json`, and `report.md` before the final W&B call. Its online run contains synced per-epoch metrics, but the local W&B summary has 0 of the expected 53 final diagnostic scalars. `src/seissepa/train.py:262` references undefined `last_epoch`; this is recorded in the run's `failure.log`. No offline fallback was used.
+Run 3 wrote all required local files. `src/seissepa/train.py` originally referenced an undefined epoch variable in the final W&B step; the fix was pushed in commit `d35758b`, then the approved diagnostic scalars were logged to the same run ID. Read-back from W&B confirmed the run is finished, the primary score is 0.121951, and all 53 `final/...` scalar keys are present. No offline fallback or artifact upload was used.
 
 ## Evaluation and comparisons
 
@@ -37,4 +37,4 @@ Run 3 matches the epoch-1 result from the owner-stopped partial run 1: event, st
 
 ## Journal and next hypothesis
 
-The run-3 command, observed metrics, commit, benchmark ID, W&B URL, failure, and decision are recorded in `experiments/journal.jsonl`. The next bounded hypothesis from the allocation remains that doubling both separation weights (`loss.event_weight=0.10`, `loss.station_weight=0.10`) may improve retrieval. It was not tested in this round because final online diagnostic logging failed. A future continuation must repair and push the undefined logging step before starting another online run, then preserve the remaining run and deadline limits.
+The run-3 command, observed metrics, commit, benchmark ID, W&B URL, original exception, recovery and decision are recorded in `experiments/journal.jsonl`. The next bounded hypothesis is that doubling both separation weights (`loss.event_weight=0.10`, `loss.station_weight=0.10`) may improve retrieval. Run 4 is the only candidate allocation; runs 5–7 remain reserved for the best configuration's seed repeat and seeds 43/44 if promising. Keep the original run and time limits.
