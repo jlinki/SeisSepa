@@ -468,3 +468,38 @@ Slot 35 is below seed-42 comparator slot 31 (score 0.166666666667; MSE 0.7406704
 The best validated configuration/checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: NotebookAE with supervised contrastive weights (reconstruction/event/station 1.0/0.125/0.05), temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, up to 200 epochs and patience 40. Its event/station top-1 are 0.065040650407/0.276422764228, score 0.170731707317, canonical validation MSE 0.430679210870, and best epoch 78. Its three-seed scores are 0.162601626016 / 0.146341463415 / 0.170731707317 (seeds 42/43/44), mean 0.1598915989 and sample SD 0.0124189043. Its standalone evaluation matched all shared scientific fields. The fresh overnight separation baseline remains slot 23 at score 0.121951219512 (event/station 0.040650406504/0.203252032520; MSE 0.985821658387).
 
 Slot 35 brings cumulative use to 35 of 64 attempts, leaving 29. There are 23 seed-42 attempts against the 48-screen cap; at least 12 remaining slots are preserved for confirmations. Slots 1–34 and their W&B URLs remain inventoried in the preceding report sections and journal; slot 35 is listed above. The next hypothesis is to reduce `train.balanced_groups` from 14 to 8 while holding event-only CE 0.01 and all other settings fixed, increasing positive-pair density per sampled group. This invocation ends after slot 35. These are validation results after repeated selection, not untouched test evidence.
+
+
+## Latest bounded invocation (slot 36)
+
+This invocation started with 35 of 64 slots consumed. The branch was clean and synced, STOP and BLOCKED were absent, benchmark verification passed, all 24 existing tests passed, and GPU 0 was idle. The groups-8 batch plan and four exact conditional commands were committed and pushed before training as `c2b8ac95d614b4bf867457adfbba0bfb9aeeb059`. The invocation budget was at most four attempts (slots 36–39), each capped at 200 epochs, patience 40, and 1,200 seconds.
+
+### Hypothesis and registered budget
+
+Hypothesis: reducing balanced training groups from 14 to 8 while keeping the event-only auxiliary CE weight at 0.01 may increase positive-pair density and improve retrieval stability. NotebookAE, SupCon weights (1.0/0.125/0.05), temperature 0.05, AdamW (learning rate 0.0002, weight decay 0.0001), batch size 128, clipping 1.0, and the epoch/patience budget stayed fixed. Identity labels were used only by the existing train-only sampler and latent losses.
+
+Exact seed-42 screen command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive_heads loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.05 loss.embedding_dim=64 loss.event_classes=35 loss.station_classes=35 loss.event_head_weight=0.01 loss.station_head_weight=0.0 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=true train.balanced_groups=8 device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_heads_event001_balanced_groups08_seed42 hydra.run.dir=outputs/overnight_2026-10-21/36_supcon_heads_event001_balanced_groups08_seed42
+~~~
+
+The exact seed-42 repeat and seeds 43/44 were conditional on slot 36 outranking seed-42 comparator slot 31 under score/MSE/epoch ordering and passing guarded standalone evaluation.
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 36 | Failed before first epoch | — | — | — | — | 42 / — | 0 / 11.35 s | `outputs/overnight_2026-10-21/36_supcon_heads_event001_balanced_groups08_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/hhw6yhq6) |
+
+The train-only `BalancedGridBatchSampler` exhausted its candidate draws before forming the first 128-example batch. With eight event and eight station groups, the grid can contain at most 64 cells, so it cannot supply the requested batch size. No retrieval metrics, checkpoint, history, or report were produced. The failed run's local config, provenance, source archive, W&B metadata, console log, and training log are preserved. Provenance records the benchmark ID and plan commit. W&B initialized in online mode; zero artifact files were uploaded. This was a sampler feasibility failure, not an authentication, benchmark-integrity, upstream-push, or online-logging failure.
+
+Slots 37–39 were not launched because the screen did not produce a candidate to confirm. Preserve slot 36 and its W&B run. No source or protected files were changed.
+
+### Current best and lane state
+
+The best validated checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: NotebookAE with supervised contrastive weights (reconstruction/event/station 1.0/0.125/0.05), temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, up to 200 epochs and patience 40. Its event/station top-1 are 0.065040650407/0.276422764228, score 0.170731707317, canonical validation MSE 0.430679210870, and best epoch 78. Its guarded standalone evaluation matched the shared scientific fields. Its seed-42/43/44 scores are 0.162601626016 / 0.146341463415 / 0.170731707317, with mean 0.1598915989 and sample SD 0.0124189043. The fresh overnight separation baseline remains slot 23 at score 0.121951219512 (event/station 0.040650406504/0.203252032520; MSE 0.985821658387).
+
+Slot 36 brings cumulative use to 36 of 64 attempts, leaving 28. There are 24 seed-42 attempts against the 48-screen cap; at least 12 slots remain for confirmations. Slots 1–35 and their W&B URLs remain inventoried in the preceding report sections and journal; slot 36 is listed above.
+
+Next hypothesis: keep batch size 128 and test balanced_groups=12. A 12-by-12 train grid has at most 144 cells, enough in principle to form a 128-example batch while using fewer groups than 14. First confirm sampler feasibility, then compare retrieval using the same frozen score and confirmation rules. This invocation ends after slot 36. Validation has been repeatedly used for selection; these are validation results, not untouched test evidence.
