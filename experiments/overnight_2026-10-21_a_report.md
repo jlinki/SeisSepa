@@ -2,37 +2,44 @@
 
 ## Status
 
-This invocation completed its declared four-attempt seed-42 screen and stopped. The lane consumed **4 of 64 attempts**: 4 seed-42 screens, 0 confirmation runs. There are 60 attempts left; keep at least 12 for confirmation work, leaving at most 44 further seed-42 screens under the 48-screen limit. No blocker occurred. No source, model, loss, configuration, evaluator, benchmark, or test files changed; the only tracked changes were the experiment journal and this report.
+This invocation completed its predeclared three-attempt confirmation batch and stopped. Lane A has consumed **7 of 64 attempts**: 4 seed-42 screens and 3 confirmation runs. There are 57 attempts left; at least 12 must remain available for confirmation work, and the 48-screen limit allows at most 44 additional seed-42 screens. All seven slots completed successfully. No STOP/BLOCKED file, authentication failure, benchmark-integrity failure, push failure, or online W&B failure occurred.
 
-The lane is `research/overnight-20261021-a`. All run entries and evaluator checks are committed and pushed. Every training run passed the guarded benchmark verification, used physical GPU 0, NotebookAE, online W&B in `jlinki/seissepa-autoresearch`, and saved all required local artifacts. The frozen benchmark ID for every run is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` (1,225 traces; 1,102 train and 123 validation).
+The lane is `research/overnight-20261021-a`. The branch is pushed and the working tree is clean. No source, model, loss, configuration, evaluator, benchmark, or test files were changed; research used Hydra overrides. The batch plan, each completed attempt, and this report are in the pushed journal/report.
 
-Preflight: `scripts/verify_benchmark.py` passed; `pytest -q` passed all 24 tests. `scripts/leaderboard.py` ran before research. The round-one report and lane instructions were read before changes.
+Preflight passed: `scripts/verify_benchmark.py` verified benchmark `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` with 1,225 traces (1,102 train, 123 validation); `pytest -q` passed all 24 tests. The leaderboard and round-one report were inspected before research, and the leaderboard was rerun after the batch.
 
-## Hypothesis and result
+## Confirmation hypothesis and result
 
-Hypothesis: independently increasing event or station separation weight may preserve the other retrieval task better than increasing both, given round one’s station gain and event loss under balanced doubled weights. The batch held architecture, reconstruction weight, margin, optimizer, batch size, seed, and schedule constant. Each run allowed 200 epochs with patience 40, batch size 128, and AdamW learning rate 0.0002. The required default baseline ran first.
+Hypothesis: balanced separation weights `reconstruction/event/station = 1.0/0.10/0.10` reproduce the seed-42 result and improve the three-seed mean over the fresh overnight default baseline. The confirmation held NotebookAE, margin 0.2, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, gradient clip 1.0, sampling, and the 200-epoch/patience-40 budget fixed.
 
-| Run path | Separation weights (event / station) | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed; best epoch / epochs | Guard elapsed | Source commit | W&B |
-|---|---:|---:|---:|---:|---:|---|---:|---|---|
-| `outputs/overnight_2026-10-21/a_01_baseline` | 0.05 / 0.05 | 0.040650 | 0.203252 | 0.121951 | 0.9858216584 | 42; 1 / 41 | 300.9 s | `b0140623c71e49021ed594dccc8524f674ded1a2` | [0p7zsyx6](https://wandb.ai/jlinki/seissepa-autoresearch/runs/0p7zsyx6) |
-| `outputs/overnight_2026-10-21/a_02_event010` | 0.10 / 0.05 | 0.048780 | 0.211382 | 0.130081 | 0.9858216307 | 42; 1 / 41 | 240.4 s | `d0135a6da852577a3bb0aa07abf269aade75a0b9` | [xhho1tww](https://wandb.ai/jlinki/seissepa-autoresearch/runs/xhho1tww) |
-| `outputs/overnight_2026-10-21/a_03_station010` | 0.05 / 0.10 | 0.040650 | 0.211382 | 0.126016 | 0.9858217018 | 42; 1 / 41 | 262.0 s | `fb6f533c70dc263ccc82519f83578e5cfbf7a3ab` | [uspv5ol8](https://wandb.ai/jlinki/seissepa-autoresearch/runs/uspv5ol8) |
-| `outputs/overnight_2026-10-21/a_04_balanced010` | 0.10 / 0.10 | 0.024390 | 0.235772 | **0.130081** | **0.9618484117** | 42; 10 / 50 | 258.3 s | `49a125d59ba35c2df1ac40d8623fd0066a9230fd` | [thjw54j9](https://wandb.ai/jlinki/seissepa-autoresearch/runs/thjw54j9) |
+| Slot | Run | Seed | Event top-1 | Station top-1 | Score | Canonical val MSE | Best epoch / epochs | Guard elapsed | Training commit | W&B | Standalone evaluation |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|
+| 1 | `outputs/overnight_2026-10-21/a_01_baseline` | 42 | 0.040650 | 0.203252 | 0.121951 | 0.9858216584 | 1 / 41 | 300.9 s | `b0140623c71e49021ed594dccc8524f674ded1a2` | [0p7zsyx6](https://wandb.ai/jlinki/seissepa-autoresearch/runs/0p7zsyx6) | — |
+| 2 | `outputs/overnight_2026-10-21/a_02_event010` | 42 | 0.048780 | 0.211382 | 0.130081 | 0.9858216307 | 1 / 41 | 240.4 s | `d0135a6da852577a3bb0aa07abf269aade75a0b9` | [xhho1tww](https://wandb.ai/jlinki/seissepa-autoresearch/runs/xhho1tww) | 101 fields, 0 mismatches |
+| 3 | `outputs/overnight_2026-10-21/a_03_station010` | 42 | 0.040650 | 0.211382 | 0.126016 | 0.9858217018 | 1 / 41 | 262.0 s | `fb6f533c70dc263ccc82519f83578e5cfbf7a3ab` | [uspv5ol8](https://wandb.ai/jlinki/seissepa-autoresearch/runs/uspv5ol8) | — |
+| 4 | `outputs/overnight_2026-10-21/a_04_balanced010` | 42 | 0.024390 | 0.235772 | 0.130081 | 0.9618484117 | 10 / 50 | 258.3 s | `49a125d59ba35c2df1ac40d8623fd0066a9230fd` | [thjw54j9](https://wandb.ai/jlinki/seissepa-autoresearch/runs/thjw54j9) | 101 fields, 0 mismatches |
+| 5 | `outputs/overnight_2026-10-21/a_05_balanced010_seed42_repeat` | 42 | 0.024390 | 0.235772 | 0.130081 | 0.9618484117 | 10 / 50 | 250.0 s | `5b89290cc918dc81260bf928414cfd73497e593e` | [kt60c7or](https://wandb.ai/jlinki/seissepa-autoresearch/runs/kt60c7or) | 100 fields, 0 mismatches; exact repeat of slot 4 on all 100 scientific metrics |
+| 6 | `outputs/overnight_2026-10-21/a_06_balanced010_seed43` | 43 | 0.056911 | 0.260163 | **0.158537** | 0.6569846171 | 48 / 88 | 363.9 s | `de03a8ff9a1186c0b2a4753cf82f44d00a45ac99` | [gh8ijgbx](https://wandb.ai/jlinki/seissepa-autoresearch/runs/gh8ijgbx) | 100 fields, 0 mismatches |
+| 7 | `outputs/overnight_2026-10-21/a_07_balanced010_seed44` | 44 | 0.040650 | 0.227642 | 0.134146 | 0.5152695297 | 64 / 104 | 255.0 s | `63b287c50c783b03762883556dddf088087e2754` | [gx3l247a](https://wandb.ai/jlinki/seissepa-autoresearch/runs/gx3l247a) | Not run; lower score than the evaluated slot-6 candidate |
 
-Run paths are under `outputs/overnight_2026-10-21/`. The exact guarded commands, full precision metrics, commits, and outcomes are in `experiments/journal.jsonl`.
+All runs used online W&B in `jlinki/seissepa-autoresearch` and have the required local files: `config.yaml`, `provenance.json`, `source.tar.gz`, `history.jsonl`, `best.pt`, `metrics.json`, and `report.md`. The guarded runner verified the frozen benchmark before each training attempt. Exact commands, run outcomes, and commit IDs are in `experiments/journal.jsonl`.
 
-The event-only run tied the balanced run on the primary score, but has higher MSE. The balanced run is therefore the best valid checkpoint in this screen under the evaluator’s tie rule. Its protected standalone evaluation at batch size 128 matched all 101 shared scientific fields exactly (zero mismatches): [evaluation JSON](../outputs/overnight_2026-10-21/a_04_balanced010/best.evaluation.json). The event-only checkpoint was also independently evaluated and matched all 101 fields with zero mismatches: [evaluation JSON](../outputs/overnight_2026-10-21/a_02_event010/best.evaluation.json).
+## Best checkpoint and three-seed evidence
 
-## Best checkpoint and confirmation status
+The best valid single checkpoint is `outputs/overnight_2026-10-21/a_06_balanced010_seed43/best.pt`, trained from commit `de03a8ff9a1186c0b2a4753cf82f44d00a45ac99`. It scored 0.158537 (event 0.056911, station 0.260163) with canonical validation MSE 0.6569846171 at epoch 48. The protected standalone evaluator ran on GPU 0 at batch size 128 and matched all 100 shared scientific fields with zero mismatches.
 
-Best verified overnight seed-42 checkpoint: `outputs/overnight_2026-10-21/a_04_balanced010/best.pt`, trained from commit `49a125d59ba35c2df1ac40d8623fd0066a9230fd`.
+Best configuration: fixed `model=notebook` (NotebookAE); `loss=separation`; reconstruction/event/station weights `1.0/0.10/0.10`; margin `0.2`; AdamW learning rate `0.0002`, weight decay `0.0001`; gradient clip `1.0`; batch size `128`; maximum 200 epochs; patience `40`. The checkpoint's training seed is 43.
 
-Configuration: fixed `model=notebook`; `loss=separation`; reconstruction/event/station weights `1.0/0.10/0.10`; margin `0.2`; AdamW learning rate `0.0002`, weight decay `0.0001`; batch size 128; maximum 200 epochs; patience 40; seed 42. It stopped after 50 epochs and selected epoch 10. It matches the round-one best seed-42 score, task scores, and MSE exactly.
+| Confirmation seed | Event top-1 | Station top-1 | Combined score | Canonical val MSE |
+|---:|---:|---:|---:|---:|
+| 42 (slot 5; exact repeat of slot 4) | 0.024390 | 0.235772 | 0.130081 | 0.9618484117 |
+| 43 (slot 6) | 0.056911 | 0.260163 | 0.158537 | 0.6569846171 |
+| 44 (slot 7) | 0.040650 | 0.227642 | 0.134146 | 0.5152695297 |
+| Three-seed mean | — | — | **0.140921** | — |
+| Three-seed sample standard deviation | — | — | **0.015390** | — |
 
-Same-budget confirmations are **not yet complete**. The next bounded invocation should repeat this exact config at seed 42, then run seeds 43 and 44 with the same budget. Preserve the current checkpoint pending those results; do not promote on this one seed alone.
-
-For context only, round one tested the same 0.10/0.10 weights at 50 epochs and patience 12: seed-42 score 0.130081, seed-43 score 0.113821, seed-44 score 0.113821; mean 0.119241 and sample SD 0.009388. That is prior-budget evidence, not a substitute for the pending overnight-budget confirmations. Its mean was below the round-one default baseline of 0.121951. No confidence interval is assigned to the mean of the two retrieval tasks.
+The three-seed mean is 0.018970 above the fresh seed-42 baseline score of 0.121951. Each confirmation score exceeds that baseline. This supports the balanced configuration at the tested budget; validation has been used for selection, so this is validation evidence. No confidence interval is assigned to the mean of the two retrieval tasks. The strongest individual result is seed 43, and it passed standalone evaluation.
 
 ## Next hypothesis
 
-First confirm whether the balanced 0.10/0.10 configuration reproduces and retains its score over seeds 42, 43, and 44 at the overnight budget. If the three-seed mean does not improve over the fresh overnight baseline, test one reconstruction-weight reduction with the confirmed best latent weights, keeping all other settings fixed. Validation has been used repeatedly for selection, so results remain validation evidence.
+With balanced separation improving the three-seed mean, test whether reducing reconstruction weight from `1.0` to `0.5` improves retrieval while keeping event/station weights at `0.10/0.10`. Start with one seed-42 screen at the same architecture, margin, optimizer, batch size, and 200-epoch/patience-40 budget. If it is promising, use a later predeclared batch for the exact seed-42 repeat and seeds 43/44; keep the current verified checkpoint until those results are available.
