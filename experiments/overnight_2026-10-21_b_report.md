@@ -191,3 +191,31 @@ Slot 23 matches slot 1's scientific metrics exactly, including score and canonic
 The current best valid checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: supervised-contrastive NotebookAE, reconstruction/event/station weights 1.0/0.125/0.05, temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, maximum 200 epochs, patience 40. Its event/station top-1 are 0.065041/0.276423, exact score 0.17073170731707318, canonical validation MSE 0.4306792109, and best epoch 78. Guarded standalone evaluation matched all 87 shared scientific fields.
 
 Its seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; the three-seed mean is 0.1598915989 and sample SD is 0.0124189043. The complete run inventory and W&B links for slots 1–22 are above; slot 23 is added here. This invocation stops after slot 23. The next hypothesis remains the previously proposed temperature 0.075 screen at event/station weights 0.125/0.05, with the rest of the configuration fixed. There are 41 of 64 slots remaining, with at least 12 kept for confirmations.
+
+## Latest bounded invocation (slot 24)
+
+This invocation completed one attempt and stops here. Before the batch, slot 23 had been reserved, the worktree was clean and synchronized, STOP was absent, benchmark verification passed, all 24 tests passed, and the leaderboard showed slot 18 as the incumbent. The batch plan and exact conditional commands were committed and pushed before training in commit 0de43a757b696090acdf1e7d088b9678ca1760b0. The screen used the guarded runner on physical GPU 0, online W&B in jlinki/seissepa-autoresearch, batch size 128, maximum 200 epochs, patience 40, and a 1,200-second per-attempt cap.
+
+### Hypothesis and registered budget
+
+Hypothesis: raising supervised-contrastive temperature from 0.05 to 0.075 may soften the event latent geometry enough to improve seed-42 retrieval while preserving station retrieval. NotebookAE, reconstruction/event/station weights 1.0/0.125/0.05, AdamW learning rate 0.0002, weight decay 0.0001, sampling, and training budget stayed fixed. The batch allowed at most four attempts. Slot 24 was the seed-42 screen; the exact repeat and seeds 43/44 were conditional on improving the seed-42 comparator (score 0.16260162601626016, canonical validation MSE 0.419021287532869) and passing guarded standalone evaluation.
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.075 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_temp0075_seed42 hydra.run.dir=outputs/overnight_2026-10-21/24_supcon_temp0075_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 24 | Completed | 0.048780 | 0.227642 | 0.138211 | 0.9779287941 | 42 / 5 | 45 / 144.31 s | 24_supcon_temp0075_seed42 | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/bwogdcpl) |
+
+The benchmark ID remained abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26; the run records commit 0de43a757b696090acdf1e7d088b9678ca1760b0. All required local artifacts are present. W&B completed online and synced no artifact files. The score is below the seed-42 comparator and canonical MSE is higher, so slot 24 was not standalone-evaluated and slots 25–27 were not launched. Preserve the run and its artifacts; no promotion is made.
+
+## Current best and next hypothesis
+
+Best valid checkpoint remains slot 18: outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt, with NotebookAE, supervised-contrastive loss, reconstruction/event/station weights 1.0/0.125/0.05, temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, maximum 200 epochs, and patience 40. Its event/station top-1 are 0.065041/0.276423, exact score is 0.17073170731707318, canonical validation MSE is 0.4306792109, and best epoch is 78. Its guarded standalone evaluation matched all 87 shared scientific fields.
+
+The seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; their three-seed mean and sample SD are 0.1598915989 and 0.0124189043. The full previous run inventory, paths, W&B URLs, and exact repeatability/evaluation evidence remain above; slot 23's fresh separation baseline and slot 24 are added in their respective sections. There are 40 of 64 training slots remaining, with at least 12 kept for confirmations. This invocation used one of its four-attempt maximum.
+
+Next hypothesis: use a training-only balanced sampler that gives supervised-contrastive minibatches multiple positive examples for event and station labels, keeping NotebookAE and the loss definitions fixed. A later invocation should register exact commands and budget before any attempt, then screen seed 42 first. Validation has been used repeatedly for selection; these are validation results, not an untouched test result.
