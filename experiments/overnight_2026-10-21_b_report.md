@@ -503,3 +503,35 @@ The best validated checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_
 Slot 36 brings cumulative use to 36 of 64 attempts, leaving 28. There are 24 seed-42 attempts against the 48-screen cap; at least 12 slots remain for confirmations. Slots 1–35 and their W&B URLs remain inventoried in the preceding report sections and journal; slot 36 is listed above.
 
 Next hypothesis: keep batch size 128 and test balanced_groups=12. A 12-by-12 train grid has at most 144 cells, enough in principle to form a 128-example batch while using fewer groups than 14. First confirm sampler feasibility, then compare retrieval using the same frozen score and confirmation rules. This invocation ends after slot 36. Validation has been repeatedly used for selection; these are validation results, not untouched test evidence.
+
+## Latest bounded invocation (slot 37)
+
+This invocation ran one seed-42 screen and stops here. Before the batch, 36 of 64 attempts were consumed; the branch was clean and synchronized, STOP and BLOCKED were absent, benchmark verification passed, all 24 tests passed, and the leaderboard showed slot 18 as the best valid single-run checkpoint. The train-only sampler feasibility preflight at 12 groups formed all nine seed-42 batches (eight of size 128 and a final size 78). The plan and four exact conditional commands were committed and pushed before training as `5a9fba74eeff3bddf0f03e99fec272ab323ed1f7`. Slot 37 used the guarded runner on GPU 0 with online W&B, up to 200 epochs, patience 40, batch size 128, and a 1,200-second attempt limit.
+
+### Hypothesis and registered budget
+
+Hypothesis: with event-only auxiliary CE weight 0.01 and SupCon weights fixed, reducing train-only balanced groups from 14 to 12 may provide denser positive groups while retaining feasible 128-example batches, improving retrieval over the current seed-42 comparator. NotebookAE, temperature 0.05, AdamW learning rate 0.0002, weight decay 0.0001, clipping 1.0, batch size 128, and the 200-epoch/patience-40 budget stayed fixed. The batch registered up to four attempts: slot 37 was the seed-42 screen; slots 38-40 (exact seed-42 repeat and seeds 43/44) required a better seed-42 score/MSE/epoch ordering than slot 31 and an exact guarded standalone evaluation.
+
+Exact screen command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive_heads loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.05 loss.embedding_dim=64 loss.event_classes=35 loss.station_classes=35 loss.event_head_weight=0.01 loss.station_head_weight=0.0 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=true train.balanced_groups=12 device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_heads_event001_balanced_groups12_seed42 hydra.run.dir=outputs/overnight_2026-10-21/37_supcon_heads_event001_balanced_groups12_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 37 | Completed screen; not promoted | 0.065041 | 0.203252 | 0.134146 | 0.9577550397 | 42 / 11 | 51 / 178.29 s | `37_supcon_heads_event001_balanced_groups12_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/fu96y98j) |
+
+Training-reported elapsed time was 168.52 seconds. The benchmark ID remained `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26`; provenance records commit `5a9fba74eeff3bddf0f03e99fec272ab323ed1f7`. All required local artifacts are present. W&B completed online and synced zero artifact files.
+
+Slot 37 scores 0.032520 below the seed-42 comparator slot 31 (0.166667; event/station 0.065041/0.268293; canonical MSE 0.7406704989). Its canonical MSE is also higher. It was not evaluated standalone and slots 38-40 were not launched. Preserve its checkpoint and logs without promotion.
+
+### Current best and lane state
+
+The best validated checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: NotebookAE with supervised-contrastive weights (reconstruction/event/station 1.0/0.125/0.05), temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, up to 200 epochs and patience 40. Its event/station top-1 are 0.065040650407/0.276422764228, score 0.170731707317, canonical validation MSE 0.430679210870, and best epoch 78. Its guarded standalone evaluation matched all shared scientific fields. The seed-42/43/44 scores remain 0.162601626016/0.146341463415/0.170731707317; mean 0.1598915989, sample SD 0.0124189043.
+
+Slot 37 brings cumulative use to 37 of 64 attempts, leaving 27. There are 25 seed-42 attempts against the 48-screen cap; at least 12 confirmation slots remain reserved. Slots 1-36 and their W&B URLs remain inventoried above and in the journal; slot 37 is listed here.
+
+Next hypothesis: test a colder supervised-contrastive temperature of 0.025 with event/station weights 0.125/0.05 and uniform sampling. Sharper logits may improve positive-versus-negative separation. Register a seed-42 screen against the current seed-42 comparator before any launch. Validation has been repeatedly used for selection; these are validation results, not untouched test evidence.
