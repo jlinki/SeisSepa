@@ -535,3 +535,39 @@ The best validated checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_
 Slot 37 brings cumulative use to 37 of 64 attempts, leaving 27. There are 25 seed-42 attempts against the 48-screen cap; at least 12 confirmation slots remain reserved. Slots 1-36 and their W&B URLs remain inventoried above and in the journal; slot 37 is listed here.
 
 Next hypothesis: test a colder supervised-contrastive temperature of 0.025 with event/station weights 0.125/0.05 and uniform sampling. Sharper logits may improve positive-versus-negative separation. Register a seed-42 screen against the current seed-42 comparator before any launch. Validation has been repeatedly used for selection; these are validation results, not untouched test evidence.
+
+
+
+## Latest bounded invocation (slot 38)
+
+This invocation registered up to four attempts and completed one seed-42 screen. Before training, 37 of 64 lane slots were consumed, 25 seed-42 attempts had been used against the 48-screen cap, and 27 slots remained. STOP and BLOCKED were absent; the branch was clean and synchronized; benchmark verification passed; all 24 tests passed; and GPU 0 was idle. The colder-temperature plan was committed and pushed before launch as `1b689b9d11ce6995916d6cc7f5dcd392c233d3ea`. The guarded runner verified the frozen benchmark and ran slot 38 on GPU 0 with online W&B.
+
+### Hypothesis and registered budget
+
+Hypothesis: reducing the supervised-contrastive temperature from 0.05 to 0.025 at event/station weights 0.125/0.05 may sharpen positive-versus-negative separation and improve seed-42 retrieval. NotebookAE, uniform training sampling, AdamW (learning rate 0.0002, weight decay 0.0001), batch size 128, gradient clipping 1.0, and the 200-epoch/patience-40 budget stayed fixed.
+
+The batch registered at most four attempts (slots 38–41). Slot 38 was the seed-42 screen. The exact seed-42 repeat and seeds 43/44 were conditional on outranking seed-42 comparator slot 31 under the frozen score/MSE/earlier-epoch ordering and matching the guarded standalone evaluator.
+
+Exact screen command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.025 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=false device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_temp0025_event0125_seed42 hydra.run.dir=outputs/overnight_2026-10-21/38_supcon_temp0025_event0125_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---:|---|---|
+| 38 | Completed screen; not promoted | 0.056911 | 0.235772 | 0.146341 | 0.770837568285 | 42 / 21 | 61 / 234.72 s | `outputs/overnight_2026-10-21/38_supcon_temp0025_event0125_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/ltl1lxg3) |
+
+Training-reported elapsed time was 224.30 seconds. The benchmark ID remained `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26`; provenance records commit `1b689b9d11ce6995916d6cc7f5dcd392c233d3ea`. The required local artifacts are present. W&B completed online in `jlinki/seissepa-autoresearch` and uploaded zero artifact files.
+
+Slot 38 is below seed-42 comparator slot 31 (score 0.166667; event/station 0.065041/0.268293; canonical MSE 0.740670498947). Its canonical MSE is also higher. It was not standalone-evaluated, and slots 39–41 were not launched. Preserve its checkpoint and logs.
+
+### Current best and lane state
+
+The best valid overall checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`, with score 0.170731707317, event/station 0.065040650407/0.276422764228, canonical validation MSE 0.430679210870, and best epoch 78. Its seed-42/43/44 scores remain 0.162601626016 / 0.146341463415 / 0.170731707317; mean 0.1598915989 and sample SD 0.0124189043. Its guarded standalone evaluation matched all shared scientific fields. The best seed-42 comparator remains slot 31 at score 0.166666666667. The fresh overnight separation baseline remains slot 23 at score 0.121951219512.
+
+Slot 38 brings lane use to 38 of 64 attempts, leaving 26. There are 26 seed-42 attempts against the 48-screen cap; the 12-slot confirmation reserve remains intact. Slots 1–37 and their W&B URLs remain inventoried above and in the journal; slot 38 is listed here.
+
+Next hypothesis: test temperature 0.075 with event/station weights 0.125/0.05 and uniform sampling. A modestly warmer softmax may recover retrieval after temperature 0.025 underperformed. Keep NotebookAE and all other settings fixed. This invocation ends after slot 38. Validation has been repeatedly used for selection; these are validation results, not untouched test evidence.
