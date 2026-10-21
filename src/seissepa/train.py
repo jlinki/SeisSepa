@@ -13,7 +13,7 @@ import torch
 import wandb
 from hydra.utils import instantiate
 from omegaconf import OmegaConf
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Sampler
 
 from seissepa.contract import read_verified, sha256
 from seissepa.data import ROOT, FrozenDataset
@@ -32,11 +32,73 @@ def seed_everything(seed, threads):
     torch.use_deterministic_algorithms(True)
 
 
-def loaders(manifest, batch_size, seed):
+class BalancedGridBatchSampler(Sampler):
+    """Draw batches from a train-only event/station grid with positives on both axes."""
+
+    def __init__(self, dataset, batch_size, seed, classes_per_axis=14):
+        self.dataset = dataset
+        self.batch_size = batch_size
+        self.generator = torch.Generator().manual_seed(seed)
+        self.classes_per_axis = classes_per_axis
+        self.event_by_index = []
+        self.station_by_index = []
+        self.cell_indices = {}
+        for local_index, global_index in enumerate(dataset.indices):
+            row = dataset.rows[int(global_index)]
+            event = dataset.event_labels[row["event"]]
+            station = dataset.station_labels[row["station"]]
+            self.event_by_index.append(event)
+            self.station_by_index.append(station)
+            self.cell_indices.setdefault((event, station), []).append(local_index)
+        self.events = sorted(set(self.event_by_index))
+        self.stations = sorted(set(self.station_by_index))
+        if (classes_per_axis < 2 or classes_per_axis > len(self.events)
+                or classes_per_axis > len(self.stations)):
+            raise ValueError("Balanced grid size must select at least two available classes per axis")
+
+    def __len__(self):
+        return (len(self.dataset) + self.batch_size - 1) // self.batch_size
+
+    def __iter__(self):
+        for batch_number in range(len(self)):
+            target_size = min(self.batch_size, len(self.dataset) - batch_number * self.batch_size)
+            for _ in range(512):
+                event_ids = [self.events[i] for i in torch.randperm(
+                    len(self.events), generator=self.generator)[:self.classes_per_axis].tolist()]
+                station_ids = [self.stations[i] for i in torch.randperm(
+                    len(self.stations), generator=self.generator)[:self.classes_per_axis].tolist()]
+                candidates = [index for event in event_ids for station in station_ids
+                              for index in self.cell_indices.get((event, station), ())]
+                if len(candidates) < target_size:
+                    continue
+                order = torch.randperm(len(candidates), generator=self.generator)[:target_size].tolist()
+                batch = [candidates[i] for i in order]
+                event_counts = {event: 0 for event in event_ids}
+                station_counts = {station: 0 for station in station_ids}
+                for index in batch:
+                    event_counts[self.event_by_index[index]] += 1
+                    station_counts[self.station_by_index[index]] += 1
+                if min(event_counts.values()) >= 2 and min(station_counts.values()) >= 2:
+                    yield batch
+                    break
+            else:
+                raise RuntimeError("Could not form a balanced train-only event/station batch")
+
+
+def loaders(manifest, batch_size, seed, balanced_batches=False, balanced_groups=14):
     train = FrozenDataset(manifest, "train")
     validation = FrozenDataset(manifest, "validation")
     generator = torch.Generator().manual_seed(seed)
-    return (DataLoader(train, batch_size=batch_size, shuffle=True, generator=generator, num_workers=0),
+    if balanced_batches:
+        train_loader = DataLoader(
+            train,
+            batch_sampler=BalancedGridBatchSampler(train, batch_size, seed, balanced_groups),
+            num_workers=0,
+        )
+    else:
+        train_loader = DataLoader(train, batch_size=batch_size, shuffle=True,
+                                  generator=generator, num_workers=0)
+    return (train_loader,
             DataLoader(train, batch_size=batch_size, shuffle=False, num_workers=0),
             DataLoader(validation, batch_size=batch_size, shuffle=False, num_workers=0))
 
@@ -185,7 +247,11 @@ def run(config, output_dir):
                   "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None,
                   "evaluation": EVALUATION}
     (output_dir / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
-    train_loader, train_eval, val_loader = loaders(manifest, config.train.batch_size, config.seed)
+    train_loader, train_eval, val_loader = loaders(
+        manifest, config.train.batch_size, config.seed,
+        balanced_batches=config.train.balanced_batches,
+        balanced_groups=config.train.balanced_groups,
+    )
     model = instantiate(config.model, in_channels=train_loader.dataset.waveforms.shape[1]).to(device)
     criterion = instantiate(config.loss).to(device)
     optimizer = instantiate(config.optimizer, params=model.parameters())
