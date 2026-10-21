@@ -17,16 +17,19 @@ reconstruction, improves validation retrieval with the existing architecture.
 - One researcher writes code/Git and runs training sequentially. A read-only advisor
   may recommend candidates; it must not edit files or start training.
 - Maximum **7 training runs**, each at most **50 epochs**, including failed attempts
-  and repeats. Keep `train.patience=12`. Stop after **2 hours** from researcher launch;
-  do not start a run when insufficient time remains. Do not silently extend any limit.
-- Run 1: unchanged default notebook baseline, seed 42, 50 epochs, online W&B.
-- Runs 2–4: at most three candidates, seed 42, same maximum epoch budget. Prioritize
-  loss weights, margin/temperature, learning rate, weight decay and batch size.
-  A simple alternative latent loss may be implemented in `src/seissepa/losses.py`
+  and repeats. Keep `train.patience=12`. Stop at **2026-10-21 17:13:52 UTC**; do not
+  start a run when insufficient time remains. Do not silently extend any limit.
+- Runs 1–2 have been consumed by the owner-stopped partial baseline and failed detached
+  retry. Run 3: unchanged default notebook baseline, seed 42, 50 epochs, online W&B.
+- Run 4: at most one candidate, seed 42, same maximum epoch budget. Test doubling both
+  separation weights (`loss.event_weight=0.10`, `loss.station_weight=0.10`) if the
+  baseline completes in time. Do not broaden the candidate search in this round.
+- A simple alternative latent loss may be implemented in `src/seissepa/losses.py`
   with a new loss config if the hypothesis warrants it. Do not add dependencies.
-- Reserve runs 5–7 for the best configuration: an exact seed-42 repeat, then seeds
-  43 and 44 if promising. Use the same architecture and training budget. The original
-  winning seed-42 run plus 43/44 supplies the three-seed mean/std. Report every result.
+- If the best configuration is promising and time allows, reserve runs 5–7 for an exact
+  seed-42 repeat and seeds 43 and 44. Use the same architecture and training budget.
+  Report all three seeds and their mean/std. Report every result and stop at the declared
+  run and time budgets.
 - No promising candidate: repeat the best seed-42 run if useful, report the outcome,
   and leave the remaining budget unused. Do not turn setup smoke checks into baselines.
 
