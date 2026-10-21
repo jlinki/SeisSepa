@@ -602,3 +602,35 @@ Slot 39 is below seed-42 comparator slot 31 (score 0.166666666667; event/station
 The best valid checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: NotebookAE with SupCon reconstruction/event/station weights 1.0/0.125/0.05, temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, up to 200 epochs and patience 40. Its score is 0.17073170731707318 (event/station 0.06504065040650407/0.2764227642276423), canonical validation MSE 0.43067921087042654, and best epoch 78. Its guarded standalone evaluation matched all scientific fields. The seed-42/43/44 scores are 0.162601626016 / 0.146341463415 / 0.170731707317, with mean 0.1598915989 and sample SD 0.0124189043. Slot 22 rounds to the same displayed score but has a slightly lower exact score and was not promoted. The fresh separation baseline remains slot 23 at 0.121951219512.
 
 Slot 39 brings cumulative use to 39 of 64 attempts, leaving 25. There are 27 seed-42 attempts against the 48-attempt screen cap, and the minimum 12-slot confirmation reserve remains intact. Slots 1–38 and their W&B URLs remain inventoried above and in `experiments/journal.jsonl`; slot 39 is listed here. The next hypothesis is to test temperature 0.10 at weights 0.125/0.05 with uniform sampling, keeping NotebookAE and other settings fixed. This invocation ends here. Validation has been repeatedly used for selection; these are validation results, not untouched test evidence.
+
+## Latest bounded invocation (slot 40)
+
+This invocation ran one seed-42 screen and stopped under its preregistered continuation rule. Before training, 39 slots were reserved, 27 seed-42 runs had been used, the worktree was clean and synchronized on `research/overnight-20261021-b`, STOP/BLOCKED were absent, GPU 0 was idle, benchmark verification passed, and all 24 tests passed. The four-attempt plan was committed and pushed before launch as `990507fb1f6345aa050189b1c2efd503a0f076d6`. The guarded runner passed the frozen benchmark check and ran slot 40 on GPU 0 with online W&B.
+
+### Hypothesis and registered budget
+
+Hypothesis: raising supervised-contrastive temperature from 0.075 to 0.10 at event/station weights 0.125/0.05 may recover seed-42 retrieval after the temperature-0.075 screen underperformed. NotebookAE, reconstruction weight 1.0, uniform sampling, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, gradient clipping 1.0, 200-epoch maximum and patience 40 stayed fixed. The batch allowed at most four attempts, with 1,200 seconds per attempt. The exact seed-42 repeat and seeds 43/44 were conditional on slot 40 outranking seed-42 comparator slot 31 and passing exact guarded standalone evaluation.
+
+Exact screen command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.10 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=false device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_event0125_temp010_seed42 hydra.run.dir=outputs/overnight_2026-10-21/40_supcon_event0125_temp010_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---:|---|---|
+| 40 | Completed screen; not promoted | 0.024390243902 | 0.227642276423 | 0.126016260163 | 0.970525191916 | 42 / 9 | 49 / 189.48 s | `outputs/overnight_2026-10-21/40_supcon_event0125_temp010_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/5xcxahcs) |
+
+The training-reported elapsed time was 178.58 seconds. Slot 40 used commit `990507fb1f6345aa050189b1c2efd503a0f076d6` and benchmark ID `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26`. All required local artifacts are present. W&B completed online in `jlinki/seissepa-autoresearch`; zero artifact files were uploaded.
+
+Slot 40 is below seed-42 comparator slot 31 (score 0.166666666667, canonical MSE 0.740670498947) on both score and MSE. It was not standalone-evaluated; conditional slots 41–43 were not launched. Preserve the checkpoint and logs.
+
+### Current best and lane state
+
+The best validated checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: NotebookAE with supervised-contrastive weights (reconstruction/event/station 1.0/0.125/0.05), temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, up to 200 epochs and patience 40. Event/station top-1 are 0.065040650407/0.276422764228, score 0.170731707317, canonical validation MSE 0.430679210870, and best epoch 78. Its standalone evaluation matched the shared scientific fields. Scores for seeds 42/43/44 were 0.162601626016/0.146341463415/0.170731707317, mean 0.1598915989 and sample SD 0.0124189043. The fresh separation baseline remains slot 23 at score 0.121951219512 (event/station 0.040650406504/0.203252032520; MSE 0.985821658387).
+
+Slot 40 brings cumulative lane use to 40 of 64 attempts, leaving 24. There are 28 seed-42 attempts against the 48-screen cap; at least 12 slots remain reserved for confirmations. This invocation's only run and W&B URL are listed above; all earlier runs remain inventoried above and in the journal.
+
+Next hypothesis: at temperature 0.05 and event weight 0.125, raise station weight from 0.05 to 0.075 to test whether stronger station-latent supervision improves the balanced objective while retaining event retrieval. Keep NotebookAE, optimizer, uniform sampling, and training budget fixed. Validation was repeatedly used for selection; these are validation results, not untouched test evidence.
