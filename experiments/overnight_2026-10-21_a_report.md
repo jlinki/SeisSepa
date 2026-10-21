@@ -2,7 +2,7 @@
 
 ## Status
 
-This invocation completed its predeclared three-attempt confirmation batch and stopped. Lane A has consumed **7 of 64 attempts**: 4 seed-42 screens and 3 confirmation runs. There are 57 attempts left; at least 12 must remain available for confirmation work, and the 48-screen limit allows at most 44 additional seed-42 screens. All seven slots completed successfully. No STOP/BLOCKED file, authentication failure, benchmark-integrity failure, push failure, or online W&B failure occurred.
+This invocation completed its one-attempt reconstruction-weight screen and stopped. Lane A has consumed **8 of 64 attempts**: 5 seed-42 screens and 3 confirmation runs. There are 56 attempts left; at least 12 must remain available for confirmation work, and the 48-screen limit allows at most 43 additional seed-42 screens. All eight slots completed successfully. No STOP/BLOCKED file, authentication failure, benchmark-integrity failure, push failure, or online W&B failure occurred.
 
 The lane is `research/overnight-20261021-a`. The branch is pushed and the working tree is clean. No source, model, loss, configuration, evaluator, benchmark, or test files were changed; research used Hydra overrides. The batch plan, each completed attempt, and this report are in the pushed journal/report.
 
@@ -21,6 +21,7 @@ Hypothesis: balanced separation weights `reconstruction/event/station = 1.0/0.10
 | 5 | `outputs/overnight_2026-10-21/a_05_balanced010_seed42_repeat` | 42 | 0.024390 | 0.235772 | 0.130081 | 0.9618484117 | 10 / 50 | 250.0 s | `5b89290cc918dc81260bf928414cfd73497e593e` | [kt60c7or](https://wandb.ai/jlinki/seissepa-autoresearch/runs/kt60c7or) | 100 fields, 0 mismatches; exact repeat of slot 4 on all 100 scientific metrics |
 | 6 | `outputs/overnight_2026-10-21/a_06_balanced010_seed43` | 43 | 0.056911 | 0.260163 | **0.158537** | 0.6569846171 | 48 / 88 | 363.9 s | `de03a8ff9a1186c0b2a4753cf82f44d00a45ac99` | [gh8ijgbx](https://wandb.ai/jlinki/seissepa-autoresearch/runs/gh8ijgbx) | 100 fields, 0 mismatches |
 | 7 | `outputs/overnight_2026-10-21/a_07_balanced010_seed44` | 44 | 0.040650 | 0.227642 | 0.134146 | 0.5152695297 | 64 / 104 | 255.0 s | `63b287c50c783b03762883556dddf088087e2754` | [gx3l247a](https://wandb.ai/jlinki/seissepa-autoresearch/runs/gx3l247a) | Not run; lower score than the evaluated slot-6 candidate |
+| 8 | `outputs/overnight_2026-10-21/a_08_reconstruction050_seed42` | 42 | 0.048780 | 0.203252 | 0.126016 | 0.9858222247 | 1 / 41 | 177.4 s | `3847642340e196573dcf36910b29d810a93471e3` | [wr2mip6z](https://wandb.ai/jlinki/seissepa-autoresearch/runs/wr2mip6z) | Not run; below verified best |
 
 All runs used online W&B in `jlinki/seissepa-autoresearch` and have the required local files: `config.yaml`, `provenance.json`, `source.tar.gz`, `history.jsonl`, `best.pt`, `metrics.json`, and `report.md`. The guarded runner verified the frozen benchmark before each training attempt. Exact commands, run outcomes, and commit IDs are in `experiments/journal.jsonl`.
 
@@ -40,6 +41,8 @@ Best configuration: fixed `model=notebook` (NotebookAE); `loss=separation`; reco
 
 The three-seed mean is 0.018970 above the fresh seed-42 baseline score of 0.121951. Each confirmation score exceeds that baseline. This supports the balanced configuration at the tested budget; validation has been used for selection, so this is validation evidence. No confidence interval is assigned to the mean of the two retrieval tasks. The strongest individual result is seed 43, and it passed standalone evaluation.
 
-## Next hypothesis
+## Reconstruction-weight screen and next hypothesis
 
-With balanced separation improving the three-seed mean, test whether reducing reconstruction weight from `1.0` to `0.5` improves retrieval while keeping event/station weights at `0.10/0.10`. Start with one seed-42 screen at the same architecture, margin, optimizer, batch size, and 200-epoch/patience-40 budget. If it is promising, use a later predeclared batch for the exact seed-42 repeat and seeds 43/44; keep the current verified checkpoint until those results are available.
+Hypothesis: reducing the reconstruction weight from `1.0` to `0.5` while retaining event/station weights `0.10/0.10` could strengthen the latent separation signal. The single seed-42 screen completed at slot 8, selecting epoch 1 after 41 epochs. Event retrieval was 0.048780, station retrieval 0.203252, the combined score 0.126016, and canonical validation MSE 0.985822. This is above the fresh default baseline 0.121951 but below the balanced configuration's seed-42 score 0.130081 and its best verified checkpoint at 0.158537. W&B online logging succeeded and all required artifacts are local. The checkpoint was not separately evaluated because it did not improve the verified candidate. Preserve the outcome and keep the balanced configuration as best.
+
+Next, test whether a larger separation margin improves retrieval while preserving reconstruction: use reconstruction/event/station weights `1.0/0.10/0.10`, increase margin from `0.2` to `0.3`, and run one seed-42 screen at the same NotebookAE architecture, AdamW settings, batch size 128, and 200-epoch/patience-40 budget. If promising, evaluate it with the guarded standalone evaluator, then run an exact seed-42 repeat and seeds 43/44 in a later predeclared batch.
