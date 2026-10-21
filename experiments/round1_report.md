@@ -4,14 +4,14 @@
 
 Run 3 is the completed seed-42 baseline. Its first process exited with a `NameError` after writing the local checkpoint, metrics, and report; the typo was fixed and the same online W&B run was resumed. W&B has all 53 final diagnostic scalars and is marked finished. The original exception remains preserved at `outputs/round1/03_baseline_after_perf_fix/failure.log`.
 
-Run 4 completed the one predeclared doubled-separation-weight candidate. It improved the primary validation retrieval score from 0.121951 to 0.130081 (+0.008130), so the candidate proceeds unchanged to the predeclared seed-42 repeat and seeds 43/44. Five of seven slots have been used; seed 44 remains. No other candidate is authorized.
+All seven training slots are complete. The doubled-weight candidate reached 0.130081 on seed 42, and its required exact repeat matched. Seeds 43 and 44 scored 0.113821 each; the three-seed mean is 0.119241 (sample SD 0.009388), below the baseline score 0.121951. The seed-42 repeat checkpoint is selected as the best observed single-seed result and has passed the protected standalone evaluator. No additional candidate or run was started.
 
 ## Frozen benchmark and baseline
 
 - Benchmark ID: `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` (1,225 traces; 1,102 training, 123 validation; 35 event and 35 station classes).
 - Configuration: `model=notebook loss=separation`, seed 42; maximum 50 epochs, patience 12; physical GPU 0; online project `jlinki/seissepa-autoresearch`.
 - Baseline run commit: `e37e8d7c282d5ec1c17ae2c39c24523b8d552a69`.
-- Current candidate configuration: `model=notebook loss=separation loss.event_weight=0.10 loss.station_weight=0.10`; its three-seed results are pending.
+- Candidate configuration tested: `model=notebook loss=separation loss.event_weight=0.10 loss.station_weight=0.10`. The best observed single-seed checkpoint is `outputs/round1/05_double_separation_seed42_repeat/best.pt`; the three-seed average is below the seed-42 baseline.
 
 ## Run inventory
 
@@ -23,7 +23,7 @@ Run 4 completed the one predeclared doubled-separation-weight candidate. It impr
 | 4 | Completed; doubled both separation weights; primary score improved by 0.008130 | 0.024390 | 0.235772 | 0.130081 | 0.961848411743 | 42 / 10 | 104.86 s | `outputs/round1/04_double_separation`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/o9y68io8) |
 | 5 | Completed; exact seed-42 training repeat matched run 4 on all scientific metrics | 0.024390 | 0.235772 | 0.130081 | 0.961848411743 | 42 / 10 | 100.83 s | `outputs/round1/05_double_separation_seed42_repeat`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/jlca5tii) |
 | 6 | Completed; same candidate at seed 43 | 0.056911 | 0.170732 | 0.113821 | 0.953893602915 | 43 / 10 | 268.87 s | `outputs/round1/06_double_separation_seed43`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/mn4d177n) |
-| 7 | Reserved for same candidate at seed 44 | — | — | — | — | 44 / — | — | — |
+| 7 | Completed; same candidate at seed 44 | 0.065041 | 0.162602 | 0.113821 | 0.816304484157 | 44 / 13 | 282.65 s | `outputs/round1/07_double_separation_seed44`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/swi75han) |
 
 The round-3 exact command was:
 
@@ -41,6 +41,12 @@ CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/train.py model=notebook lo
 
 Run 4 used commit `6b77ee6f056b3fbeaf087346910b68b1bf9fce3f` and benchmark ID `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26`. It early-stopped after 22 epochs, selecting epoch 10. Validation event retrieval was 0.024390 (−0.016260 relative to baseline), station retrieval was 0.235772 (+0.032520), and their required mean was 0.130081 (+0.008130). Canonical validation MSE was 0.9618484117428208 (baseline 0.9858216583872177). Local artifacts are complete, online W&B is finished with all 53 final diagnostic scalar keys, and its URL is [run 4](https://wandb.ai/jlinki/seissepa-autoresearch/runs/o9y68io8). The protected standalone evaluator was run with batch size 128 and matched all 97 shared scientific fields with zero mismatches; see `outputs/round1/04_double_separation/best.evaluation.json`.
 
+The exact run-5 command was:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/train.py model=notebook loss=separation loss.event_weight=0.10 loss.station_weight=0.10 seed=42 device=cuda:0 train.epochs=50 train.patience=12 wandb.name=round1_seed42_double_separation_repeat hydra.run.dir=outputs/round1/05_double_separation_seed42_repeat
+```
+
 Run 5 repeated seed 42 with the same candidate and budget, using commit `58ed80c6ab2bbfb292c96bd487b155bb0f01f623`. It also stopped after 22 epochs at epoch 10. All scientific fields in the local metrics JSON matched run 4 exactly, including both retrieval tasks and canonical MSE. Its elapsed time was 100.829 seconds; all required local artifacts and 53 final W&B diagnostic scalars are present at [run 5](https://wandb.ai/jlinki/seissepa-autoresearch/runs/jlca5tii).
 
 The exact run-6 command was:
@@ -51,12 +57,28 @@ CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/train.py model=notebook lo
 
 Run 6 used commit `6524a6dedf57a2d53291b61e84a927e5e030182f` and the fixed benchmark ID above. It stopped after 22 epochs, selecting epoch 10. Event retrieval was 0.056910569105691054, station retrieval 0.17073170731707318, and the primary mean 0.11382113821138212. Canonical validation MSE was 0.9538936029151842 and elapsed time was 268.87348535098135 seconds. The score is below both run 4 and the seed-42 baseline; preserve the outcome and its artifacts. Online W&B has all 53 final diagnostic scalars at [run 6](https://wandb.ai/jlinki/seissepa-autoresearch/runs/mn4d177n).
 
+The exact run-7 command was:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/train.py model=notebook loss=separation loss.event_weight=0.10 loss.station_weight=0.10 seed=44 device=cuda:0 train.epochs=50 train.patience=12 wandb.name=round1_seed44_double_separation hydra.run.dir=outputs/round1/07_double_separation_seed44
+```
+
+Run 7 used commit `799623835303b577d2973af066aaa8ad0583a704` and the fixed benchmark ID above. It completed 25 epochs and selected epoch 13 after a score tie was resolved by lower canonical validation MSE. Event retrieval was 0.06504065040650407, station retrieval 0.16260162601626016, and the primary mean 0.11382113821138212. Canonical validation MSE was 0.8163044841565271; elapsed time was 282.64696878939867 seconds. W&B has all 53 final diagnostic scalars at [run 7](https://wandb.ai/jlinki/seissepa-autoresearch/runs/swi75han).
+
 ## Evaluation and comparisons
 
-The protected standalone evaluator was run on the run-3 baseline and run-4 candidate on GPU 0 with batch size 128. It exactly matched all 86 shared scientific fields for run 3 and all 97 shared fields for run 4, with zero mismatches in either case. This confirms repeatability of checkpoint evaluation on the same runtime/device/batch size; it is not a repeated training run.
+The protected standalone evaluator was run on the run-3 baseline, run-4 candidate and final selected run-5 seed-42 repeat on physical GPU 0 with batch size 128. It matched all 86, 97 and 97 shared scientific fields respectively, with zero mismatches. The final evaluation is saved at `outputs/round1/05_double_separation_seed42_repeat/best.evaluation.json`. The command was `CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/evaluate.py outputs/round1/05_double_separation_seed42_repeat/best.pt --device cuda:0 --batch-size 128`.
 
-Run 3 matches the epoch-1 result from the owner-stopped partial run 1: event, station, combined retrieval, and canonical MSE deltas are all 0. Run 1 remains partial and is not used as a completed research baseline. Run 4 improves the primary score by 0.008130; event retrieval fell by 0.016260 while station retrieval rose by 0.032520. Its canonical validation MSE fell by 0.023973246644. Run 5 exactly reproduces run 4's scientific metrics under the same seed and runtime. Seed 43 produced 0.113821, below the seed-42 score of 0.130081 and baseline score of 0.121951; seed 44 is pending. The combined score has no confidence interval; the individual event and station intervals use Wilson bounds.
+| Candidate seed | Event retrieval | Station retrieval | Primary score |
+|---|---:|---:|---:|
+| 42 (run 4; run 5 exact repeat) | 0.024390 | 0.235772 | 0.130081 |
+| 43 (run 6) | 0.056911 | 0.170732 | 0.113821 |
+| 44 (run 7) | 0.065041 | 0.162602 | 0.113821 |
+| Three-seed mean | — | — | 0.119241 |
+| Three-seed sample standard deviation | — | — | 0.009388 |
+
+Run 3 matches the epoch-1 result from the owner-stopped partial run 1, which remains an invalid partial attempt. Run 4 improves the primary score over the baseline by 0.008130; event retrieval falls by 0.016260 while station retrieval rises by 0.032520. Run 5 exactly reproduces run 4's scientific metrics, and the model tensors are bitwise identical. Across the predeclared seeds 42, 43 and 44, the primary scores are 0.130081, 0.113821 and 0.113821; their mean is 0.119241 and sample standard deviation is 0.009388. The mean is 0.002710 below the baseline score 0.121951. The doubled-weight configuration is the best observed single-seed result, but the three-seed mean does not improve on the baseline. Validation was used repeatedly for selection, so these are validation results. No confidence interval is assigned to the combined score; Wilson intervals apply only to individual accuracies.
 
 ## Journal and next hypothesis
 
-The run-3 through run-6 commands, observed metrics, commits, benchmark IDs, W&B URLs, recovery details and decisions are recorded in `experiments/journal.jsonl`. Run 5 exactly reproduced run 4. Run 6 is lower, but preserve it and complete the final predeclared seed-44 run 7 with the unchanged candidate. Use the same architecture, weights, epoch/patience budget, physical GPU and online W&B project, with unique run paths. Commit and push each outcome before starting the next. Stop by 2026-10-21 17:13:52 UTC and at seven total slots.
+Commands, outcomes, commits, benchmark IDs and W&B URLs for runs 3–7 are recorded in `experiments/journal.jsonl`. All seven training slots were used within the deadline. Preserve the doubled-weight candidate and its seed-42 repeat as the best single-seed validation checkpoint; report the lower three-seed mean alongside it. The seed-42 repeat has bitwise-identical model tensors to run 4 and passed standalone evaluation. No further experiments are authorized in this round.
