@@ -270,3 +270,30 @@ The run records benchmark ID `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516
 The best valid checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`, at score 0.17073170731707318, event/station top-1 0.065041/0.276423, canonical validation MSE 0.4306792109, and best epoch 78. The seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; the three-seed mean is 0.1598915989 and sample SD is 0.0124189043. The new outcome and W&B URL are recorded in `experiments/journal.jsonl`; all runs 1–26 now have local outcomes and W&B links in this report and the earlier inventory.
 
 Next hypothesis: lower both auxiliary cross-entropy weights from 0.05 to 0.01 while keeping NotebookAE, SupCon weights, temperature, optimizer, sampling, and training budget fixed. Run a seed-42 screen, then require the same score/MSE ordering and exact standalone evaluation before repeating seed 42 or collecting seeds 43/44.
+
+
+## Latest bounded invocation (slot 27)
+
+This invocation ran one seed-42 screen and stops here. The registered batch allowed at most four attempts, up to 200 epochs, patience 40, and a 1,200-second attempt limit. Before launch, 26 of 64 attempt slots were consumed; after slot 27, 37 remain and the minimum 12-slot confirmation reserve is intact. The plan was committed and pushed before training as `4ffe0c2ed33163b9b5f55005c4e74d35a7cfcfd4`. Benchmark verification passed and all 24 tests passed before the batch. Training used the guarded runner on GPU 0 with online W&B in the approved project; the run synced zero artifact files.
+
+### Hypothesis and registered budget
+
+Hypothesis: reducing both training-only auxiliary cross-entropy weights from 0.05 to 0.01 may preserve useful direct class supervision while reducing its interference with the supervised-contrastive latent geometry. NotebookAE, SupCon weights 0.125/0.05, temperature 0.05, optimizer, sampling, and training budget stayed fixed. The auxiliary heads use only training event/station labels and remain outside the model inputs and inference checkpoint. The exact seed-42 repeat and seeds 43/44 were conditional on improving the seed-42 score/MSE ordering and passing exact guarded standalone evaluation.
+
+Exact command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive_heads loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.05 loss.embedding_dim=64 loss.event_classes=35 loss.station_classes=35 loss.event_head_weight=0.01 loss.station_head_weight=0.01 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=false device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_heads001_seed42 hydra.run.dir=outputs/overnight_2026-10-21/27_supcon_heads001_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 27 | Completed screen; not promoted | 0.065040650407 | 0.227642276423 | 0.146341463415 | 0.972801635858 | 42 / 7 | 47 / 337.84 s | `27_supcon_heads001_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/ng4tzq8t) |
+
+The run records benchmark ID `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` and training commit `4ffe0c2ed33163b9b5f55005c4e74d35a7cfcfd4`. Training-reported elapsed time was 326.30 seconds; guarded wall time was 337.84 seconds. All required local artifacts are present. The screen is below the seed-42 comparator (score 0.16260162601626016; canonical MSE 0.419021287532869), so it was not evaluated standalone and slots 28–30 were not launched. Preserve its checkpoint and logs without promotion.
+
+The best valid checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`, with event/station top-1 0.065041/0.276423, exact score 0.17073170731707318, canonical validation MSE 0.4306792109, and best epoch 78. Its seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; their mean is 0.1598915989 and sample SD is 0.0124189043. Its guarded standalone evaluation matched all 87 shared scientific fields. The earlier inventory retains the paths and W&B URLs for slots 1–26; slot 27 is linked above. All results are validation results after repeated selection, not untouched test evidence.
+
+Next hypothesis: keep the event head weight at 0.01 and increase only the station head weight to 0.025, aiming to recover station retrieval while retaining the event improvement seen in slot 27. Hold NotebookAE, SupCon objective, optimizer, sampling, and budget fixed; screen seed 42 before any confirmation runs.
