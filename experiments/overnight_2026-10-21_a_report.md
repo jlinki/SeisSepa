@@ -4,7 +4,7 @@
 
 This invocation completed one seed-42 AdamW learning-rate screen at batch size 32 (slot 29). The score, 0.154472, was below the predeclared gate against the verified best checkpoint, so no standalone evaluation or conditional confirmations were run. Lane A has consumed **29 of 64 attempts**: 23 seed-42 screens and 6 confirmation runs. There are 35 attempts left; at least 12 remain reserved for confirmations. The 48-screen cap allows 25 more seed-42 screens, while preserving the future confirmation reserve limits additional screens to 23. All 29 slots completed successfully. No STOP/BLOCKED file, authentication failure, benchmark-integrity failure, upstream push failure, or online W&B failure occurred.
 
-The lane is `research/overnight-20261021-a`. The batch plan, attempt record, and this report are being committed and pushed. No source, model, loss, configuration, evaluator, benchmark, or test files were changed; research used Hydra overrides.
+The lane is `research/overnight-20261021-a`. The batch plan, attempt record, and this report are committed and pushed. No source, model, loss, configuration, evaluator, benchmark, or test files were changed; research used Hydra overrides.
 
 Preflight passed in this invocation: `scripts/verify_benchmark.py` verified benchmark `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` with 1,225 traces (1,102 train, 123 validation); `pytest -q` passed all 24 tests. The leaderboard confirmed slot 22 remains top-ranked before the screen.
 
