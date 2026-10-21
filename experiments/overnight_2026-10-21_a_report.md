@@ -2,7 +2,7 @@
 
 ## Status
 
-This invocation completed its one-attempt batch-size-64 screen and stopped. Lane A has consumed **14 of 64 attempts**: 11 seed-42 screens and 3 confirmation runs. There are 50 attempts left; at least 12 must remain available for confirmation work, and the 48-screen limit permits at most 37 additional seed-42 screens. All fourteen slots completed successfully. No STOP/BLOCKED file, authentication failure, benchmark-integrity failure, upstream push failure, or online W&B failure occurred.
+This invocation completed its one-attempt reconstruction-weight screen and stopped. Lane A has consumed **15 of 64 attempts**: 12 seed-42 screens and 3 confirmation runs. There are 49 attempts left; at least 12 must remain available for confirmation work, and the 48-screen limit permits at most 36 additional seed-42 screens. All fifteen slots completed successfully. No STOP/BLOCKED file, authentication failure, benchmark-integrity failure, upstream push failure, or online W&B failure occurred.
 
 The lane is `research/overnight-20261021-a`. The branch is pushed and the working tree is clean. No source, model, loss, configuration, evaluator, benchmark, or test files were changed; research used Hydra overrides. The batch plan, each completed attempt, and this report are in the pushed journal/report.
 
@@ -28,6 +28,7 @@ Hypothesis: balanced separation weights `reconstruction/event/station = 1.0/0.10
 | 12 | `outputs/overnight_2026-10-21/a_12_lr0001_seed42` | 42 | 0.056911 | 0.219512 | 0.138211 | 0.9868260379 | 1 / 41 | 168.3 s | `8782a6afd3cfc6ec3225fc5c9879ce000a384675` | [st0aibk7](https://wandb.ai/jlinki/seissepa-autoresearch/runs/st0aibk7) | Not run; below verified best |
 | 13 | `outputs/overnight_2026-10-21/a_13_lr0003_seed42` | 42 | 0.032520 | 0.227642 | 0.130081 | 0.9792395698 | 3 / 43 | 168.8 s | `edef2bc2ce006231b01bca594d0baaac9cbe624f` | [4zdma9fo](https://wandb.ai/jlinki/seissepa-autoresearch/runs/4zdma9fo) | Not run; below verified best |
 | 14 | `outputs/overnight_2026-10-21/a_14_batch64_seed42` | 42 | 0.056911 | 0.243902 | 0.150407 | 0.1100223245 | 105 / 145 | 318.7 s | `fd442303da9568bc0d6b46405f7af636ee0717b9` | [w8p1wson](https://wandb.ai/jlinki/seissepa-autoresearch/runs/w8p1wson) | Not run; below verified best |
+| 15 | `outputs/overnight_2026-10-21/a_15_reconstruction075_batch64_seed42` | 42 | 0.065041 | 0.211382 | 0.138211 | 0.4357008604 | 51 / 91 | 224.2 s | `97e6785fb93ac6427036c0b7376e0b6f40f7592b` | [rtev7ole](https://wandb.ai/jlinki/seissepa-autoresearch/runs/rtev7ole) | Not run; below verified best |
 
 All runs used online W&B in `jlinki/seissepa-autoresearch` and have the required local files: `config.yaml`, `provenance.json`, `source.tar.gz`, `history.jsonl`, `best.pt`, `metrics.json`, and `report.md`. The guarded runner verified the frozen benchmark before each training attempt. Exact commands, run outcomes, and commit IDs are in `experiments/journal.jsonl`.
 
@@ -67,4 +68,10 @@ The predeclared screen held NotebookAE, balanced separation weights `1.0/0.10/0.
 
 This is the strongest seed-42 screen so far and improves on the fresh baseline (0.121951) and the balanced batch-128 seed-42 result (0.130081). Its score remains below the current best verified checkpoint, slot 6 at 0.158537. The fixed ordering compares score before MSE, so the lower MSE does not change that ranking. The candidate did not meet the predeclared standalone-evaluation or confirmation threshold. Preserve its complete run artifacts and keep the evaluated slot-6 checkpoint as best valid.
 
-Next bounded hypothesis for a later invocation: with batch size 64 and the other balanced settings fixed, reducing the reconstruction weight from `1.0` to `0.75` may strengthen latent supervision while retaining more reconstruction weight than the earlier `0.5` screen. Screen one seed-42 run at 200 epochs/patience 40. Evaluate and confirm only if it ranks ahead of the current best verified checkpoint under the fixed score/MSE/epoch ordering.
+## Reconstruction-weight-0.75 batch-size-64 screen
+
+The predeclared screen kept NotebookAE, event/station weights `0.10/0.10`, margin `0.2`, AdamW learning rate `0.0002` and weight decay `0.0001`, gradient clip `1.0`, batch size 64, and the 200-epoch/patience-40 budget fixed while reducing the reconstruction weight from `1.0` to `0.75`. Slot 15 completed 91 epochs and selected epoch 51. It scored 0.138211 (event 0.065041, station 0.211382) with canonical validation MSE 0.4357008604. Guard elapsed time was 224.2 s (training elapsed 213.7 s). Online W&B completed at [rtev7ole](https://wandb.ai/jlinki/seissepa-autoresearch/runs/rtev7ole), the benchmark fingerprint matched, and all required local artifacts are present.
+
+Relative to the batch-size-64 screen with reconstruction weight `1.0` (slot 14), event retrieval rose by 0.008130 while station retrieval fell by 0.032520; the combined score fell by 0.012195, from 0.150407 to 0.138211. The canonical MSE was also higher. Slot 15 remains below the verified slot-6 checkpoint at 0.158537, so it was not evaluated or promoted. Preserve its run artifacts and keep slot 6 as best valid.
+
+Next bounded hypothesis for a later invocation: at batch size 64, increasing the station separation weight from `0.10` to `0.15` while holding reconstruction weight at `1.0` and event weight at `0.10` may recover station retrieval while retaining the seed-42 screen's event score. Screen one seed-42 run at 200 epochs/patience 40, then evaluate and confirm only if it ranks ahead of the current best verified checkpoint under the fixed score/MSE/epoch ordering.
