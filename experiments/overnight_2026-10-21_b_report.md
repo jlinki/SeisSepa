@@ -2,9 +2,9 @@
 
 ## Invocation status
 
-This bounded invocation is complete after four attempts (slots 11–14). Fourteen of 64 cumulative lane slots have been consumed; 50 remain, including at least 12 reserved for future confirmations. The branch is `research/overnight-20261021-b`, clean and pushed. The full-budget seed-42 separation baseline was already completed as slot 1, so it was not repeated. No source or model configuration files changed; NotebookAE architecture remained fixed. The batch plan, every attempt, evaluations, and this report are committed and pushed.
+This bounded invocation is complete after four attempts (slots 15–18). Eighteen of 64 cumulative lane slots have been consumed; 46 remain, with at least 12 reserved for future confirmations. The branch is `research/overnight-20261021-b`, clean and pushed. The full-budget seed-42 separation baseline was completed earlier as slot 1. No source or model configuration files changed; NotebookAE architecture remained fixed. The batch plan, each attempt, evaluation records, summary, and this report are committed and pushed.
 
-The frozen benchmark is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` (1,225 traces; 1,102 training, 123 validation; 35 event and 35 station classes). Before this batch, the benchmark verification passed, all 24 tests passed, the branch matched upstream, ten slots were consumed, and STOP was absent. All fourteen attempts used the guarded runner on GPU 0, online W&B in `jlinki/seissepa-autoresearch`, batch size 128, at most 200 epochs, patience 40, and a 1,200-second cap. All completed attempts have the required local artifacts; W&B received no artifact files.
+The frozen benchmark is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` (1,225 traces; 1,102 training, 123 validation; 35 event and 35 station classes). Before this batch, benchmark verification passed, all 24 tests passed, the branch matched upstream, 14 slots were consumed, and STOP was absent. All 18 attempts used the guarded runner on GPU 0 with online W&B in `jlinki/seissepa-autoresearch`, batch size 128, at most 200 epochs, patience 40, and a 1,200-second cap. Every completed run has the required local artifacts; W&B received no artifact files.
 
 ## Hypothesis and budget
 
@@ -89,8 +89,33 @@ Every attempt completed online and has the required local artifacts. The seed-42
 
 The primary three-seed mean is 0.033875 above the fresh full-budget seed-42 baseline (0.121951) and 0.008130 above the previous temperature-0.10 SupCon configuration’s mean (0.147696; sample SD 0.012419). The seed-42 score improves by 0.004065 over that configuration’s seed-42 reference (0.150407). The best single-seed score is 0.162602. The gain is mainly in station retrieval: station mean rose relative to the previous SupCon configuration, while event mean fell from 0.051491 to 0.035230. Validation was repeatedly used for selection, so these are validation results, not an untouched test result. The sample SD describes the three observed seed scores; no confidence interval is assigned to the combined objective.
 
+## Latest bounded batch (slots 15–18)
+
+Hypothesis: increasing supervised-contrastive `event_weight` from 0.10 to 0.125 at temperature 0.05, while holding `station_weight=0.05`, NotebookAE, optimizer, sampling, and training budget fixed, may improve event retrieval while retaining the station gain. The four-attempt maximum, 200-epoch cap, patience 40, 1,200-second per-attempt timeout, and exact screen/repeat/seed-43/44 commands were registered in the journal and pushed before training. The seed-42 screen exceeded the previous seed-42 score/MSE ordering and passed guarded standalone evaluation, so all three-seed evidence was collected.
+
+| Slot | Role | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 15 | Seed-42 screen | 0.040650 | 0.284553 | 0.162602 | 0.7314721880 | 42 / 28 | 68 / 175.07 s | `15_supcon_event0125_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/kzmz6cvx) |
+| 16 | Exact seed-42 repeat | 0.040650 | 0.284553 | 0.162602 | 0.7314721880 | 42 / 28 | 68 / 178.61 s | `16_supcon_event0125_seed42_repeat` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/1t2wad1m) |
+| 17 | Seed 43 | 0.016260 | 0.276423 | 0.146341 | 0.6888329101 | 43 / 42 | 82 / 209.84 s | `17_supcon_event0125_seed43` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/c3dbvw9f) |
+| 18 | Seed 44 | 0.065041 | 0.276423 | **0.170732** | 0.4306792109 | 44 / 78 | 118 / 365.87 s | `18_supcon_event0125_seed44` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/8u3wk30z) |
+
+The seed-42 repeat matched all 86 shared scientific fields exactly. Slots 15 and 18 passed guarded standalone evaluation on GPU 0 at batch size 128: all 87 shared scientific fields matched with zero mismatches. Slot 18’s evaluation records the frozen benchmark ID above and training source commit `368c2fccf8fdd115d86e2fd64479c28a6286a672`.
+
+### Three-seed evidence
+
+| Seed | Event top-1 | Station top-1 | Score | Canonical val MSE |
+|---:|---:|---:|---:|---:|
+| 42 (screen and exact repeat) | 0.040650 | 0.284553 | 0.162602 | 0.7314721880 |
+| 43 | 0.016260 | 0.276423 | 0.146341 | 0.6888329101 |
+| 44 | 0.065041 | 0.276423 | 0.170732 | 0.4306792109 |
+| Three-seed mean | 0.040650 | 0.279133 | **0.159892** | — |
+| Three-seed sample SD | 0.024390 | 0.004694 | **0.012419** | — |
+
+The new three-seed mean is 0.037940 above the fresh full-budget seed-42 separation baseline (0.121951) and 0.004065 above the preceding temperature-0.05 SupCon configuration at event/station weights 0.10/0.05 (mean 0.155827; sample SD 0.006209). The best single-seed score is 0.170732, above the previous best 0.162602. Event retrieval varies by seed; validation was repeatedly used for selection, so these are validation results, not an untouched test result. Sample SD describes these three observed seed scores; no confidence interval is assigned to the combined objective.
+
 ## Current best and next hypothesis
 
-Current best valid configuration: `model=notebook loss=supervised_contrastive`, reconstruction/event/station weights `1.0/0.10/0.05`, temperature 0.05, AdamW lr 0.0002, weight decay 0.0001, batch 128, maximum 200 epochs, patience 40. Best checkpoint: `outputs/overnight_2026-10-21/14_supcon_temp005_seed44/best.pt`; event/station top-1 0.040650/0.284553, score 0.162602, canonical validation MSE 0.6499847232, best epoch 59. Its standalone evaluation matched exactly. Keep all three seed results and the exact seed-42 repeatability evidence with it.
+Current best valid configuration: `model=notebook loss=supervised_contrastive`, reconstruction/event/station weights `1.0/0.125/0.05`, temperature 0.05, AdamW lr 0.0002, weight decay 0.0001, batch 128, maximum 200 epochs, patience 40. Best checkpoint: `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`; event/station top-1 0.065041/0.276423, score 0.170732, canonical validation MSE 0.4306792109, best epoch 78. Guarded standalone evaluation matched exactly. Keep the seed-42 repeat and all three seeds with it.
 
-Next bounded hypothesis: with temperature 0.05 and station_weight=0.05, a modest increase of event_weight from 0.10 to 0.125 may recover event retrieval while retaining the station gain. Register one seed-42 screen and a conditional exact repeat plus seeds 43/44 in the journal before the next invocation. No additional attempt was started in this invocation.
+Next bounded hypothesis: at temperature 0.05 and `station_weight=0.05`, test `event_weight=0.15` with one seed-42 screen. If it exceeds the current seed-42 score/MSE ordering and passes guarded standalone evaluation, repeat seed 42 and confirm seeds 43/44 with unchanged settings. This invocation stops here after its four registered attempts.
