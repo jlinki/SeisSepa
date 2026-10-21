@@ -9,7 +9,9 @@ Read AGENTS.md and README.md. Their protected benchmark and evaluation contract 
 Hypothesis: stronger and better balanced event/station latent supervision, relative to
 reconstruction, improves validation retrieval with the existing architecture.
 
-- Model: `model=notebook`. Do not change `src/seissepa/models.py` or model configs.
+- Model: `model=notebook`. Keep its architecture and learned operations fixed. The
+  non-learning `encode()` inference path may be used to skip the decoder when only
+  gallery latents are needed; it must return the exact same latents as `forward()`.
 - GPU: physical GPU 0 only. Set `CUDA_VISIBLE_DEVICES=0` and `device=cuda:0` for
   training and standalone evaluation. Never use GPUs 1, 2 or 3 or disturb other jobs.
 - One researcher writes code/Git and runs training sequentially. A read-only advisor
@@ -60,6 +62,21 @@ reconstruction, improves validation retrieval with the existing architecture.
    Finish with a clean working tree and a concise result. If blocked by authentication,
    approvals, integrity checks or infrastructure, preserve logs and report the blocker;
    do not bypass it, alter the lock, or switch W&B offline.
+
+## Performance correction before research resumes
+
+The first baseline was stopped by the owner after 8 epochs because epoch evaluation
+took about 160 seconds. A one-batch profile measured the complete reconstruction
+diagnostics at 22.96 seconds, while warmed inference was about 0.01 seconds. Epoch
+selection now extracts training-gallery latents without decoding, and computes only
+the exact canonical validation MSE when an epoch beats or ties the best retrieval score.
+The protected full evaluator still computes all diagnostics once for the selected checkpoint. Final reconstruction,
+retrieval, centroid, k-NN, probe and silhouette values are also logged as named W&B
+scalars once at run completion and remain in the local Markdown/JSON report.
+
+The stopped baseline and a failed detached retry consume two of seven run slots. No
+valid baseline has completed. Resume with a uniquely named seed-42 baseline only after
+the speed fix is committed, pushed, tested and benchmark-verified.
 
 The launcher stores CLI events, stderr, session identity, process status and final agent
 messages under `outputs/autoresearch/round1/`. This brief establishes the experiment

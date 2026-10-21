@@ -41,6 +41,49 @@ def loaders(manifest, batch_size, seed):
             DataLoader(validation, batch_size=batch_size, shuffle=False, num_workers=0))
 
 
+@torch.inference_mode()
+def extract_retrieval_gallery(model, loader, device):
+    """Extract only retrieval latents; the decoder is unnecessary for gallery scoring."""
+    model.eval()
+    parts = {key: [] for key in ("ze", "zs", "event", "station")}
+    for batch in loader:
+        inputs = {key: value.to(device) for key, value in batch["inputs"].items()}
+        output = model.encode(inputs) if hasattr(model, "encode") else model(inputs)
+        size = len(batch["event"])
+        for key in ("ze", "zs"):
+            if key not in output or output[key].ndim != 2 or len(output[key]) != size or output[key].shape[1] < 1:
+                raise ValueError("Expected one nonempty gallery embedding per trace")
+            if not torch.isfinite(output[key]).all():
+                raise ValueError(f"Non-finite gallery embedding: {key}")
+            parts[key].append(output[key].cpu().numpy())
+        for key in ("event", "station"):
+            parts[key].append(batch[key].numpy())
+    return {key: np.concatenate(values) for key, values in parts.items()}
+
+
+@torch.inference_mode()
+def canonical_validation_mse(model, loader, device):
+    """Compute the evaluator's exact MSE only when a retrieval score can be selected."""
+    model.eval()
+    weighted_mse, count = 0.0, 0
+    for batch in loader:
+        batch = move_batch(batch, device)
+        output = model(batch["inputs"])
+        target = batch["target"]
+        if output["reconstruction"].shape != target.shape:
+            raise ValueError("Model must reconstruct the fixed canonical waveform target")
+        for key in ("reconstruction", "ze", "zs"):
+            if not torch.isfinite(output[key]).all():
+                raise ValueError(f"Non-finite model output: {key}")
+        target_array = target.cpu().numpy().astype(np.float64, copy=False)
+        reconstruction_array = output["reconstruction"].cpu().numpy().astype(np.float64, copy=False)
+        batch_mse = float(np.square(target_array - reconstruction_array).mean())
+        size = len(target)
+        weighted_mse += batch_mse * size
+        count += size
+    return weighted_mse / count
+
+
 def experiment_files():
     files = [p for folder in ("src", "configs", "scripts", "tests") for p in (ROOT / folder).rglob("*")
              if p.suffix in {".py", ".yaml"}]
@@ -67,14 +110,26 @@ def git_provenance():
             "upstream": upstream, "dirty": False}
 
 
-def scalar_metrics(value, prefix="final"):
-    result = {}
-    if isinstance(value, dict):
-        for key, item in value.items():
-            result.update(scalar_metrics(item, f"{prefix}/{key}"))
-    elif isinstance(value, (int, float)):
-        result[prefix] = value
-    return result
+def final_diagnostic_scalars(report):
+    """Flatten the final report into explicit W&B chart and summary scalars."""
+    values = {"final/objective/val/retrieval_accuracy": report["objective"]["val/retrieval_accuracy"]}
+    for split, metrics in report["reconstruction"].items():
+        for name in ("mse", "r2", "mean_correlation"):
+            values[f"final/reconstruction/{split}/{name}"] = metrics[name]
+    for scope, item in report["scopes"].items():
+        for split, metrics in item.items():
+            if split not in {"training", "validation"}:
+                continue
+            for name, record in metrics.items():
+                prefix = f"final/{scope}/{split}/{name}"
+                if isinstance(record, dict) and "accuracy" in record:
+                    values[f"{prefix}/accuracy"] = record["accuracy"]
+                    low, high = record["wilson95"]
+                    values[f"{prefix}/wilson95_low"] = low
+                    values[f"{prefix}/wilson95_high"] = high
+                elif isinstance(record, dict) and record.get("score") is not None:
+                    values[f"{prefix}/score"] = record["score"]
+    return values
 
 
 def tracking_options(config, benchmark_id, git_commit):
@@ -162,18 +217,23 @@ def run(config, output_dir):
                 for key, value in {"loss": loss, **components}.items():
                     totals[key] = totals.get(key, 0.0) + float(value.detach()) * size
                 count += size
-            train_embeddings = extract(model, train_eval, device)
-            validation = extract(model, val_loader, device)
+            train_embeddings = extract_retrieval_gallery(model, train_eval, device)
+            validation = extract_retrieval_gallery(model, val_loader, device)
             metrics = {"epoch": epoch, **{f"train/{k}": v / count for k, v in totals.items()},
-                       **retrieval_scores(train_embeddings, validation),
-                       "val/mse": validation["reconstruction"]["mse"],
-                       "elapsed_seconds": time.monotonic() - start}
+                       **retrieval_scores(train_embeddings, validation)}
+            score = metrics["val/retrieval_accuracy"]
+            candidate_mse = None
+            if score >= best:
+                candidate_mse = canonical_validation_mse(model, val_loader, device)
+                metrics["val/mse"] = candidate_mse
+            metrics["elapsed_seconds"] = time.monotonic() - start
             with (output_dir / "history.jsonl").open("a") as stream:
                 stream.write(json.dumps(metrics, allow_nan=False) + "\n")
             tracking.log(metrics, step=epoch)
-            score, mse = metrics["val/retrieval_accuracy"], metrics["val/mse"]
+            mse = candidate_mse
+            mse_text = f"{mse:.5f}" if mse is not None else "not-needed"
             print(f"epoch={epoch} retrieval={score:.6f} event={metrics['val/event/retrieval_top1']:.4f} "
-                  f"station={metrics['val/station/retrieval_top1']:.4f} mse={mse:.5f}", flush=True)
+                  f"station={metrics['val/station/retrieval_top1']:.4f} mse={mse_text}", flush=True)
             # Exact score ties prefer smaller canonical validation MSE; otherwise keep the earlier epoch.
             improved = score > best or (score == best and mse < best_mse)
             if improved:
@@ -198,8 +258,10 @@ def run(config, output_dir):
                       elapsed_seconds=time.monotonic() - start)
         (output_dir / "metrics.json").write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
         (output_dir / "report.md").write_text(markdown_report(report))
+        diagnostics = final_diagnostic_scalars(report)
+        tracking.log(diagnostics, step=last_epoch + 1)
         tracking.summary.update({**report["objective"], "best_epoch": checkpoint["epoch"],
                                  "benchmark_id": lock["benchmark_id"],
-                                 "git_commit": git["commit"], **scalar_metrics(report)})
+                                 "git_commit": git["commit"], **diagnostics})
     print(f"Results: {output_dir}", flush=True)
     return report

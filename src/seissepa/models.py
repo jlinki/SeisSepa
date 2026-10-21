@@ -29,14 +29,22 @@ class NotebookAE(nn.Module):
             previous = width
         self.decoder = nn.Sequential(*up, nn.Conv1d(previous, in_channels, 1))
 
-    def forward(self, inputs):
+    def _encode(self, inputs):
         x = canonical_waveform(inputs["waveform"])
         h = self.encoder(x)
+        latents = {"ze": F.normalize(self.event_head(h.flatten(1)), dim=1),
+                   "zs": F.normalize(self.station_head(h.flatten(1)), dim=1)}
+        return h, latents
+
+    def encode(self, inputs):
+        """Return retrieval latents without running the reconstruction decoder."""
+        return self._encode(inputs)[1]
+
+    def forward(self, inputs):
+        h, latents = self._encode(inputs)
         reconstruction = self.decoder(h)
         reconstruction = F.pad(reconstruction, (0, max(0, TARGET_LENGTH - reconstruction.shape[-1])))
-        return {"reconstruction": reconstruction[..., :TARGET_LENGTH],
-                "ze": F.normalize(self.event_head(h.flatten(1)), dim=1),
-                "zs": F.normalize(self.station_head(h.flatten(1)), dim=1)}
+        return {"reconstruction": reconstruction[..., :TARGET_LENGTH], **latents}
 
 
 def spectral_features(waveform, bins=256):
@@ -58,8 +66,16 @@ class SpectralMLP(nn.Module):
         self.decoder = nn.Linear(hidden_dim, in_channels * TARGET_LENGTH)
         self.in_channels = in_channels
 
-    def forward(self, inputs):
+    def _encode(self, inputs):
         h = self.encoder(spectral_features(inputs["waveform"], self.bins))
-        return {"reconstruction": self.decoder(h).reshape(-1, self.in_channels, TARGET_LENGTH),
-                "ze": F.normalize(self.event_head(h), dim=1),
-                "zs": F.normalize(self.station_head(h), dim=1)}
+        latents = {"ze": F.normalize(self.event_head(h), dim=1),
+                   "zs": F.normalize(self.station_head(h), dim=1)}
+        return h, latents
+
+    def encode(self, inputs):
+        """Return retrieval latents without running the reconstruction decoder."""
+        return self._encode(inputs)[1]
+
+    def forward(self, inputs):
+        h, latents = self._encode(inputs)
+        return {"reconstruction": self.decoder(h).reshape(-1, self.in_channels, TARGET_LENGTH), **latents}
