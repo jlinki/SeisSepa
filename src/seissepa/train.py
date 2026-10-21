@@ -1,6 +1,7 @@
 """Editable training loop; protected evaluation always scores every frozen query."""
 import importlib.metadata
 import json
+from math import cos, pi
 import platform
 import random
 import subprocess
@@ -189,6 +190,17 @@ def run(config, output_dir):
     model = instantiate(config.model, in_channels=train_loader.dataset.waveforms.shape[1]).to(device)
     criterion = instantiate(config.loss).to(device)
     optimizer = instantiate(config.optimizer, params=model.parameters())
+    scheduler = None
+    if config.train.lr_schedule_cosine:
+        schedule_epochs = int(config.train.lr_schedule_epochs)
+        min_ratio = float(config.train.lr_min_ratio)
+        if schedule_epochs < 1 or not 0.0 <= min_ratio <= 1.0:
+            raise ValueError("Cosine schedule epochs and minimum learning-rate ratio are invalid")
+        scheduler = torch.optim.lr_scheduler.LambdaLR(
+            optimizer,
+            lr_lambda=lambda step: min_ratio + (1.0 - min_ratio) * 0.5
+            * (1.0 + cos(pi * min(step / schedule_epochs, 1.0))),
+        )
     start = time.monotonic()
     best, best_mse, stale = -1.0, float("inf"), 0
     with wandb.init(project=config.wandb.project, entity=config.wandb.entity, mode=config.wandb.mode,
@@ -220,7 +232,8 @@ def run(config, output_dir):
             train_embeddings = extract_retrieval_gallery(model, train_eval, device)
             validation = extract_retrieval_gallery(model, val_loader, device)
             metrics = {"epoch": epoch, **{f"train/{k}": v / count for k, v in totals.items()},
-                       **retrieval_scores(train_embeddings, validation)}
+                       **retrieval_scores(train_embeddings, validation),
+                       "train/learning_rate": float(optimizer.param_groups[0]["lr"])}
             score = metrics["val/retrieval_accuracy"]
             candidate_mse = None
             if score >= best:
@@ -244,6 +257,8 @@ def run(config, output_dir):
                             "score": best, "source": files}, output_dir / "best.pt")
             else:
                 stale += 1
+            if scheduler is not None:
+                scheduler.step()
             if stale >= config.train.patience:
                 break
         checkpoint = torch.load(output_dir / "best.pt", map_location=device, weights_only=True)
