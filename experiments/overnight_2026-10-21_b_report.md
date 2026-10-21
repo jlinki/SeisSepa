@@ -353,3 +353,43 @@ The run records benchmark ID abafe9c36982e368359c6a5cd4005e3956d4626690f74d45168
 The screen is below the best seed-42 comparator (score 0.16260162601626016; canonical validation MSE 0.419021287532869), with lower event and station retrieval and higher MSE. It was not evaluated standalone or promoted. Keep its checkpoint and logs. The best valid single-run checkpoint remains slot 18, outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt: score 0.17073170731707318, event/station top-1 0.065040650407/0.276422764228, canonical validation MSE 0.430679210870, best epoch 78. Its seed-42/43/44 scores and mean/sample SD remain 0.1626016260/0.1463414634/0.1707317073 and 0.1598915989/0.0124189043.
 
 Slot 29 brings cumulative use to 29 of 64 attempts, leaving 35; at least 12 slots remain reserved for confirmations. The next hypothesis is to test an event-only auxiliary classifier at event_head_weight=0.025 and station_head_weight=0.0, holding all other settings fixed and screening seed 42 before any confirmation. These are validation results after repeated selection, not untouched test evidence.
+
+## Latest bounded invocation (slot 30)
+
+This invocation started with 29 of 64 slots consumed and completed one seed-42 screen, then stopped under its preregistered continuation rule. The STOP file and lane BLOCKED marker were absent before launch; the worktree was clean and synchronized. Benchmark verification passed and all 24 tests passed before the batch. The event-only auxiliary-head plan was committed and pushed before training as `a2d832ba1f437f1d6e3cc71802b9290a9093edeb`. The screen used the guarded runner on GPU 0 with online W&B, batch size 128, maximum 200 epochs, patience 40, and a 1,200-second attempt cap. The registered batch allowed at most four attempts: slot 30 as the seed-42 screen, followed conditionally by an exact repeat and seeds 43/44.
+
+### Hypothesis, command, and budget
+
+Hypothesis: an event-only training classifier on `ze` at cross-entropy weight 0.025, with station-head weight 0, may improve event retrieval without station-classifier gradients interfering with event geometry. NotebookAE, SupCon reconstruction/event/station weights 1.0/0.125/0.05, temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, sampling, and training budget stayed fixed. Identity labels supervised training latents only; the model inputs and retrieval ranking were unchanged.
+
+Exact screen command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive_heads loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.05 loss.embedding_dim=64 loss.event_classes=35 loss.station_classes=35 loss.event_head_weight=0.025 loss.station_head_weight=0.0 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=false device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_heads_event0025_stationoff_seed42 hydra.run.dir=outputs/overnight_2026-10-21/30_supcon_heads_event0025_stationoff_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 30 | Completed screen; not promoted | 0.065040650407 | 0.243902439024 | 0.154471544715 | 0.977925246704 | 42 / 5 | 45 / 200.27 s | `30_supcon_heads_event0025_stationoff_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/3su0c0e5) |
+
+The run records benchmark ID `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` and commit `a2d832ba1f437f1d6e3cc71802b9290a9093edeb` in both metrics and provenance. Training-reported elapsed time was 189.98 seconds; guarded wall time was 200.27 seconds. All required local artifacts are present. W&B completed online and synced zero artifact files.
+
+Slot 30 is below the seed-42 comparator, slot 19/20 (score 0.16260162601626016; canonical validation MSE 0.419021287532869), on both score and MSE. It was not standalone-evaluated or promoted; slots 31–33 were not launched. Preserve its checkpoint and logs. No source or config files were changed for this run.
+
+### Current best and lane state
+
+The best valid checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: supervised-contrastive NotebookAE, reconstruction/event/station weights 1.0/0.125/0.05, temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, maximum 200 epochs, patience 40. Its event/station top-1 are 0.065040650407/0.276422764228, exact score 0.17073170731707318, canonical validation MSE 0.430679210870, and best epoch 78. Guarded standalone evaluation matched all 87 shared scientific fields.
+
+| Seed | Event top-1 | Station top-1 | Score |
+|---:|---:|---:|---:|
+| 42 | 0.048780487805 | 0.276422764228 | 0.162601626016 |
+| 43 | 0.008130081301 | 0.284552845528 | 0.146341463415 |
+| 44 | 0.048780487805 | 0.292682926829 | 0.170731707317 |
+| Three-seed mean | — | — | 0.1598915989 |
+| Three-seed sample SD | — | — | 0.0124189043 |
+
+The fresh overnight-budget separation baseline remains slot 23 at score 0.121951219512 (event 0.040650406504, station 0.203252032520; MSE 0.985821658387). Slot 30 brings total lane consumption to 30 of 64, leaving 34 slots; 20 seed-42 attempts have been used, below the 48-screen cap, and the 12-slot confirmation reserve remains intact. All run paths and W&B URLs for slots 1–30 are retained in this report and journal.
+
+Next bounded hypothesis: reduce the event-only auxiliary cross-entropy weight to 0.01 while keeping the station-head weight at 0, to test whether lighter direct event supervision avoids disrupting the SupCon geometry. This invocation ends after slot 30. Validation has been used repeatedly for selection; these are validation results, not untouched test evidence.
