@@ -297,3 +297,33 @@ The run records benchmark ID `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516
 The best valid checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`, with event/station top-1 0.065041/0.276423, exact score 0.17073170731707318, canonical validation MSE 0.4306792109, and best epoch 78. Its seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; their mean is 0.1598915989 and sample SD is 0.0124189043. Its guarded standalone evaluation matched all 87 shared scientific fields. The earlier inventory retains the paths and W&B URLs for slots 1–26; slot 27 is linked above. All results are validation results after repeated selection, not untouched test evidence.
 
 Next hypothesis: keep the event head weight at 0.01 and increase only the station head weight to 0.025, aiming to recover station retrieval while retaining the event improvement seen in slot 27. Hold NotebookAE, SupCon objective, optimizer, sampling, and budget fixed; screen seed 42 before any confirmation runs.
+
+## Latest bounded invocation (slot 28)
+
+This invocation completed one seed-42 screen and stops here. Before launch, 27 of 64 slots were consumed; STOP was absent, the worktree was clean, HEAD matched upstream, benchmark verification passed, all 24 tests passed, and the leaderboard showed slot 18 as the best observed run. The exact plan was committed and pushed before training as `e7743ee54e6ff35c0deb6acc5d1e3a2316483c76`. The guarded runner reverified the benchmark, used GPU 0 and online W&B, and enforced the 1,200-second attempt limit.
+
+### Hypothesis and registered budget
+
+Hypothesis: raising only `station_head_weight` from 0.01 to 0.025 may recover station retrieval after slot 27's event-head screen while retaining `event_head_weight=0.01`. NotebookAE, SupCon weights and temperature, optimizer, sampling, and training budget stayed fixed. The batch registered one attempt only: slot 28, seed 42, up to 200 epochs, patience 40. Confirmation runs were not registered for this invocation.
+
+Exact command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive_heads loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.05 loss.embedding_dim=64 loss.event_classes=35 loss.station_classes=35 loss.event_head_weight=0.01 loss.station_head_weight=0.025 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=false device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_heads001_station0025_seed42 hydra.run.dir=outputs/overnight_2026-10-21/28_supcon_heads001_station0025_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 28 | Completed screen; not promoted | 0.040650406504 | 0.260162601626 | 0.150406504065 | 0.971185763571 | 42 / 9 | 49 / 188.21 s | `28_supcon_heads001_station0025_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/vm02ut6r) |
+
+Training-reported elapsed time was 178.35 seconds. The run records benchmark ID `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` and commit `e7743ee54e6ff35c0deb6acc5d1e3a2316483c76`. All required local artifacts are present. W&B completed online and synced zero artifact files.
+
+The result is below the best seed-42 comparator, slot 19, which scored 0.16260162601626016 with canonical validation MSE 0.419021287532869. Slot 28 has both lower event and station retrieval and a higher MSE. It was therefore not standalone-evaluated and no repeat or other-seed attempts followed. Preserve the checkpoint and logs without promotion.
+
+### Current best and next hypothesis
+
+The best valid single-run checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`, with score 0.17073170731707318, event/station top-1 0.0650406504065/0.276422764228, canonical validation MSE 0.430679210870, and best epoch 78. Its guarded standalone evaluation matched all 87 shared scientific fields. Its seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; mean 0.1598915989 and sample SD 0.0124189043.
+
+Slot 28 brings cumulative consumption to 28 of 64 attempts, leaving 36, with the minimum 12-slot confirmation reserve intact. The next hypothesis is to remove the event auxiliary head while retaining `station_head_weight=0.025`, then screen seed 42 to test whether event retrieval recovers without losing the station-head gain. Preregister that as a separate bounded batch. This invocation ends after slot 28 with no new training; validation results remain subject to repeated-selection optimism.
