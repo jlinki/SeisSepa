@@ -2,7 +2,7 @@
 
 ## Status
 
-This invocation completed its one-attempt batch-size-64 zero-weight-decay screen and stopped. Lane A has consumed **19 of 64 attempts**: 16 seed-42 screens and 3 confirmation runs. There are 45 attempts left; at least 12 remain reserved for confirmations, and the 48-screen limit permits at most 32 additional seed-42 screens. All 19 slots completed successfully. No STOP/BLOCKED file, authentication failure, benchmark-integrity failure, upstream push failure, or online W&B failure occurred.
+This invocation completed its four-attempt batch-size-32 screen and confirmation batch. Lane A has consumed **23 of 64 attempts**: 17 seed-42 screens and 6 confirmation runs. There are 41 attempts left; at least 12 remain reserved for confirmations. The 48-screen cap allows 31 more seed-42 screens, while preserving all 12 confirmation slots limits additional screens to 29. All 23 slots completed successfully. No STOP/BLOCKED file, authentication failure, benchmark-integrity failure, upstream push failure, or online W&B failure occurred.
 
 The lane is `research/overnight-20261021-a`. The branch is pushed and the working tree is clean. No source, model, loss, configuration, evaluator, benchmark, or test files were changed; research used Hydra overrides. The batch plan, each completed attempt, and this report are in the pushed journal/report.
 
@@ -33,14 +33,18 @@ Hypothesis: balanced separation weights `reconstruction/event/station = 1.0/0.10
 | 17 | `outputs/overnight_2026-10-21/a_17_event015_batch64_seed42` | 42 | 0.040650 | 0.235772 | 0.138211 | 0.1510001148 | 77 / 117 | 238.0 s | `07f4af7079335df608fef91f183876d04a247e41` | [19m2bufm](https://wandb.ai/jlinki/seissepa-autoresearch/runs/19m2bufm) | Not run; below verified best |
 | 18 | `outputs/overnight_2026-10-21/a_18_lr0001_batch64_balanced_seed42` | 42 | 0.073171 | 0.186992 | 0.130081 | 0.9714779560 | 7 / 47 | 232.6 s | `abf5993d50aa93e6edae41cc746991483d545080` | [60uyru99](https://wandb.ai/jlinki/seissepa-autoresearch/runs/60uyru99) | Not run; below verified best |
 | 19 | `outputs/overnight_2026-10-21/a_19_weightdecay0_batch64_seed42` | 42 | 0.056911 | 0.243902 | 0.150407 | 0.1100223245 | 105 / 145 | 445.2 s (298.5 s train) | `04974d56fd075190b4494e32c6463aaf293f6c4a` | [nlie1gun](https://wandb.ai/jlinki/seissepa-autoresearch/runs/nlie1gun) | Not run; below slot-6 best |
+| 20 | `outputs/overnight_2026-10-21/a_20_batch32_seed42` | 42 | 0.056911 | 0.325203 | 0.191057 | 0.3430895047 | 36 / 76 | 238.8 s | `56dff99769a79141ebdf5ead5135a069941769c6` | [7xrhy2hl](https://wandb.ai/jlinki/seissepa-autoresearch/runs/7xrhy2hl) | 101 fields, 0 mismatches |
+| 21 | `outputs/overnight_2026-10-21/a_21_batch32_seed42_repeat` | 42 | 0.056911 | 0.325203 | 0.191057 | 0.3430895047 | 36 / 76 | 210.0 s | `8b5a3940dd8c3906c60be67ab3676ab996b5c323` | [b6gjrlva](https://wandb.ai/jlinki/seissepa-autoresearch/runs/b6gjrlva) | 100 fields, 0 mismatches; exact repeat of slot 20 |
+| 22 | `outputs/overnight_2026-10-21/a_22_batch32_seed43` | 43 | 0.065041 | 0.357724 | **0.211382** | 0.0764759242 | 79 / 119 | 261.5 s | `c19ef9a05f0aa589de1fb7b77d956b8f4316a128` | [gtb11jjt](https://wandb.ai/jlinki/seissepa-autoresearch/runs/gtb11jjt) | 101 fields, 0 mismatches |
+| 23 | `outputs/overnight_2026-10-21/a_23_batch32_seed44` | 44 | 0.065041 | 0.308943 | 0.186992 | 0.1087974898 | 52 / 92 | 201.5 s | `ed9a5ca647511f1b3c01ec9f289fc91b2148c24c` | [qwaj8efb](https://wandb.ai/jlinki/seissepa-autoresearch/runs/qwaj8efb) | Not run; below verified slot-22 candidate |
 
 All runs used online W&B in `jlinki/seissepa-autoresearch` and have the required local files: `config.yaml`, `provenance.json`, `source.tar.gz`, `history.jsonl`, `best.pt`, `metrics.json`, and `report.md`. The guarded runner verified the frozen benchmark before each training attempt. Exact commands, run outcomes, and commit IDs are in `experiments/journal.jsonl`.
 
-## Best checkpoint and three-seed evidence
+## Previous best checkpoint and three-seed evidence (before slots 20–23)
 
-The best valid single checkpoint is `outputs/overnight_2026-10-21/a_06_balanced010_seed43/best.pt`, trained from commit `de03a8ff9a1186c0b2a4753cf82f44d00a45ac99`. It scored 0.158537 (event 0.056911, station 0.260163) with canonical validation MSE 0.6569846171 at epoch 48. The protected standalone evaluator ran on GPU 0 at batch size 128 and matched all 100 shared scientific fields with zero mismatches.
+Before slots 20–23, the best valid single checkpoint was `outputs/overnight_2026-10-21/a_06_balanced010_seed43/best.pt`, trained from commit `de03a8ff9a1186c0b2a4753cf82f44d00a45ac99`. It scored 0.158537 (event 0.056911, station 0.260163) with canonical validation MSE 0.6569846171 at epoch 48. The protected standalone evaluator ran on GPU 0 at batch size 128 and matched all 100 shared scientific fields with zero mismatches. Slot 22 superseded it as the current best; see the final section.
 
-Best configuration: fixed `model=notebook` (NotebookAE); `loss=separation`; reconstruction/event/station weights `1.0/0.10/0.10`; margin `0.2`; AdamW learning rate `0.0002`, weight decay `0.0001`; gradient clip `1.0`; batch size `128`; maximum 200 epochs; patience `40`. The checkpoint's training seed is 43.
+Prior best configuration: fixed `model=notebook` (NotebookAE); `loss=separation`; reconstruction/event/station weights `1.0/0.10/0.10`; margin `0.2`; AdamW learning rate `0.0002`, weight decay `0.0001`; gradient clip `1.0`; batch size `128`; maximum 200 epochs; patience `40`. The checkpoint's training seed is 43.
 
 | Confirmation seed | Event top-1 | Station top-1 | Combined score | Canonical val MSE |
 |---:|---:|---:|---:|---:|
@@ -50,7 +54,7 @@ Best configuration: fixed `model=notebook` (NotebookAE); `loss=separation`; reco
 | Three-seed mean | — | — | **0.140921** | — |
 | Three-seed sample standard deviation | — | — | **0.015390** | — |
 
-The three-seed mean is 0.018970 above the fresh seed-42 baseline score of 0.121951. Each confirmation score exceeds that baseline. This supports the balanced configuration at the tested budget; validation has been used for selection, so this is validation evidence. No confidence interval is assigned to the mean of the two retrieval tasks. The strongest individual result is seed 43, and it passed standalone evaluation.
+At that point, the three-seed mean was 0.018970 above the fresh seed-42 baseline score of 0.121951, and each confirmation score exceeded that baseline. These earlier validation results were used for selection. The final section reports the later batch-size-32 results and the current best; no confidence interval is assigned to the mean of the two retrieval tasks.
 
 ## Reconstruction, margin, batch, and learning-rate screens
 
@@ -96,7 +100,7 @@ The predeclared screen held NotebookAE, balanced separation weights `1.0/0.10/0.
 
 Relative to the balanced batch-size-64 screen at learning rate `0.0002` (slot 14), event retrieval rose by 0.016260 while station retrieval fell by 0.056911; the combined score fell by 0.020325, from 0.150407 to 0.130081. The candidate is below the verified slot-6 best at 0.158537, so it was not evaluated and does not warrant confirmation runs. Preserve its artifacts and keep the evaluated slot-6 seed-43 checkpoint as best valid.
 
-Next bounded hypothesis for a later invocation: at batch size 64 with balanced separation weights, reduce AdamW weight decay from `0.0001` to `0.0` while restoring learning rate `0.0002`. This tests whether regularization is limiting retrieval with the smaller batch; hold the remaining settings fixed and run one seed-42 screen at 200 epochs/patience 40. Evaluate and use the exact seed-42 repeat plus seeds 43/44 only if the screen ranks ahead of the current best verified checkpoint under the fixed score/MSE/epoch ordering.
+This proposed zero-weight-decay screen was tested as slot 19; see the following section.
 
 ## Zero-weight-decay batch-size-64 screen
 
@@ -110,4 +114,25 @@ The exact command was:
 CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=separation loss.reconstruction_weight=1.0 loss.event_weight=0.10 loss.station_weight=0.10 loss.margin=0.2 seed=42 train.epochs=200 train.patience=40 train.batch_size=64 train.grad_clip=1.0 optimizer.lr=0.0002 optimizer.weight_decay=0.0 device=cuda:0 threads=4 wandb.mode=online wandb.name=overnight_a_19_weightdecay0_batch64_seed42 hydra.run.dir=outputs/overnight_2026-10-21/a_19_weightdecay0_batch64_seed42
 ```
 
-Next bounded hypothesis: at batch size 32, more optimizer updates per epoch may improve retrieval over batch size 64. Keep the balanced weights, margin, AdamW settings, gradient clipping, seed-42 screen, and 200-epoch/patience-40 budget fixed; use the same standalone-evaluation and confirmation threshold.
+The batch-size-32 hypothesis proposed here was tested in slots 20–23; see the final section below.
+
+
+## Batch-size-32 screen and seed confirmations
+
+Hypothesis: at batch size 32, more optimizer updates per epoch may improve retrieval over batch size 64. Slot 20 isolated batch size against slot 19 while keeping NotebookAE, separation weights `reconstruction/event/station = 1.0/0.10/0.10`, margin `0.2`, AdamW learning rate `0.0002`, zero weight decay, gradient clip `1.0`, seed 42, and the 200-epoch/patience-40 budget fixed. The exact screen command and the repeat/seed-43/44 commands are in `experiments/journal.jsonl`.
+
+The seed-42 screen scored 0.191057 (event 0.056911, station 0.325203), with canonical validation MSE 0.3430895047 at epoch 36 after 76 epochs. Its online W&B run completed at [7xrhy2hl](https://wandb.ai/jlinki/seissepa-autoresearch/runs/7xrhy2hl), and its standalone evaluator matched all 101 shared scientific fields exactly. The exact seed-42 repeat also selected epoch 36 and matched all 100 shared scientific metrics with zero mismatches; its W&B run is [b6gjrlva](https://wandb.ai/jlinki/seissepa-autoresearch/runs/b6gjrlva).
+
+Seed 43 scored 0.211382 (event 0.065041, station 0.357724), with canonical validation MSE 0.0764759242 at epoch 79 after 119 epochs. Its standalone evaluator matched all 101 shared scientific fields exactly, and the checkpoint is the best valid candidate in this lane. Seed 44 scored 0.186992 (event 0.065041, station 0.308943), with canonical validation MSE 0.1087974898 at epoch 52 after 92 epochs. It was not evaluated because it ranks below the verified seed-43 checkpoint.
+
+| Seed | Slot | Event top-1 | Station top-1 | Score | Canonical val MSE | Best epoch / epochs |
+|---:|---:|---:|---:|---:|---:|---:|
+| 42 | 20 (repeat 21 matched exactly) | 0.056911 | 0.325203 | 0.191057 | 0.3430895047 | 36 / 76 |
+| 43 | 22 | 0.065041 | 0.357724 | **0.211382** | 0.0764759242 | 79 / 119 |
+| 44 | 23 | 0.065041 | 0.308943 | 0.186992 | 0.1087974898 | 52 / 92 |
+| Three-seed mean | — | — | — | **0.196477** | — | — |
+| Three-seed sample SD | — | — | — | **0.013067** | — | — |
+
+All three seed scores exceed the fresh overnight default seed-42 baseline of 0.121951. The three-seed mean is 0.074526 above that baseline and 0.055556 above the prior balanced batch-size-128 three-seed mean of 0.140921. The best valid checkpoint is `outputs/overnight_2026-10-21/a_22_batch32_seed43/best.pt`, trained from commit `c19ef9a05f0aa589de1fb7b77d956b8f4316a128`, with the configuration above. Its benchmark ID is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26`. The batch consumed slots 20–23; all attempts and evaluator outcomes are in the pushed journal. These are validation results after repeated selection, not untouched test results; no confidence interval is assigned to the two-task mean.
+
+Next bounded hypothesis for a later invocation: at batch size 32, reduce reconstruction weight from `1.0` to `0.75` while keeping separation weights `0.10/0.10`, margin `0.2`, AdamW `lr=0.0002, weight_decay=0.0`, clipping `1.0`, seed-42 screening, and the 200-epoch/patience-40 budget. Declare a maximum of four attempts: one screen, then the exact seed-42 repeat and seeds 43/44 only if the screen ranks ahead of the current verified seed-43 candidate (score 0.211382, canonical MSE 0.0764759242, epoch 79) and its guarded standalone evaluation matches. Keep at least 12 slots reserved for confirmation.
