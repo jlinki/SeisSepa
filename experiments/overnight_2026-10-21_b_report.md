@@ -2,9 +2,9 @@
 
 ## Invocation status
 
-The latest bounded invocation finished after one seed-42 screen (slot 25). Twenty-five of 64 cumulative lane attempts are consumed; 39 remain, with at least 12 kept for exact repeats and seed confirmations. The branch is `research/overnight-20261021-b`. The balanced-grid code/config and pre-registered batch plan were pushed before training in commit `dca129118969de9956d125f350fa6905f5a1ee63`. The screen was below the seed-42 comparator, so no standalone evaluation or follow-up confirmations were run. NotebookAE architecture remained fixed.
+The latest bounded invocation finished after one seed-42 screen (slot 26). Twenty-six of 64 cumulative lane attempts are consumed; 38 remain, with at least 12 kept for exact repeats and seed confirmations. The branch is `research/overnight-20261021-b`. The train-only auxiliary-head implementation and pre-registered batch plan were pushed before training in commit `1d2e52440f1e72dc8a30195bc40cb9557abfca26`. The screen was below the seed-42 comparator, so no standalone evaluation or follow-up confirmations were run. NotebookAE architecture and inference outputs remained fixed.
 
-The frozen benchmark is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` (1,225 traces; 1,102 training and 123 validation; 35 event and 35 station classes). Before the latest batch, benchmark verification passed, all 24 tests passed, the leaderboard showed slot 18 as incumbent, the branch was clean and synchronized, and STOP was absent. The new sampler uses training labels only and leaves model inputs unchanged. Slot 25 used the guarded GPU-0 runner and online W&B in `jlinki/seissepa-autoresearch`; all required local artifacts are present and no artifact files were uploaded. Slot 25 and its report update are recorded on this branch.
+The frozen benchmark is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` (1,225 traces; 1,102 training and 123 validation; 35 event and 35 station classes). Before the latest batch, benchmark verification passed, all 24 tests passed, the leaderboard showed slot 18 as incumbent, the branch was clean and synchronized, and STOP was absent. The new classifier heads use training labels only, are part of the loss optimizer, and are absent from the model and inference checkpoint. Slot 26 used the guarded GPU-0 runner and online W&B in `jlinki/seissepa-autoresearch`; all required local artifacts are present and no artifact files were uploaded. The hypothesis, command, result, and decision are recorded in `experiments/journal.jsonl`.
 
 ## Hypothesis and budget
 
@@ -244,3 +244,29 @@ The run used commit `dca129118969de9956d125f350fa6905f5a1ee63` and benchmark ID 
 The best valid single-run checkpoint remains slot 18: `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`, with event/station top-1 0.065041/0.276423, exact score 0.17073170731707318, canonical validation MSE 0.4306792109, and best epoch 78. Its guarded standalone evaluation matched all 87 shared scientific fields. Its seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; mean 0.1598915989, sample SD 0.0124189043. All runs 1–25 and their W&B links are listed above.
 
 The next hypothesis is to add training-only linear heads on `ze` and `zs`, supervised by event/station cross-entropy alongside SupCon. Keep the heads out of inference and keep all IDs out of model inputs.
+
+## Latest bounded invocation (slot 26)
+
+This invocation completed one seed-42 screen and stops here. Before launch, 25 of 64 slots were reserved, STOP was absent, the benchmark verification passed, all 24 tests passed, and the leaderboard showed slot 18 as incumbent. The source/config change and registered plan were committed and pushed before training in `1d2e52440f1e72dc8a30195bc40cb9557abfca26`. Slot 26 used the guarded runner on GPU 0, online W&B in `jlinki/seissepa-autoresearch`, batch size 128, maximum 200 epochs, patience 40, and the 1,200-second attempt cap.
+
+### Hypothesis and budget
+
+Hypothesis: adding training-only linear classifiers on the normalized `ze` and `zs` latents, with event and station cross-entropy weights 0.05 alongside the existing SupCon weights 0.125/0.05, could improve latent class supervision. The head weights were included in the optimizer and gradient clipping. Labels were consumed only by the training loss; the heads were absent from NotebookAE and its inference checkpoint. The batch allowed up to four attempts: slot 26 was the seed-42 screen; slots 27–29 were conditional on beating the best seed-42 ordering (score 0.16260162601626016, canonical MSE 0.419021287532869) and passing guarded standalone evaluation with an exact scientific-field match.
+
+Exact screen command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive_heads loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.05 loss.temperature=0.05 loss.embedding_dim=64 loss.event_classes=35 loss.station_classes=35 loss.event_head_weight=0.05 loss.station_head_weight=0.05 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=false device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_heads005_seed42 hydra.run.dir=outputs/overnight_2026-10-21/26_supcon_heads005_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 26 | Completed screen; not promoted | 0.048780487805 | 0.203252032520 | 0.126016260163 | 0.736037642590 | 42 / 29 | 69 / 158.08 s | `26_supcon_heads005_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/5nspzdb2) |
+
+The run records benchmark ID `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26` and commit `1d2e52440f1e72dc8a30195bc40cb9557abfca26`. Its training-reported elapsed time was 147.76 seconds; guarded wall time was 158.08 seconds. All required local artifacts are present. W&B completed online and synced zero artifact files. The score is below the seed-42 comparator, and canonical MSE is higher; standalone evaluation and slots 27–29 were therefore not run. Preserve the checkpoint and logs without promotion.
+
+The best valid checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`, at score 0.17073170731707318, event/station top-1 0.065041/0.276423, canonical validation MSE 0.4306792109, and best epoch 78. The seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; the three-seed mean is 0.1598915989 and sample SD is 0.0124189043. The new outcome and W&B URL are recorded in `experiments/journal.jsonl`; all runs 1–26 now have local outcomes and W&B links in this report and the earlier inventory.
+
+Next hypothesis: lower both auxiliary cross-entropy weights from 0.05 to 0.01 while keeping NotebookAE, SupCon weights, temperature, optimizer, sampling, and training budget fixed. Run a seed-42 screen, then require the same score/MSE ordering and exact standalone evaluation before repeating seed 42 or collecting seeds 43/44.
