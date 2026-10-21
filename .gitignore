@@ -1,5 +1,8 @@
 .venv/
 **/.venv/
+# Isolated research worktrees share these through local symlinks.
+/.venv
+/data/frozen
 **/__pycache__/
 *.py[cod]
 .pytest_cache/

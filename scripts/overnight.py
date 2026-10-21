@@ -1,6 +1,7 @@
 """Bounded local supervision for the explicitly authorized overnight CLI research."""
 import datetime as dt
 import fcntl
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -105,6 +106,7 @@ def guarded(command, args):
     args = [value for value in args if value not in {"--", "--check"}]
     with (lane_dir / "gpu.lock").open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        execution_root = ROOT
         if command == "train":
             if (control / "STOP").exists() or now() >= deadline(plan, "training_cutoff"):
                 raise RuntimeError("No new training: overnight stop/cutoff reached")
@@ -155,6 +157,22 @@ def guarded(command, args):
                 raise RuntimeError("Worker evaluation cutoff reached")
             if not args or args[0].startswith("-"):
                 raise ValueError("Provide a candidate checkpoint")
+            checkpoint = (ROOT / args[0]).resolve()
+            if ROOT / "outputs" not in checkpoint.parents or not checkpoint.is_file():
+                raise ValueError("Checkpoint must be an existing local lane output")
+            args[0] = str(checkpoint)
+            if "--source-root" in args:
+                index = args.index("--source-root")
+                execution_root = (ROOT / args[index + 1]).resolve()
+                del args[index:index + 2]
+                if ROOT / "outputs" not in execution_root.parents:
+                    raise ValueError("Restore old source inside this lane's ignored outputs")
+                if (execution_root / "data/frozen").resolve() != (ROOT / "data/frozen").resolve():
+                    raise ValueError("Restored source must share the same frozen cache")
+                original = hashlib.sha256((ROOT / "scripts/evaluate.py").read_bytes()).digest()
+                restored = hashlib.sha256((execution_root / "scripts/evaluate.py").read_bytes()).digest()
+                if original != restored:
+                    raise ValueError("Use the unchanged protected standalone evaluator")
             if args.count("--device") != 1 or args[args.index("--device") + 1] != "cuda:0":
                 raise ValueError("Evaluation must use cuda:0")
             log = lane_dir / f"evaluation-{time.time_ns()}.log"
@@ -168,8 +186,8 @@ def guarded(command, args):
         returncode = 1
         try:
             with log.open("w") as stream:
-                process = subprocess.Popen(child_command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT,
-                                           env=lane_environment(ROOT, control, lane), start_new_session=True)
+                process = subprocess.Popen(child_command, cwd=execution_root, stdout=stream, stderr=subprocess.STDOUT,
+                                           env=lane_environment(execution_root, control, lane), start_new_session=True)
                 try:
                     returncode = process.wait(timeout=max(1, limit))
                     status = "completed" if returncode == 0 else "failed"
@@ -225,7 +243,10 @@ commit/push before the next launch. Preserve failed/poor runs. Stop the lane for
 integrity, upstream push or online logging failure; write an explicit BLOCKED file
 under $SEISSEPA_OVERNIGHT_CONTROL/lanes/{lane} with the actual reason and stop.
 Re-evaluate promising checkpoints BEFORE editing their source; compare all scientific
-fields exactly. For promising candidates, run an exact seed42 repeat plus seeds43/44
+fields exactly. For an older source version, restore its source.tar.gz inside your own
+ignored outputs, link the same frozen cache there, then call the guard from your
+assigned worktree with `evaluate CHECKPOINT --source-root RESTORED_DIR --device cuda:0
+--batch-size ACTUAL`. Never disable source checks. For promising candidates, run an exact seed42 repeat plus seeds43/44
 with unchanged config/budget; report all and mean/sample SD. Reserve >=12 slots for
 confirmations. Use no more than 48 seed42 screens. Prefer small, explained batches.
 Finish the invocation after at most four attempts with a pushed clean tree and a clear

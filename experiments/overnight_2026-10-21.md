@@ -76,7 +76,9 @@ Git gates, W&B privacy settings, checkpoint selection and canonical metrics inta
 
    Use its actual training/evaluation batch size. Compare every scientific report field
    exactly. If source has changed, evaluate in a separate copy restored from that run's
-   `source.tar.gz`, with the same read-only frozen cache; never loosen evaluator checks.
+   `source.tar.gz` inside the lane's ignored outputs, with the same read-only frozen
+   cache. From the assigned worktree pass `--source-root RESTORED_DIR` to the guard's
+   `evaluate` command; never loosen evaluator checks.
 7. Finish each CLI batch with a clean, pushed branch and an updated
    `experiments/overnight_2026-10-21_LANE_report.md`. State consumed slots, valid best
    checkpoint, seed evidence, findings, next bounded hypothesis and any blockers.
