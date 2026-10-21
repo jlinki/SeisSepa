@@ -163,3 +163,31 @@ Best valid configuration and checkpoint remain slot 18: model=notebook, supervis
 For the seed-42 comparison, slot 19/20 ties the previous event-weight-0.125 seed-42 score at 0.16260162601626016 and has lower canonical MSE (0.4190212875 versus 0.7314721880). Its evaluation passed exactly, but the event-weight-0.15 three-seed mean does not improve.
 
 Next bounded hypothesis: test temperature 0.075 with event/station weights 0.125/0.05 and all other settings fixed. A seed-42 screen can test whether a softer contrastive temperature improves event retrieval while retaining station retrieval. Continue to the exact repeat and seeds 43/44 only if the seed-42 score/MSE ordering beats its current incumbent (score 0.16260162601626016; canonical validation MSE 0.419021287532869) and guarded standalone evaluation matches exactly. Use at most four attempts, 200 epochs, patience 40 and 1,200 seconds per attempt. No additional attempt was started in this invocation.
+
+## Latest bounded invocation (slot 23)
+
+This invocation completed one of one registered attempts. Before launch, 22 of 64 lane slots were reserved and STOP was absent. Benchmark verification passed for the frozen ID below, all 24 tests passed, and the leaderboard confirmed slot 18 as the incumbent. The prelaunch plan was committed and pushed before training in commit `c0e19ab764e5ab6dcdd6f86d52b9aeddfb902635`. No source or configuration files changed.
+
+### Hypothesis, command and budget
+
+Hypothesis: a fresh seed-42 run of the default NotebookAE separation objective at the overnight budget provides the requested fair 200-epoch baseline anchor for this round. The batch allowed one attempt, up to 200 epochs, patience 40, and 1,200 seconds. The actual run used GPU 0, batch size 128, AdamW learning rate 0.0002, and online W&B in `jlinki/seissepa-autoresearch`.
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=separation loss.reconstruction_weight=1.0 loss.event_weight=0.05 loss.station_weight=0.05 loss.margin=0.2 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_fresh_baseline_seed42_round2 hydra.run.dir=outputs/overnight_2026-10-21/23_fresh_baseline_seed42
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---|---|---|
+| 23 | Completed baseline | 0.040650 | 0.203252 | 0.121951 | 0.9858216584 | 42 / 1 | 41 / 134.72 s | `outputs/overnight_2026-10-21/23_fresh_baseline_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/fsf4ti9z) |
+
+The benchmark ID is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26`; the run records commit `c0e19ab764e5ab6dcdd6f86d52b9aeddfb902635`. All required local files are present (`config.yaml`, `provenance.json`, `source.tar.gz`, `history.jsonl`, `best.pt`, `metrics.json`, `report.md`, and `wandb.json`). W&B completed online with no artifact files uploaded.
+
+Slot 23 matches slot 1's scientific metrics exactly, including score and canonical MSE. The recorded software and hardware provenance also matches at batch size 128. Source hashes differ only for the later-added `configs/loss/supervised_contrastive.yaml` and `src/seissepa/losses.py`. Slot 23's score is below the lane incumbent, so it is retained as the fresh baseline and is not promoted.
+
+### Current best and next step
+
+The current best valid checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: supervised-contrastive NotebookAE, reconstruction/event/station weights 1.0/0.125/0.05, temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, maximum 200 epochs, patience 40. Its event/station top-1 are 0.065041/0.276423, exact score 0.17073170731707318, canonical validation MSE 0.4306792109, and best epoch 78. Guarded standalone evaluation matched all 87 shared scientific fields.
+
+Its seed-42/43/44 scores remain 0.1626016260/0.1463414634/0.1707317073; the three-seed mean is 0.1598915989 and sample SD is 0.0124189043. The complete run inventory and W&B links for slots 1–22 are above; slot 23 is added here. This invocation stops after slot 23. The next hypothesis remains the previously proposed temperature 0.075 screen at event/station weights 0.125/0.05, with the rest of the configuration fixed. There are 41 of 64 slots remaining, with at least 12 kept for confirmations.
