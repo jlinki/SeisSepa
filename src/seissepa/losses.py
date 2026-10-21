@@ -63,3 +63,25 @@ class SupervisedContrastiveLoss(nn.Module):
         station = supervised_contrastive(output["zs"], batch["station"], self.temperature)
         total = sum(w * loss for w, loss in zip(self.weights, (reconstruction, event, station)))
         return total, {"reconstruction": reconstruction, "event": event, "station": station}
+
+
+class SupervisedContrastiveHeadsLoss(SupervisedContrastiveLoss):
+    """SupCon plus train-only classifiers on the event and station latents."""
+
+    def __init__(self, reconstruction_weight=1.0, event_weight=0.05, station_weight=0.05,
+                 temperature=0.1, embedding_dim=64, event_classes=35, station_classes=35,
+                 event_head_weight=0.05, station_head_weight=0.05):
+        super().__init__(reconstruction_weight, event_weight, station_weight, temperature)
+        if min(embedding_dim, event_classes, station_classes) < 1:
+            raise ValueError("Auxiliary head dimensions and class counts must be positive")
+        self.event_head = nn.Linear(embedding_dim, event_classes)
+        self.station_head = nn.Linear(embedding_dim, station_classes)
+        self.event_head_weight = event_head_weight
+        self.station_head_weight = station_head_weight
+
+    def forward(self, output, batch):
+        total, components = super().forward(output, batch)
+        event_head = F.cross_entropy(self.event_head(output["ze"]), batch["event"])
+        station_head = F.cross_entropy(self.station_head(output["zs"]), batch["station"])
+        total = total + self.event_head_weight * event_head + self.station_head_weight * station_head
+        return total, {**components, "event_head_ce": event_head, "station_head_ce": station_head}

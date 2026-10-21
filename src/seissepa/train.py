@@ -254,7 +254,8 @@ def run(config, output_dir):
     )
     model = instantiate(config.model, in_channels=train_loader.dataset.waveforms.shape[1]).to(device)
     criterion = instantiate(config.loss).to(device)
-    optimizer = instantiate(config.optimizer, params=model.parameters())
+    trainable_parameters = [*model.parameters(), *criterion.parameters()]
+    optimizer = instantiate(config.optimizer, params=trainable_parameters)
     start = time.monotonic()
     best, best_mse, stale = -1.0, float("inf"), 0
     with wandb.init(project=config.wandb.project, entity=config.wandb.entity, mode=config.wandb.mode,
@@ -277,7 +278,8 @@ def run(config, output_dir):
                 if not torch.isfinite(loss):
                     raise ValueError("Non-finite training loss")
                 loss.backward()
-                torch.nn.utils.clip_grad_norm_(model.parameters(), config.train.grad_clip, error_if_nonfinite=True)
+                torch.nn.utils.clip_grad_norm_(trainable_parameters, config.train.grad_clip,
+                                               error_if_nonfinite=True)
                 optimizer.step()
                 size = len(batch["target"])
                 for key, value in {"loss": loss, **components}.items():

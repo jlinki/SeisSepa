@@ -1,0 +1,10 @@
+_target_: seissepa.losses.SupervisedContrastiveHeadsLoss
+reconstruction_weight: 1.0
+event_weight: 0.125
+station_weight: 0.05
+temperature: 0.05
+embedding_dim: 64
+event_classes: 35
+station_classes: 35
+event_head_weight: 0.05
+station_head_weight: 0.05
