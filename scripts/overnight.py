@@ -136,7 +136,7 @@ def guarded(command, args):
                 raise ValueError("Choose an unused run directory inside the lane's overnight outputs")
             enforced = {"model": "notebook", "train.epochs": str(epochs), "train.patience": "40",
                         "seed": overrides.get("seed", "42"), "device": "cuda:0",
-                        "wandb.mode": "online", "threads": "2"}
+                        "wandb.mode": "online", "threads": "4"}
             args = [value for value in args if value.split("=", 1)[0] not in enforced]
             args += [f"{key}={value}" for key, value in enforced.items()]
             if check:
