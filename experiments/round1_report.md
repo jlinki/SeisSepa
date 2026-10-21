@@ -25,6 +25,17 @@ All seven training slots are complete. The doubled-weight candidate reached 0.13
 | 6 | Completed; same candidate at seed 43 | 0.056911 | 0.170732 | 0.113821 | 0.953893602915 | 43 / 10 | 268.87 s | `outputs/round1/06_double_separation_seed43`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/mn4d177n) |
 | 7 | Completed; same candidate at seed 44 | 0.065041 | 0.162602 | 0.113821 | 0.816304484157 | 44 / 13 | 282.65 s | `outputs/round1/07_double_separation_seed44`; [W&B](https://wandb.ai/jlinki/seissepa-autoresearch/runs/swi75han) |
 
+## W&B metric lookup
+
+Completed runs 3–7 each contain all 53 final diagnostic scalars in both W&B history and summary. Open a completed run such as [run 4](https://wandb.ai/jlinki/seissepa-autoresearch/runs/o9y68io8) and search for these exact keys:
+
+- Reconstruction train/validation: `final/reconstruction/{training,validation}/{mse,r2,mean_correlation}`.
+- Event or station training: `final/{event,station}/training/{retrieval_top1,nearest_centroid}/accuracy`, plus `wilson95_low`, `wilson95_high`, and `final/{event,station}/training/silhouette_cosine/score`.
+- Event or station validation: `final/{event,station}/validation/{retrieval_top1,nearest_centroid,knn5,linear_probe,raw_spectra_linear_probe}/accuracy`, plus the corresponding Wilson bounds and `final/{event,station}/validation/silhouette_cosine/score`.
+- Primary objective: `final/objective/val/retrieval_accuracy`.
+
+The initial owner-stopped run 1 is marked failed and has no final diagnostics; run 2 never produced a valid W&B result. The values in the original notebook example are not copied into these runs: all diagnostics are recomputed on the frozen 35 × 35 benchmark. The full reports remain local at each run's `metrics.json` and `report.md`.
+
 The round-3 exact command was:
 
 ```bash
