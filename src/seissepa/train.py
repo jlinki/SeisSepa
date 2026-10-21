@@ -259,7 +259,7 @@ def run(config, output_dir):
         (output_dir / "metrics.json").write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
         (output_dir / "report.md").write_text(markdown_report(report))
         diagnostics = final_diagnostic_scalars(report)
-        tracking.log(diagnostics, step=last_epoch + 1)
+        tracking.log(diagnostics, step=epoch + 1)
         tracking.summary.update({**report["objective"], "best_epoch": checkpoint["epoch"],
                                  "benchmark_id": lock["benchmark_id"],
                                  "git_commit": git["commit"], **diagnostics})
