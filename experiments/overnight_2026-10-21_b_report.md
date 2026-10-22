@@ -666,3 +666,45 @@ The best validated checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_
 Slot 41 brings cumulative lane use to 41 of 64 attempts, leaving 23. There are 29 seed-42 attempts against the 48-screen cap; at least 12 slots remain reserved for confirmations. Slots 1–40 and their W&B URLs remain inventoried in the preceding report sections and `experiments/journal.jsonl`; slot 41 is recorded above and in the journal.
 
 Next hypothesis: at SupCon temperature 0.05 and event weight 0.125, reduce station weight to 0.025 to test whether weakening the station loss recovers station retrieval while preserving the event gain seen at station weight 0.075. Keep NotebookAE and all other settings fixed. Validation has been repeatedly used for selection; these are validation results, not untouched test evidence.
+
+## Latest bounded invocation (slot 42)
+
+This invocation completed one seed-42 screen from a pre-registered batch of at most four attempts. Before training, 41 of 64 cumulative lane slots were reserved, STOP and BLOCKED were absent, the branch was clean and synchronized, benchmark verification passed, all 24 tests passed, the leaderboard was inspected, and GPU 0 was idle. The plan and exact conditional commands were committed and pushed before training as `a674c6c330d40a8304cc9234ef2b3e5fa3e95663`. The guarded runner verified the frozen benchmark and ran slot 42 on GPU 0 with online W&B.
+
+### Hypothesis and registered budget
+
+Hypothesis: at SupCon temperature 0.05 and event weight 0.125, lowering station weight from 0.075 to 0.025 may recover station retrieval while retaining the event gain seen at station weight 0.075, improving the balanced objective. NotebookAE, reconstruction weight 1.0, AdamW learning rate 0.0002 and weight decay 0.0001, uniform sampling, batch size 128, gradient clipping 1.0, and the 200-epoch/patience-40 budget stayed fixed.
+
+The batch allowed at most four attempts, up to 200 epochs each, patience 40, and 1,200 seconds per attempt. It reserved slots 42–45 conditionally. Exact seed-42 repeat and seeds 43/44 required the screen to outrank seed-42 comparator slot 31 under score/MSE/epoch ordering and pass guarded standalone evaluation exactly; seeds 43/44 also required an exact seed-42 repeat.
+
+Exact screen command:
+
+~~~bash
+CUDA_VISIBLE_DEVICES=0 uv run --frozen python scripts/overnight.py train -- model=notebook loss=supervised_contrastive loss.reconstruction_weight=1.0 loss.event_weight=0.125 loss.station_weight=0.025 loss.temperature=0.05 optimizer.lr=0.0002 optimizer.weight_decay=0.0001 train.epochs=200 train.patience=40 train.batch_size=128 train.grad_clip=1.0 train.balanced_batches=false device=cuda:0 wandb.mode=online wandb.entity=jlinki wandb.project=seissepa-autoresearch seed=42 wandb.name=overnight_b_supcon_event0125_station0025_seed42 hydra.run.dir=outputs/overnight_2026-10-21/42_supcon_event0125_station0025_seed42 threads=4
+~~~
+
+### Outcome
+
+| Slot | Status | Event top-1 | Station top-1 | Score | Canonical val MSE | Seed / best epoch | Epochs / guarded elapsed | Run | W&B |
+|---:|---|---:|---:|---:|---:|---|---:|---|---|
+| 42 | Completed screen; not promoted | 0.065041 | 0.219512 | 0.142276 | 0.985821598505 | 42 / 1 | 41 / 172.25 s | `outputs/overnight_2026-10-21/42_supcon_event0125_station0025_seed42` | [run](https://wandb.ai/jlinki/seissepa-autoresearch/runs/p8y3aemo) |
+
+Training-reported elapsed time was 161.29 seconds. The training commit is `a674c6c330d40a8304cc9234ef2b3e5fa3e95663`; the benchmark ID is `abafe9c36982e368359c6a5cd4005e3956d4626690f74d4516895831fb3b8a26`. All required local artifacts are present. W&B completed online in `jlinki/seissepa-autoresearch` and uploaded zero artifact files.
+
+Slot 42 is below seed-42 comparator slot 31 (score 0.166666666667; event/station 0.065041/0.268293; MSE 0.740670498947; best epoch 26) on the primary score and has higher canonical MSE. Station top-1 fell to 0.219512 while event top-1 matched the comparator at 0.065041. It does not qualify for standalone evaluation or promotion; preserve the run and logs, and leave conditional slots 43–45 unlaunched.
+
+### Current best and lane state
+
+The best validated checkpoint remains slot 18, `outputs/overnight_2026-10-21/18_supcon_event0125_seed44/best.pt`: NotebookAE with supervised-contrastive weights (reconstruction/event/station 1.0/0.125/0.05), temperature 0.05, AdamW learning rate 0.0002 and weight decay 0.0001, batch size 128, up to 200 epochs and patience 40. Event/station top-1 are 0.065040650407/0.276422764228, score 0.170731707317, canonical validation MSE 0.430679210870, and best epoch 78. Its guarded standalone evaluation matched all shared scientific fields.
+
+| Seed | Run | Score |
+|---:|---|---:|
+| 42 | slot 15 | 0.162601626016 |
+| 43 | slot 17 | 0.146341463415 |
+| 44 | slot 18 | 0.170731707317 |
+| Three-seed mean | — | 0.159891598916 |
+| Three-seed sample SD | — | 0.012418904322 |
+
+Slot 42 brings cumulative lane use to 42 of 64 attempts, leaving 22. There are 30 seed-42 screens against the 48-screen cap; at least 12 slots remain available for exact repeats and seed confirmations. Slots 1–41 and their W&B links remain in the preceding report sections and `experiments/journal.jsonl`; slot 42 is recorded above and in the journal.
+
+Next hypothesis: use the train-only balanced grid batch sampler with the best observed SupCon weights (1.0/0.125/0.05, temperature 0.05). Requiring at least two training examples for each selected event and station class per batch may provide more positive pairs and improve latent supervision. Keep NotebookAE, optimizer, and budget fixed. Validation has been repeatedly used for selection; these are validation results, not untouched test evidence. Do not assign a confidence interval to the combined objective.
